@@ -1,0 +1,2900 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Style Configuration | Complete Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="budget-styles.css">
+</head>
+<body>
+    <div class="complete-form-container">
+        <header class="form-header">
+            <h1 class="main-title" data-gender-text="true">Personal Style Configuration</h1>
+            <p class="main-subtitle" data-gender-text="true">お客様のライフスタイルに最適なスタイリングをご提供するため、詳細な情報をお聞かせください</p>
+        </header>
+
+        <!-- Gender Switch (above form sections) -->
+        <div class="gender-switch-container prominent standalone">
+            <label>性別をお選びください <span class="required">*</span></label>
+            <div class="radio-group">
+                <label class="radio-label">
+                    <input type="radio" name="gender" value="male" id="gender-male" checked>
+                    <span>男性</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="gender" value="female" id="gender-female">
+                    <span>女性</span>
+                </label>
+            </div>
+        </div>
+
+        <script>
+            // Inline script for immediate gender switching
+            document.addEventListener('DOMContentLoaded', function() {
+                const maleRadio = document.getElementById('gender-male');
+                const femaleRadio = document.getElementById('gender-female');
+
+                function switchGender(gender) {
+                    // Disable transitions temporarily for instant switch
+                    document.body.style.transition = 'none';
+
+                    if (gender === 'female') {
+                        document.body.classList.add('female-form');
+                        // Force immediate style update
+                        document.body.style.backgroundColor = '#ffffff';
+                        if (typeof updateFormContent === 'function') {
+                            updateFormContent('female');
+                        }
+                    } else {
+                        document.body.classList.remove('female-form');
+                        // Force immediate style update
+                        document.body.style.backgroundColor = '';
+                        if (typeof updateFormContent === 'function') {
+                            updateFormContent('male');
+                        }
+                    }
+
+                    // Force browser to apply changes immediately
+                    void document.body.offsetHeight;
+
+                    // Re-enable transitions after a brief delay
+                    setTimeout(() => {
+                        document.body.style.transition = '';
+                    }, 50);
+                }
+
+                if (maleRadio) {
+                    maleRadio.addEventListener('change', function() {
+                        if (this.checked) switchGender('male');
+                    });
+                }
+
+                if (femaleRadio) {
+                    femaleRadio.addEventListener('change', function() {
+                        if (this.checked) switchGender('female');
+                    });
+                }
+
+                // Check initial state
+                if (femaleRadio && femaleRadio.checked) {
+                    switchGender('female');
+                }
+            });
+        </script>
+
+        <!-- Face Photo Upload Section -->
+        <div class="face-photo-section">
+            <h3 class="photo-section-title">顔写真をアップロード</h3>
+            <p class="photo-section-description">スタイリングの参考にさせていただきます</p>
+
+            <div class="photo-upload-container">
+                <label for="facePhotoInput" class="photo-preview clickable" id="facePhotoPreview">
+                    <img id="facePhotoImg" style="display: none;" alt="face-photo.jpg">
+                    <div class="photo-placeholder" id="facePhotoPlaceholder">
+                        <span class="photo-placeholder-text">写真を選択</span>
+                    </div>
+                </label>
+
+                <div class="photo-controls">
+                    <label for="facePhotoInput" class="photo-upload-btn">
+                        <span>写真を選択</span>
+                        <input type="file" id="facePhotoInput" accept="image/*" style="display: none;">
+                    </label>
+                    <button type="button" id="facePhotoRemove" class="photo-remove-btn" style="display: none;">
+                        削除
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <form id="styleForm" class="style-form">
+            <!-- セクション1: 基本情報 -->
+            <section class="form-section" id="section1">
+                <div class="section-header">
+                    <span class="section-number">1</span>
+                    <h2 class="section-title">お客様の基本情報</h2>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthYear">生年月日 <span class="required">*</span></label>
+                    <div class="date-selector">
+                        <select id="birthYear" name="birthYear" required>
+                            <option value="">年</option>
+                        </select>
+                        <select id="birthMonth" name="birthMonth" required>
+                            <option value="">月</option>
+                        </select>
+                        <select id="birthDay" name="birthDay" required>
+                            <option value="">日</option>
+                        </select>
+                    </div>
+                    <span class="age-display" id="ageDisplay"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>お住まいの地域 <span class="required">*</span></label>
+
+                    <div class="address-fields">
+                        <div class="address-row">
+                            <div class="postal-code-group">
+                                <label for="postalCode1">郵便番号</label>
+                                <div class="postal-code-inputs">
+                                    <input type="text" id="postalCode1" name="postalCode1" class="form-input postal-code-input" placeholder="123" maxlength="3" pattern="[0-9]{3}">
+                                    <span class="postal-code-separator">-</span>
+                                    <input type="text" id="postalCode2" name="postalCode2" class="form-input postal-code-input" placeholder="4567" maxlength="4" pattern="[0-9]{4}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="address-row">
+                            <div class="prefecture-group">
+                                <label for="prefecture">都道府県 <span class="required">*</span></label>
+                                <select id="prefecture" name="prefecture" class="form-select" required>
+                                    <option value="">選択してください</option>
+                                    <option value="北海道">北海道</option>
+                                    <option value="青森県">青森県</option>
+                                    <option value="岩手県">岩手県</option>
+                                    <option value="宮城県">宮城県</option>
+                                    <option value="秋田県">秋田県</option>
+                                    <option value="山形県">山形県</option>
+                                    <option value="福島県">福島県</option>
+                                    <option value="茨城県">茨城県</option>
+                                    <option value="栃木県">栃木県</option>
+                                    <option value="群馬県">群馬県</option>
+                                    <option value="埼玉県">埼玉県</option>
+                                    <option value="千葉県">千葉県</option>
+                                    <option value="東京都">東京都</option>
+                                    <option value="神奈川県">神奈川県</option>
+                                    <option value="新潟県">新潟県</option>
+                                    <option value="富山県">富山県</option>
+                                    <option value="石川県">石川県</option>
+                                    <option value="福井県">福井県</option>
+                                    <option value="山梨県">山梨県</option>
+                                    <option value="長野県">長野県</option>
+                                    <option value="岐阜県">岐阜県</option>
+                                    <option value="静岡県">静岡県</option>
+                                    <option value="愛知県">愛知県</option>
+                                    <option value="三重県">三重県</option>
+                                    <option value="滋賀県">滋賀県</option>
+                                    <option value="京都府">京都府</option>
+                                    <option value="大阪府">大阪府</option>
+                                    <option value="兵庫県">兵庫県</option>
+                                    <option value="奈良県">奈良県</option>
+                                    <option value="和歌山県">和歌山県</option>
+                                    <option value="鳥取県">鳥取県</option>
+                                    <option value="島根県">島根県</option>
+                                    <option value="岡山県">岡山県</option>
+                                    <option value="広島県">広島県</option>
+                                    <option value="山口県">山口県</option>
+                                    <option value="徳島県">徳島県</option>
+                                    <option value="香川県">香川県</option>
+                                    <option value="愛媛県">愛媛県</option>
+                                    <option value="高知県">高知県</option>
+                                    <option value="福岡県">福岡県</option>
+                                    <option value="佐賀県">佐賀県</option>
+                                    <option value="長崎県">長崎県</option>
+                                    <option value="熊本県">熊本県</option>
+                                    <option value="大分県">大分県</option>
+                                    <option value="宮崎県">宮崎県</option>
+                                    <option value="鹿児島県">鹿児島県</option>
+                                    <option value="沖縄県">沖縄県</option>
+                                    <option value="海外">海外</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="address-row">
+                            <div class="city-group">
+                                <label for="city">市区町村 <span class="required">*</span></label>
+                                <input type="text" id="city" name="city" class="form-input" placeholder="例：渋谷区" required>
+                            </div>
+                        </div>
+
+                        <div class="address-row">
+                            <div class="street-group">
+                                <label for="streetAddress">番地・建物名</label>
+                                <input type="text" id="streetAddress" name="streetAddress" class="form-input" placeholder="例：1-2-3 ○○ビル 5F">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- セクション2: ライフスタイル -->
+            <section class="form-section" id="section2">
+                <div class="section-header">
+                    <span class="section-number">2</span>
+                    <h2 class="section-title">お客様のライフスタイルと服装のニーズ</h2>
+                </div>
+
+                <!-- 2-1. １週間の過ごし方 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">2-1. １週間の過ごし方</h3>
+                </div>
+
+                <div class="form-group">
+                    <label>1週間のスタイリング概要 <span class="required">*</span></label>
+                    <p class="form-description">各曜日の過ごし方を選択し、週間のバランスをご確認ください。</p>
+
+                    <div class="weekly-overview-table">
+                        <table class="weekly-style-table">
+                            <thead>
+                                <tr>
+                                    <th>曜日</th>
+                                    <th>月曜日</th>
+                                    <th>火曜日</th>
+                                    <th>水曜日</th>
+                                    <th>木曜日</th>
+                                    <th>金曜日</th>
+                                    <th>土曜日</th>
+                                    <th>日曜日</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="row-label">過ごし方</td>
+                                    <td>
+                                        <div class="day-selection">
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="monday_schedule" value="work" required>
+                                                <span class="day-option-label">仕事</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="monday_schedule" value="rest">
+                                                <span class="day-option-label">休み</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="monday_schedule" value="no-boundary">
+                                                <span class="day-option-label">境目がない</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="day-selection">
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="tuesday_schedule" value="work" required>
+                                                <span class="day-option-label">仕事</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="tuesday_schedule" value="rest">
+                                                <span class="day-option-label">休み</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="tuesday_schedule" value="no-boundary">
+                                                <span class="day-option-label">境目がない</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="day-selection">
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="wednesday_schedule" value="work" required>
+                                                <span class="day-option-label">仕事</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="wednesday_schedule" value="rest">
+                                                <span class="day-option-label">休み</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="wednesday_schedule" value="no-boundary">
+                                                <span class="day-option-label">境目がない</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="day-selection">
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="thursday_schedule" value="work" required>
+                                                <span class="day-option-label">仕事</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="thursday_schedule" value="rest">
+                                                <span class="day-option-label">休み</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="thursday_schedule" value="no-boundary">
+                                                <span class="day-option-label">境目がない</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="day-selection">
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="friday_schedule" value="work" required>
+                                                <span class="day-option-label">仕事</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="friday_schedule" value="rest">
+                                                <span class="day-option-label">休み</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="friday_schedule" value="no-boundary">
+                                                <span class="day-option-label">境目がない</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="day-selection">
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="saturday_schedule" value="work" required>
+                                                <span class="day-option-label">仕事</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="saturday_schedule" value="rest">
+                                                <span class="day-option-label">休み</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="saturday_schedule" value="no-boundary">
+                                                <span class="day-option-label">境目がない</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="day-selection">
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="sunday_schedule" value="work" required>
+                                                <span class="day-option-label">仕事</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="sunday_schedule" value="rest">
+                                                <span class="day-option-label">休み</span>
+                                            </label>
+                                            <label class="day-radio-option">
+                                                <input type="radio" name="sunday_schedule" value="no-boundary">
+                                                <span class="day-option-label">境目がない</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- 週間の割合表示 -->
+                        <div class="weekly-ratio-display">
+                            <div class="ratio-summary" id="weeklyRatioSummary">
+                                <div class="ratio-item work-ratio">
+                                    <span class="ratio-label">仕事</span>
+                                    <span class="ratio-value" id="workRatio">0日</span>
+                                </div>
+                                <div class="ratio-item rest-ratio">
+                                    <span class="ratio-label">休み</span>
+                                    <span class="ratio-value" id="restRatio">0日</span>
+                                </div>
+                                <div class="ratio-item no-boundary-ratio">
+                                    <span class="ratio-label">境目がない</span>
+                                    <span class="ratio-value" id="noBoundaryRatio">0日</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>1週間の過ごし方 <span class="required">*</span> <span class="hint">該当するもの全てご選択ください</span></label>
+
+                    <!-- 平日 -->
+                    <div class="lifestyle-group">
+                        <h4 class="group-title">平日</h4>
+                        <div class="weekday-grid">
+                            <div class="weekday-card">
+                                <input type="checkbox" name="weekdayLifestyle" value="office-external" id="weekday-office-external">
+                                <label for="weekday-office-external" class="checkbox-option">
+                                    <img src="images/lifestyle-office-external.jpg" alt="lifestyle-office-external.jpg">
+                                    <span>毎日オフィス（外出多い）</span>
+                                </label>
+                                <div class="sub-options" id="external-meeting-people" style="display: none;">
+                                    <p class="sub-label">主にお会いする方：</p>
+                                    <div class="chip-group">
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="externalMeetingPeople" value="employee">
+                                            <span>社員</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="externalMeetingPeople" value="junior">
+                                            <span>後輩</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="externalMeetingPeople" value="partner">
+                                            <span>お取引先</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="externalMeetingPeople" value="client-senior">
+                                            <span>クライアント（年上）</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="externalMeetingPeople" value="client-junior">
+                                            <span>クライアント（年下）</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="externalMeetingPeople" value="business-partner">
+                                            <span>外部のビジネスパートナー</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="externalMeetingPeople" value="other">
+                                            <span>その他</span>
+                                        </label>
+                                    </div>
+                                    <input type="text" name="externalMeetingOther" placeholder="具体的に：" class="form-input sub-input" style="display: none;">
+                                </div>
+                            </div>
+
+                            <div class="weekday-card">
+                                <input type="checkbox" name="weekdayLifestyle" value="office-internal" id="weekday-office-internal">
+                                <label for="weekday-office-internal" class="checkbox-option">
+                                    <img src="images/lifestyle-office-internal.jpg" alt="lifestyle-office-internal.jpg">
+                                    <span>毎日オフィス（社内中心）</span>
+                                </label>
+                                <div class="sub-options" id="internal-meeting-people" style="display: none;">
+                                    <p class="sub-label">主に打ち合わせする方：</p>
+                                    <div class="chip-group">
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="internalMeetingPeople" value="employee">
+                                            <span>社員</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="internalMeetingPeople" value="junior">
+                                            <span>後輩</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="internalMeetingPeople" value="partner">
+                                            <span>お取引先</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="internalMeetingPeople" value="client-senior">
+                                            <span>クライアント（年上）</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="internalMeetingPeople" value="client-junior">
+                                            <span>クライアント（年下）</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="internalMeetingPeople" value="business-partner">
+                                            <span>外部のビジネスパートナー</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="weekday-card">
+                                <input type="checkbox" name="weekdayLifestyle" value="office-desk" id="weekday-office-desk">
+                                <label for="weekday-office-desk" class="checkbox-option">
+                                    <img src="images/lifestyle-office-desk.jpg" alt="lifestyle-office-desk.jpg">
+                                    <span>毎日オフィス（デスクワーク）</span>
+                                </label>
+                                <div class="sub-options" id="desk-meeting-people" style="display: none;">
+                                    <p class="sub-label">主にお会いする方：</p>
+                                    <div class="chip-group">
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="deskMeetingPeople" value="employee">
+                                            <span>社員</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="deskMeetingPeople" value="executive">
+                                            <span>役員</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="deskMeetingPeople" value="junior">
+                                            <span>後輩</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="deskMeetingPeople" value="other">
+                                            <span>その他</span>
+                                        </label>
+                                    </div>
+                                    <input type="text" name="deskMeetingOther" placeholder="具体的に：" class="form-input sub-input" style="display: none;">
+                                </div>
+                            </div>
+
+                            <div class="weekday-card">
+                                <input type="checkbox" name="weekdayLifestyle" value="remote" id="weekday-remote">
+                                <label for="weekday-remote" class="checkbox-option">
+                                    <img src="images/lifestyle-remote.jpg" alt="lifestyle-remote.jpg">
+                                    <span>リモートワーク中心</span>
+                                </label>
+                            </div>
+
+                            <div class="weekday-card">
+                                <input type="checkbox" name="weekdayLifestyle" value="hybrid" id="weekday-hybrid">
+                                <label for="weekday-hybrid" class="checkbox-option">
+                                    <img src="images/lifestyle-hybrid.jpg" alt="lifestyle-hybrid.jpg">
+                                    <span>ハイブリッドワーク</span>
+                                </label>
+                                <div class="sub-options" id="hybrid-meeting-people" style="display: none;">
+                                    <p class="sub-label">主にお会いする方（オフィス）：</p>
+                                    <div class="chip-group">
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="hybridMeetingPeople" value="employee">
+                                            <span>社員</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="hybridMeetingPeople" value="junior">
+                                            <span>後輩</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="hybridMeetingPeople" value="partner">
+                                            <span>お取引先</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="hybridMeetingPeople" value="client-senior">
+                                            <span>クライアント（年上）</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="hybridMeetingPeople" value="client-junior">
+                                            <span>クライアント（年下）</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="hybridMeetingPeople" value="business-partner">
+                                            <span>外部のビジネスパートナー</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="hybridMeetingPeople" value="other">
+                                            <span>その他</span>
+                                        </label>
+                                    </div>
+                                    <input type="text" name="hybridMeetingOther" placeholder="具体的に：" class="form-input sub-input" style="display: none;">
+                                </div>
+                            </div>
+
+                            <div class="weekday-card">
+                                <input type="checkbox" name="weekdayLifestyle" value="home" id="weekday-home">
+                                <label for="weekday-home" class="checkbox-option">
+                                    <img src="images/lifestyle-home.jpg" alt="lifestyle-home.jpg">
+                                    <span>自宅で過ごす</span>
+                                </label>
+                                <div class="sub-options" id="home-meeting-people" style="display: none;">
+                                    <p class="sub-label">主にお会いする方：</p>
+                                    <div class="chip-group">
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="homeMeetingPeople" value="online-client-senior">
+                                            <span>オンラインでのクライアント（年上）</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="homeMeetingPeople" value="online-client-junior">
+                                            <span>オンラインでのクライアント（年下）</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="homeMeetingPeople" value="business-partner">
+                                            <span>外部のビジネスパートナー</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="homeMeetingPeople" value="other">
+                                            <span>その他</span>
+                                        </label>
+                                    </div>
+                                    <input type="text" name="homeMeetingOther" placeholder="具体的に：" class="form-input sub-input" style="display: none;">
+                                </div>
+                            </div>
+
+                            <div class="weekday-card">
+                                <input type="checkbox" name="weekdayLifestyle" value="other" id="weekday-other">
+                                <label for="weekday-other" class="checkbox-option">
+                                    <img src="images/lifestyle-other.jpg" alt="lifestyle-other.jpg">
+                                    <span>その他</span>
+                                </label>
+                                <div class="sub-options" id="other-weekday-details" style="display: none;">
+                                    <input type="text" name="weekdayOtherDetail" placeholder="具体的にご記入ください" class="form-input sub-input">
+                                    <p class="sub-label" style="margin-top: 15px;">主にお会いする方：</p>
+                                    <div class="chip-group">
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="otherMeetingPeople" value="employee">
+                                            <span>社員</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="otherMeetingPeople" value="junior">
+                                            <span>後輩</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="otherMeetingPeople" value="partner">
+                                            <span>お取引先</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="otherMeetingPeople" value="client-senior">
+                                            <span>クライアント（年上）</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="otherMeetingPeople" value="client-junior">
+                                            <span>クライアント（年下）</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="otherMeetingPeople" value="business-partner">
+                                            <span>外部のビジネスパートナー</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="otherMeetingPeople" value="other">
+                                            <span>その他</span>
+                                        </label>
+                                    </div>
+                                    <input type="text" name="otherMeetingOtherDetail" placeholder="具体的に：" class="form-input sub-input" style="display: none;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 休日 -->
+                    <div class="lifestyle-group">
+                        <h4 class="group-title">休日</h4>
+                        <div class="weekday-grid">
+                            <div class="weekday-card">
+                              <input type="checkbox" name="holidayLifestyle" value="friends" id="holiday-friends">
+                              <label class="checkbox-option">
+                                    <img src="images/lifestyle-friends.jpg" alt="lifestyle-friends.jpg">
+                                    <span>ご友人とのお食事や会合、ショッピング</span>
+                                </label>
+                            </div>
+
+                            <div class="weekday-card">
+                              <input type="checkbox" name="holidayLifestyle" value="family" id="holiday-family">
+                              <label class="checkbox-option">
+                                    <img src="images/lifestyle-family.jpg" alt="lifestyle-family.jpg">
+                                    <span>ご家族との時間（ご家族での外出・レジャーなど）</span>
+                                </label>
+                            </div>
+
+                            <div class="weekday-card">
+                              <input type="checkbox" name="holidayLifestyle" value="date" id="holiday-date">
+                              <label class="checkbox-option">
+                                    <img src="images/lifestyle-date.jpg" alt="lifestyle-date.jpg">
+                                    <span>デート</span>
+                                </label>
+                                <div class="sub-options" id="date-places" style="display: none;">
+                                    <p class="sub-label">よく行く場所：</p>
+                                    <div class="chip-group">
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="datePlaces" value="luxury-restaurant">
+                                            <span>高級レストラン</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="datePlaces" value="casual-restaurant">
+                                            <span>カジュアルレストラン</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="datePlaces" value="cafe">
+                                            <span>カフェ</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="datePlaces" value="museum">
+                                            <span>美術館等</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="datePlaces" value="theme-park">
+                                            <span>テーマパーク</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="datePlaces" value="hotel">
+                                            <span>ホテル</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="datePlaces" value="nature">
+                                            <span>自然(海、山、温泉など)</span>
+                                        </label>
+                                        <label class="checkbox-option chip-option">
+                                            <input type="checkbox" name="datePlaces" value="outdoor">
+                                            <span>キャンプなどのアウトドア</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="weekday-card">
+                              <input type="checkbox" name="holidayLifestyle" value="solo" id="holiday-solo">
+                              <label class="checkbox-option">
+                                    <img src="images/lifestyle-solo.jpg" alt="lifestyle-solo.jpg">
+                                    <span>お一人で過ごされる時間（ご趣味・学習など）</span>
+                                </label>
+                            </div>
+
+                            <div class="weekday-card">
+                              <input type="checkbox" name="holidayLifestyle" value="sports" id="holiday-sports">
+                              <label class="checkbox-option">
+                                    <img src="images/lifestyle-sports.jpg" alt="lifestyle-sports.jpg">
+                                    <span>スポーツ（ゴルフ、テニス、ランニングなど）</span>
+                                </label>
+                            </div>
+
+                            <div class="weekday-card">
+                              <input type="checkbox" name="holidayLifestyle" value="drive" id="holiday-drive">
+                              <label class="checkbox-option">
+                                    <img src="images/lifestyle-drive.jpg" alt="lifestyle-drive.jpg">
+                                    <span>ドライブ</span>
+                                </label>
+                            </div>
+
+                            <div class="weekday-card">
+                              <input type="checkbox" name="holidayLifestyle" value="outdoor-activities" id="holiday-outdoor-activities">
+                              <label class="checkbox-option">
+                                    <img src="images/lifestyle-outdoor.jpg" alt="lifestyle-outdoor.jpg">
+                                    <span>アウトドア（キャンプ、釣り、登山など）</span>
+                                </label>
+                            </div>
+
+                            <div class="weekday-card">
+                              <input type="checkbox" name="holidayLifestyle" value="events" id="holiday-events">
+                              <label class="checkbox-option">
+                                    <img src="images/lifestyle-events.jpg" alt="lifestyle-events.jpg">
+                                    <span>イベントや、特別な場所へのお出かけ</span>
+                                </label>
+                            </div>
+
+                            <div class="weekday-card">
+                              <input type="checkbox" name="holidayLifestyle" value="business-dining" id="holiday-business-dining">
+                              <label class="checkbox-option">
+                                    <img src="images/lifestyle-business-dining.jpg" alt="lifestyle-business-dining.jpg">
+                                    <span>会食</span>
+                                </label>
+                            </div>
+
+                            <div class="weekday-card">
+                              <input type="checkbox" name="holidayLifestyle" value="executive-meeting" id="holiday-executive-meeting">
+                              <label class="checkbox-option">
+                                    <img src="images/lifestyle-executive.jpg" alt="lifestyle-executive.jpg">
+                                    <span>経営者交流会</span>
+                                </label>
+                            </div>
+
+                            <div class="weekday-card">
+                              <input type="checkbox" name="holidayLifestyle" value="holiday-other" id="holiday-other">
+                              <label class="checkbox-option">
+                                    <span>その他</span>
+                                </label>
+                                <div class="sub-options" id="holiday-other-details" style="display: none;">
+                                    <input type="text" name="holidayOtherDetail" placeholder="具体的にご記入ください" class="form-input sub-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>休日の過ごし方 <span class="hint">よくする活動を選択</span></label>
+
+                    <!-- プライベート -->
+                    <div class="activity-category">
+                        <h4 class="category-title">プライベート</h4>
+                        <div class="weekend-grid">
+                            <div class="weekend-card">
+                                <input type="checkbox" name="weekend" value="family" id="weekend-family">
+                                <label for="weekend-family" class="checkbox-option">
+                                    <img src="images/weekend-family.jpg" alt="weekend-family.jpg">
+                                    <span>家族と過ごす</span>
+                                </label>
+                            </div>
+                            <div class="weekend-card">
+                                <input type="checkbox" name="weekend" value="date" id="weekend-date">
+                                <label for="weekend-date" class="checkbox-option">
+                                    <img src="images/weekend-date.jpg" alt="weekend-date.jpg">
+                                    <span>恋人とデート</span>
+                                </label>
+                            </div>
+                            <div class="weekend-card">
+                                <input type="checkbox" name="weekend" value="solo" id="weekend-solo">
+                                <label for="weekend-solo" class="checkbox-option">
+                                    <img src="images/weekend-solo.jpg" alt="weekend-solo.jpg">
+                                    <span>一人で過ごす</span>
+                                </label>
+                            </div>
+                            <div class="weekend-card">
+                                <input type="checkbox" name="weekend" value="dining" id="weekend-dining">
+                                <label for="weekend-dining" class="checkbox-option">
+                                    <img src="images/weekend-dining.jpg" alt="weekend-dining.jpg">
+                                    <span>外食・会食</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- アクティビティ -->
+                    <div class="activity-category">
+                        <h4 class="category-title">アクティビティ</h4>
+                        <div class="weekend-grid">
+                            <div class="weekend-card">
+                                <input type="checkbox" name="weekend" value="sports" id="weekend-sports">
+                                <label for="weekend-sports" class="checkbox-option">
+                                    <img src="images/weekend-sports.jpg" alt="weekend-sports.jpg">
+                                    <span>スポーツ・運動</span>
+                                </label>
+                            </div>
+                            <div class="weekend-card" >
+                                <input type="checkbox" name="weekend" value="outdoor" id="weekend-outdoor">
+                                <label for="weekend-outdoor" class="checkbox-option">
+                                    <img src="images/weekend-outdoor.jpg" alt="weekend-outdoor.jpg">
+                                    <span>アウトドア活動</span>
+                                </label>
+                            </div>
+                            <div class="weekend-card">
+                                <input type="checkbox" name="weekend" value="event" id="weekend-event">
+                                <label for="weekend-event" class="checkbox-option">
+                                    <img src="images/weekend-event.jpg" alt="weekend-event.jpg">
+                                    <span>イベント参加</span>
+                                </label>
+                            </div>
+                            <div class="weekend-card">
+                                <input type="checkbox" name="weekend" value="drive" id="weekend-drive">
+                                <label for="weekend-drive" class="checkbox-option">
+                                    <img src="images/weekend-drive.jpg" alt="weekend-drive.jpg">
+                                    <span>ドライブ</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ビジネス -->
+                    <div class="activity-category">
+                        <h4 class="category-title">ビジネス</h4>
+                        <div class="weekend-grid">
+                            <div class="weekend-card">
+                                <input type="checkbox" name="weekend" value="business-dining" id="weekend-business-dining">
+                                <label for="weekend-business-dining" class="checkbox-option">
+                                    <img src="images/weekend-business-dining.jpg" alt="weekend-business-dining.jpg">
+                                    <span>接待・会食</span>
+                                </label>
+                            </div>
+                            <div class="weekend-card">
+                                <input type="checkbox" name="weekend" value="executive" id="weekend-executive">
+                                <label for="weekend-executive" class="checkbox-option">
+                                    <img src="images/weekend-executive.jpg" alt="weekend-executive.jpg">
+                                    <span>ビジネス会合</span>
+                                </label>
+                            </div>
+                            <div class="weekend-card">
+                                <input type="checkbox" name="weekend" value="business" id="weekend-business">
+                                <label for="weekend-business" class="checkbox-option">
+                                    <img src="images/weekend-business.jpg" alt="weekend-business.jpg">
+                                    <span>休日出勤</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" id="datePlacesGroup" style="display: none;">
+                    <label>デートでよく行く場所</label>
+                    <div class="chip-group">
+                        <label class="checkbox-option chip-option">
+                            <input type="checkbox" name="datePlaces" value="restaurant">
+                            <span>レストラン</span>
+                        </label>
+                        <label class="checkbox-option chip-option">
+                            <input type="checkbox" name="datePlaces" value="cafe">
+                            <span>カフェ</span>
+                        </label>
+                        <label class="checkbox-option chip-option">
+                            <input type="checkbox" name="datePlaces" value="movie">
+                            <span>映画館</span>
+                        </label>
+                        <label class="checkbox-option chip-option">
+                            <input type="checkbox" name="datePlaces" value="shopping">
+                            <span>ショッピング</span>
+                        </label>
+                        <label class="checkbox-option chip-option">
+                            <input type="checkbox" name="datePlaces" value="museum">
+                            <span>美術館・博物館</span>
+                        </label>
+                        <label class="checkbox-option chip-option">
+                            <input type="checkbox" name="datePlaces" value="outdoor">
+                            <span>アウトドア</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>どんなシーンが多いか <span class="hint">該当するもの全てご選択ください</span></label>
+
+                    <!-- ビジネスシーン -->
+                    <div class="scene-category">
+                        <h4 class="scene-category-title">ビジネスシーン</h4>
+                        <div class="scene-cards-grid">
+                            <div class="scene-card">
+                                <input type="checkbox" name="businessScenes" value="internal-meeting" id="scene-internal-meeting">
+                                <label for="scene-internal-meeting">
+                                    <img src="images/scene-internal-meeting.jpg" alt="scene-internal-meeting.jpg">
+                                    <span>社内会議・ミーティング</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="businessScenes" value="external-meeting" id="scene-external-meeting">
+                                <label for="scene-external-meeting">
+                                    <img src="images/scene-external-meeting.jpg" alt="scene-external-meeting.jpg">
+                                    <span>社外との商談・プレゼンテーション</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="businessScenes" value="business-dining" id="scene-business-dining">
+                                <label for="scene-business-dining">
+                                    <img src="images/scene-business-dining.jpg" alt="scene-business-dining.jpg">
+                                    <span>接待・会食</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="businessScenes" value="domestic-trip" id="scene-domestic-trip">
+                                <label for="scene-domestic-trip">
+                                    <img src="images/scene-domestic-trip.jpg" alt="scene-domestic-trip.jpg">
+                                    <span>出張（国内）</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="businessScenes" value="overseas-trip" id="scene-overseas-trip">
+                                <label for="scene-overseas-trip">
+                                    <img src="images/scene-overseas-trip.jpg" alt="scene-overseas-trip.jpg">
+                                    <span>出張（海外）</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="businessScenes" value="seminar" id="scene-seminar">
+                                <label for="scene-seminar">
+                                    <img src="images/scene-seminar.jpg" alt="scene-seminar.jpg">
+                                    <span>セミナー・カンファレンス参加</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="businessScenes" value="exhibition" id="scene-exhibition">
+                                <label for="scene-exhibition">
+                                    <img src="images/scene-exhibition.jpg" alt="scene-exhibition.jpg">
+                                    <span>展示会・イベント参加</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="businessScenes" value="site-visit" id="scene-site-visit">
+                                <label for="scene-site-visit">
+                                    <img src="images/scene-site-visit.jpg" alt="scene-site-visit.jpg">
+                                    <span>工場・現場視察</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- プライベートシーン -->
+                    <div class="scene-category">
+                        <h4 class="scene-category-title">プライベートシーン</h4>
+                        <div class="scene-cards-grid">
+                            <div class="scene-card">
+                                <input type="checkbox" name="privateScenes" value="luxury-dining" id="scene-luxury-dining">
+                                <label for="scene-luxury-dining">
+                                    <img src="images/scene-luxury-dining.jpg" alt="scene-luxury-dining.jpg">
+                                    <span>高級レストランでの食事</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="privateScenes" value="casual-dining" id="scene-casual-dining">
+                                <label for="scene-casual-dining">
+                                    <img src="images/scene-casual-dining.jpg" alt="scene-casual-dining.jpg">
+                                    <span>カジュアルレストラン・カフェ</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="privateScenes" value="shopping" id="scene-shopping">
+                                <label for="scene-shopping">
+                                    <img src="images/scene-shopping.jpg" alt="scene-shopping.jpg">
+                                    <span>ショッピング</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="privateScenes" value="culture" id="scene-culture">
+                                <label for="scene-culture">
+                                    <img src="images/scene-culture.jpg" alt="scene-culture.jpg">
+                                    <span>美術館・博物館・劇場</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="privateScenes" value="sports-watching" id="scene-sports-watching">
+                                <label for="scene-sports-watching">
+                                    <img src="images/scene-sports-watching.jpg" alt="scene-sports-watching.jpg">
+                                    <span>スポーツ観戦</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="privateScenes" value="golf" id="scene-golf">
+                                <label for="scene-golf">
+                                    <img src="images/scene-golf.jpg" alt="scene-golf.jpg">
+                                    <span>ゴルフ</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="privateScenes" value="fitness" id="scene-fitness">
+                                <label for="scene-fitness">
+                                    <img src="images/scene-fitness.jpg" alt="scene-fitness.jpg">
+                                    <span>フィットネス・ジム</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="privateScenes" value="party" id="scene-party">
+                                <label for="scene-party">
+                                    <img src="images/scene-party.jpg" alt="scene-party.jpg">
+                                    <span>パーティー・懇親会</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="privateScenes" value="ceremony" id="scene-ceremony">
+                                <label for="scene-ceremony">
+                                    <img src="images/scene-ceremony.jpg" alt="scene-ceremony.jpg">
+                                    <span>冠婚葬祭</span>
+                                </label>
+                            </div>
+                            <div class="scene-card">
+                                <input type="checkbox" name="privateScenes" value="school-event" id="scene-school-event">
+                                <label for="scene-school-event">
+                                    <img src="images/scene-school-event.jpg" alt="scene-school-event.jpg">
+                                    <span>子供の学校行事</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="other-scene-input">
+                          <input type="checkbox" name="privateScenes" value="other" id="scene-other">
+                          <label class="checkbox-option">
+                                <span>その他</span>
+                            </label>
+                            <input type="text" name="privateScenesOther" placeholder="具体的にご記入ください" class="form-input sub-input" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-3. ビジネスシーンにおける服装規定 -->
+                <div class="subsection">
+                    <h3 class="subsection-title">2-3. ビジネスシーンにおける服装規定</h3>
+                </div>
+
+                <div class="form-group">
+                    <label>職場の服装規定 <span class="required">*</span> <span class="hint">最も近いものを1つご選択ください</span></label>
+                    <p class="form-description">お客様の職場環境に最も適した服装規定をお選びください。これにより最適なビジネススタイルをご提案いたします。</p>
+                    <div class="dress-regulation-grid">
+                        <div class="dress-regulation-card">
+                            <input type="radio" name="dressRegulation" value="suit-required" id="regulation-suit" required>
+                            <label for="regulation-suit">
+                                <div class="regulation-image">
+                                    <img src="images/dress-code-suit.jpg" alt="dress-code-suit.jpg">
+                                </div>
+                                <div class="regulation-content">
+                                    <h4 class="regulation-title">スーツ必須</h4>
+                                    <p class="regulation-desc">毎日スーツを着用しております。<br>
+                                    ネクタイも必須です。</p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="dress-regulation-card">
+                            <input type="radio" name="dressRegulation" value="business-casual" id="regulation-business" required>
+                            <label for="regulation-business">
+                                <div class="regulation-image">
+                                    <img src="images/dress-code-business-casual.jpg" alt="dress-code-business-casual.jpg">
+                                </div>
+                                <div class="regulation-content">
+                                    <h4 class="regulation-title">ビジネスカジュアル</h4>
+                                    <p class="regulation-desc">ジャケットや襟付きシャツは必須です。<br>
+                                    ネクタイは必須ではありません。</p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="dress-regulation-card">
+                            <input type="radio" name="dressRegulation" value="smart-casual" id="regulation-smart" required>
+                            <label for="regulation-smart">
+                                <div class="regulation-image">
+                                    <img src="images/dress-code-smart-casual.jpg" alt="dress-code-smart-casual.jpg">
+                                </div>
+                                <div class="regulation-content">
+                                    <h4 class="regulation-title">スマートカジュアル</h4>
+                                    <p class="regulation-desc">ジャケットや襟付きシャツは必須ではありませんが、<br>
+                                    品位を意識いたします。</p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="dress-regulation-card">
+                            <input type="radio" name="dressRegulation" value="business-free" id="regulation-free" required>
+                            <label for="regulation-free">
+                                <div class="regulation-image">
+                                    <img src="images/dress-code-casual.jpg" alt="dress-code-casual.jpg">
+                                </div>
+                                <div class="regulation-content">
+                                    <h4 class="regulation-title">自由な服装</h4>
+                                    <p class="regulation-desc">Tシャツやスニーカーなども<br>
+                                    許容される環境です。</p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="dress-regulation-card">
+                            <input type="radio" name="dressRegulation" value="no-restriction" id="regulation-none" required>
+                            <label for="regulation-none">
+                                <div class="regulation-image">
+                                    <img src="images/dress-code-flexible.jpg" alt="dress-code-flexible.jpg">
+                                </div>
+                                <div class="regulation-content">
+                                    <h4 class="regulation-title">特に指定なし</h4>
+                                    <p class="regulation-desc">お客様ご自身の判断で<br>
+                                    服装を選んでおります。</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- セクション3: スタイル診断 -->
+            <section class="form-section" id="section3">
+                <div class="section-header">
+                    <span class="section-number">3</span>
+                    <h2 class="section-title">お客様のスタイルの指向性</h2>
+                </div>
+
+                <!-- 3-1. 貴殿が魅力を感じるスタイル -->
+                <div class="subsection">
+                    <h3 class="subsection-title">3-1. 魅力を感じるスタイル</h3>
+                </div>
+
+                <div class="form-group">
+                    <label>魅力を感じるスタイル <span class="hint">最も近いものを3つまでご選択ください</span></label>
+                    <p class="form-description">お好みのスタイルを最大3つまで選択してください。選択したスタイルごとに5つのパターンが表示されます。</p>
+                    <div class="style-preference-grid">
+                        <div class="style-preference-card">
+                            <input type="checkbox" name="attractiveStyle" value="mode" id="attractive-mode">
+                            <label for="attractive-mode">
+                                <!-- <img src="images/style-mode.jpg" alt="style-mode.jpg"> -->
+                                <span>モード</span>
+                            </label>
+                        </div>
+                        <div class="style-preference-card">
+                            <input type="checkbox" name="attractiveStyle" value="classic" id="attractive-classic">
+                            <label for="attractive-classic">
+                                <!-- <img src="images/style-mode.jpg" alt="style-mode.jpg"> -->
+                                <span>エレガント/シック</span>
+                            </label>
+                        </div>
+                        <div class="style-preference-card">
+                            <input type="checkbox" name="attractiveStyle" value="minimal" id="attractive-minimal">
+                            <label for="attractive-minimal">
+                                <!-- <img src="images/style-mode.jpg" alt="style-mode.jpg"> -->
+                                <span>ミニマム/シンプル</span>
+                            </label>
+                        </div>
+                        <div class="style-preference-card">
+                            <input type="checkbox" name="attractiveStyle" value="elegant" id="attractive-elegant">
+                            <label for="attractive-elegant">
+                                <!-- <img src="images/style-mode.jpg" alt="style-mode.jpg"> -->
+                                <span>エレガント</span>
+                            </label>
+                        </div>
+                        <div class="style-preference-card">
+                            <input type="checkbox" name="attractiveStyle" value="casual-chic" id="attractive-chic">
+                            <label for="attractive-chic">
+                                <!-- <img src="images/style-mode.jpg" alt="style-mode.jpg"> -->
+                                <span>ストリート/スポーティー</span>
+                            </label>
+                        </div>
+                        <div class="style-preference-card">
+                            <input type="checkbox" name="attractiveStyle" value="relax" id="attractive-relax">
+                            <label for="attractive-relax">
+                                <!-- <img src="images/style-mode.jpg" alt="style-mode.jpg"> -->
+                                <span>サーフ</span>
+                            </label>
+                        </div>
+                        <div class="style-preference-card">
+                            <input type="checkbox" name="attractiveStyle" value="american-casual" id="attractive-amecas">
+                            <label for="attractive-amecas">
+                                <!-- <img src="images/style-mode.jpg" alt="style-mode.jpg"> -->
+                                <span>アメカジ</span>
+                            </label>
+                        </div>
+                        <!-- <div class="style-preference-card">
+                            <input type="checkbox" name="attractiveStyle" value="street" id="attractive-street">
+                            <label for="attractive-street">
+                                <img src="images/style-mode.jpg" alt="style-mode.jpg">
+                                <span>ストリート</span>
+                            </label>
+                        </div> -->
+                        <!-- <div class="style-preference-card">
+                            <input type="checkbox" name="attractiveStyle" value="conservative" id="attractive-conservative">
+                            <label for="attractive-conservative">
+                                <img src="images/style-mode.jpg" alt="style-mode.jpg">
+                                <span>コンサバティブ</span>
+                            </label>
+                        </div> -->
+                        <div class="style-preference-card other-style">
+                            <input type="checkbox" name="attractiveStyle" value="other" id="attractive-other">
+                            <label for="attractive-other">
+                                <span>その他</span>
+                            </label>
+                            <input type="text" name="attractiveStyleOther" placeholder="具体的にご記入ください" class="form-input sub-input" style="display: none;">
+                        </div>
+                    </div>
+
+                    <!-- Pattern Selection Section - shown after style selection -->
+                    <div id="patternSelections" class="pattern-selections" style="display: none; margin-top: 30px;">
+                        <h3 style="margin-bottom: 15px; color: #333;">スタイルパターンの選択</h3>
+                        <p class="form-description">選択された各スタイルについて、5つのパターンからお好みのものを選択してください。</p>
+                        <div id="patternSelectionsContainer">
+                            <!-- Pattern selections for each selected style will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-2. アイテムのGOOD & BAD - Integrated into pattern selection above -->
+                <!-- <div class="subsection">
+                    <h3 class="subsection-title">3-2. アイテムのGOOD & BAD</h3>
+                </div> -->
+
+                <!-- Item evaluation is now integrated into pattern selection above -->
+                <!-- <div class="form-group" id="itemEvaluationSection">
+                    <label>アイテムの評価 <span class="hint">アイテム写真をご覧いただき、GOOD/BADをご判断ください</span></label>
+                    <p class="form-hint">選択されたスタイルに基づいて、関連性の高いアイテムを表示します。</p> -->
+
+<!--                     <!-- 3 columns for GOOD & BAD evaluation --> -->
+<!--                     <div class="item-evaluation-columns"> -->
+<!--                         <!-- Column 1 --> -->
+<!--                         <div class="evaluation-column"> -->
+<!--                             <h4 class="column-title">トップス</h4> -->
+<!--                             <div id="topsEvaluationContainer" class="evaluation-container"> -->
+<!--                                 <div class="item-evaluation-placeholder"> -->
+<!--                                     <p style="text-align: center; color: #999; padding: 20px;"> -->
+<!--                                         3-1でスタイルを選択してください -->
+<!--                                     </p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                          -->
+<!--                         <!-- Column 2 --> -->
+<!--                         <div class="evaluation-column"> -->
+<!--                             <h4 class="column-title">ボトムス</h4> -->
+<!--                             <div id="bottomsEvaluationContainer" class="evaluation-container"> -->
+<!--                                 <div class="item-evaluation-placeholder"> -->
+<!--                                     <p style="text-align: center; color: #999; padding: 20px;"> -->
+<!--                                         3-1でスタイルを選択してください -->
+<!--                                     </p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                          -->
+<!--                         <!-- Column 3 --> -->
+<!--                         <div class="evaluation-column"> -->
+<!--                             <h4 class="column-title">アウター・小物</h4> -->
+<!--                             <div id="accessoriesEvaluationContainer" class="evaluation-container"> -->
+<!--                                 <div class="item-evaluation-placeholder"> -->
+<!--                                     <p style="text-align: center; color: #999; padding: 20px;"> -->
+<!--                                         3-1でスタイルを選択してください -->
+<!--                                     </p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+
+                <!-- Remove duplicate style preference section -->
+
+
+                <!-- 2-4. 貴殿が避けるアイテム -->
+                <div class="subsection">
+                    <h3 class="subsection-title">2-4. 避けたいアイテム</h3>
+                </div>
+
+                <div class="form-group">
+                    <label>避けたいアイテム <span class="hint">写真をご覧いただき、該当するもの全てご選択ください</span></label>
+                    <p class="form-description">お客様が「これは着用したくない」「苦手だ」と感じる具体的なアイテムをお選びください。</p>
+
+                    <div class="avoid-categories">
+                        <!-- 素材感 -->
+                        <div class="avoid-category">
+                            <h4>素材感</h4>
+                            <div class="avoid-items">
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="synthetic-shiny" id="avoid-synthetic-shiny">
+                                    <label for="avoid-synthetic-shiny" class="avoid-item-label">
+                                        <img src="images/avoid-synthetic.jpg" alt="avoid-synthetic.jpg">
+                                        <span>化学繊維特有の光沢が強いもの</span>
+                                    </label>
+                                </div>
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="rough-texture" id="avoid-rough">
+                                    <label for="avoid-rough" class="avoid-item-label">
+                                        <img src="images/avoid-rough-texture.jpg" alt="avoid-rough-texture.jpg">
+                                        <span>粗い質感のもの</span>
+                                    </label>
+                                </div>
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="thin-material" id="avoid-thin">
+                                    <label for="avoid-thin" class="avoid-item-label">
+                                        <img src="images/avoid-thin-material.jpg" alt="avoid-thin-material.jpg">
+                                        <span>透けやすい薄い素材</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- シルエット -->
+                        <div class="avoid-category">
+                            <h4>シルエット</h4>
+                            <div class="avoid-items">
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="oversized" id="avoid-oversized">
+                                    <label for="avoid-oversized" class="avoid-item-label">
+                                        <img src="images/avoid-oversized.jpg" alt="avoid-oversized.jpg">
+                                        <span>極端にオーバーサイズなもの</span>
+                                    </label>
+                                </div>
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="tight" id="avoid-tight">
+                                    <label for="avoid-tight" class="avoid-item-label">
+                                        <img src="images/avoid-tight.jpg" alt="avoid-tight.jpg">
+                                        <span>タイトすぎるもの</span>
+                                    </label>
+                                </div>
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="mini-length" id="avoid-mini">
+                                    <label for="avoid-mini" class="avoid-item-label">
+                                        <img src="images/avoid-mini-length.jpg" alt="avoid-mini-length.jpg">
+                                        <span>ミニ丈</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- デザイン -->
+                        <div class="avoid-category">
+                            <h4>デザイン</h4>
+                            <div class="avoid-items">
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="bold-print" id="avoid-print">
+                                    <label for="avoid-print" class="avoid-item-label">
+                                        <img src="images/avoid-bold-print.jpg" alt="avoid-bold-print.jpg">
+                                        <span>大胆なプリント柄</span>
+                                    </label>
+                                </div>
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="frills-lace" id="avoid-frills">
+                                    <label for="avoid-frills" class="avoid-item-label">
+                                        <img src="images/avoid-frills-lace.jpg" alt="avoid-frills-lace.jpg">
+                                        <span>フリルやレースが多いもの</span>
+                                    </label>
+                                </div>
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="flashy-decoration" id="avoid-flashy">
+                                    <label for="avoid-flashy" class="avoid-item-label">
+                                        <img src="images/avoid-flashy-decoration.jpg" alt="avoid-flashy-decoration.jpg">
+                                        <span>派手な装飾</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 色・柄 -->
+                        <div class="avoid-category">
+                            <h4>色・柄</h4>
+                            <div class="avoid-items">
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="bright-color" id="avoid-bright">
+                                    <label for="avoid-bright" class="avoid-item-label">
+                                        <img src="images/avoid-bright-color.jpg" alt="avoid-bright-color.jpg">
+                                        <span>原色系の派手な色</span>
+                                    </label>
+                                </div>
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="animal-pattern" id="avoid-animal">
+                                    <label for="avoid-animal" class="avoid-item-label">
+                                        <img src="images/avoid-animal-pattern.jpg" alt="avoid-animal-pattern.jpg">
+                                        <span>アニマル柄</span>
+                                    </label>
+                                </div>
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="complex-pattern" id="avoid-complex">
+                                    <label for="avoid-complex" class="avoid-item-label">
+                                        <img src="images/avoid-complex-pattern.jpg" alt="avoid-complex-pattern.jpg">
+                                        <span>複雑な柄</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- その他 -->
+                        <div class="avoid-category">
+                            <h4>その他</h4>
+                            <div class="avoid-items">
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="high-heels" id="avoid-heels">
+                                    <label for="avoid-heels" class="avoid-item-label">
+                                        <img src="images/avoid-high-heels.jpg" alt="avoid-high-heels.jpg">
+                                        <span>ヒールの高すぎる靴</span>
+                                    </label>
+                                </div>
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="excessive-exposure" id="avoid-exposure">
+                                    <label for="avoid-exposure" class="avoid-item-label">
+                                        <img src="images/avoid-excessive-exposure.jpg" alt="avoid-excessive-exposure.jpg">
+                                        <span>過度な露出のある服</span>
+                                    </label>
+                                </div>
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="logo" id="avoid-logo">
+                                    <label for="avoid-logo" class="avoid-item-label">
+                                        <img src="images/avoid-logo.jpg" alt="avoid-logo.jpg">
+                                        <span>ロゴが目立つ服</span>
+                                    </label>
+                                </div>
+                                <div class="avoid-item">
+                                    <input type="checkbox" name="avoidItems" value="sporty-casual" id="avoid-sporty">
+                                    <label for="avoid-sporty" class="avoid-item-label">
+                                        <img src="images/avoid-sporty-casual.jpg" alt="avoid-sporty-casual.jpg">
+                                        <span>カジュアルすぎるスポーツウェア</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-3. 好きなブランド・苦手なブランド -->
+                <div class="subsection">
+                    <h3 class="subsection-title">3-3. 好きなブランド・苦手なブランド</h3>
+                </div>
+
+                <div class="form-group">
+                    <label>好きなブランド <span class="hint">複数選択可</span></label>
+
+
+                    <div class="brand-section">
+                        <div class="brand-category">コンテンポラリーブランド</div>
+                        <div class="brand-grid">
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="Theory">
+                                <span class="brand-logo">T</span>
+                                Theory
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="A.P.C.">
+                                <span class="brand-logo">APC</span>
+                                A.P.C.
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="ACNE STUDIOS">
+                                <span class="brand-logo">AS</span>
+                                ACNE STUDIOS
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="COS">
+                                <span class="brand-logo">C</span>
+                                COS
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="& Other Stories">
+                                <span class="brand-logo">&</span>
+                                & Other Stories
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="brand-section">
+                        <div class="brand-category">セレクトショップ・日本ブランド</div>
+                        <div class="brand-grid">
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="UNITED ARROWS">
+                                <span class="brand-logo">UA</span>
+                                UNITED ARROWS
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="BEAMS">
+                                <span class="brand-logo">B</span>
+                                BEAMS
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="SHIPS">
+                                <span class="brand-logo">S</span>
+                                SHIPS
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="JOURNAL STANDARD">
+                                <span class="brand-logo">JS</span>
+                                JOURNAL STANDARD
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="EDIFICE">
+                                <span class="brand-logo">E</span>
+                                EDIFICE
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="brand-section">
+                        <div class="brand-category">スポーツ・アウトドアブランド</div>
+                        <div class="brand-grid">
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="THE NORTH FACE">
+                                <span class="brand-logo">TNF</span>
+                                THE NORTH FACE
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="Patagonia">
+                                <span class="brand-logo">P</span>
+                                Patagonia
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="DESCENTE">
+                                <span class="brand-logo">D</span>
+                                DESCENTE
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="favoriteBrands" value="Arc'teryx">
+                                <span class="brand-logo">A</span>
+                                Arc'teryx
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label>苦手な(避けたい)ブランド <span class="hint">複数選択可</span></label>
+
+                    <div class="brand-section">
+                        <div class="brand-category">コンテンポラリーブランド</div>
+                        <div class="brand-grid">
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="Theory">
+                                <span class="brand-logo">T</span>
+                                Theory
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="A.P.C.">
+                                <span class="brand-logo">APC</span>
+                                A.P.C.
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="ACNE STUDIOS">
+                                <span class="brand-logo">AS</span>
+                                ACNE STUDIOS
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="COS">
+                                <span class="brand-logo">C</span>
+                                COS
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="& Other Stories">
+                                <span class="brand-logo">&</span>
+                                & Other Stories
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="brand-section">
+                        <div class="brand-category">セレクトショップ・日本ブランド</div>
+                        <div class="brand-grid">
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="UNITED ARROWS">
+                                <span class="brand-logo">UA</span>
+                                UNITED ARROWS
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="BEAMS">
+                                <span class="brand-logo">B</span>
+                                BEAMS
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="SHIPS">
+                                <span class="brand-logo">S</span>
+                                SHIPS
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="JOURNAL STANDARD">
+                                <span class="brand-logo">JS</span>
+                                JOURNAL STANDARD
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="EDIFICE">
+                                <span class="brand-logo">E</span>
+                                EDIFICE
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="brand-section">
+                        <div class="brand-category">スポーツ・アウトドアブランド</div>
+                        <div class="brand-grid">
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="THE NORTH FACE">
+                                <span class="brand-logo">TNF</span>
+                                THE NORTH FACE
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="Patagonia">
+                                <span class="brand-logo">P</span>
+                                Patagonia
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="DESCENTE">
+                                <span class="brand-logo">D</span>
+                                DESCENTE
+                            </label>
+                            <label class="brand-tag checkbox-option">
+                                <input type="checkbox" name="dislikedBrands" value="Arc'teryx">
+                                <span class="brand-logo">A</span>
+                                Arc'teryx
+                            </label>
+                        </div>
+                    </div>
+
+                    <textarea name="avoidBrandsOther" class="form-textarea" rows="3" placeholder="その他の避けたいブランドがあれば記入してください（例：派手なロゴが目立つブランド、カジュアルすぎるブランドなど）"></textarea>
+                </div>
+
+            </section>
+
+            <!-- セクション4: シーズンごとの提案とご要望 -->
+            <section class="form-section" id="section4">
+                <div class="section-header">
+                    <span class="section-number">4</span>
+                    <h2 class="section-title">シーズンごとの提案とご要望</h2>
+                </div>
+
+                <div class="form-group">
+                    <label>4-1. 1シーズンあたりの理想のコーディネート数 <span class="required">*</span></label>
+                    <p class="form-description">サービス提供の頻度や、期待されるタイムラインを把握いたします。</p>
+
+                    <div class="coordination-grid">
+                        <label class="coordination-card recommended">
+                            <input type="radio" name="seasonCoordinationCount" value="7" required>
+                            <div class="coordination-content">
+                                <span class="recommended-badge">おすすめ</span>
+                                <span class="count">7</span>
+                                <span class="unit">コーデ</span>
+                                <span class="description">1週間、違うスタイルを周りの人へ見せることが出来る</span>
+                            </div>
+                        </label>
+                        <label class="coordination-card">
+                            <input type="radio" name="seasonCoordinationCount" value="14" required>
+                            <div class="coordination-content">
+                                <span class="count">14</span>
+                                <span class="unit">コーデ</span>
+                                <span class="description">2週間分、毎日違う服装なので、社員の方やお客様といつ会っても同じ服と思われることがほとんどない</span>
+                            </div>
+                        </label>
+                        <label class="coordination-card">
+                            <input type="radio" name="seasonCoordinationCount" value="5" required>
+                            <div class="coordination-content">
+                                <span class="count">5</span>
+                                <span class="unit">コーデ</span>
+                                <span class="description">1週間のうち、2日間だけ同じコーデがある状態</span>
+                            </div>
+                        </label>
+                        <label class="coordination-card">
+                            <input type="radio" name="seasonCoordinationCount" value="6" required>
+                            <div class="coordination-content">
+                                <span class="count">6</span>
+                                <span class="unit">コーデ</span>
+                            </div>
+                        </label>
+                        <label class="coordination-card">
+                            <input type="radio" name="seasonCoordinationCount" value="8" required>
+                            <div class="coordination-content">
+                                <span class="count">8</span>
+                                <span class="unit">コーデ</span>
+                            </div>
+                        </label>
+                        <label class="coordination-card">
+                            <input type="radio" name="seasonCoordinationCount" value="10" required>
+                            <div class="coordination-content">
+                                <span class="count">10</span>
+                                <span class="unit">コーデ</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>4-2. アイテム調達の緊急度 <span class="required">*</span></label>
+                    <div class="urgency-options">
+                        <label class="urgency-option">
+                            <input type="radio" name="urgency" value="immediate" required>
+                            <div class="urgency-content">
+                                <span class="urgency-title">早急に必要</span>
+                                <span class="urgency-desc">具体的な期日があれば下記にご記入ください</span>
+                            </div>
+                        </label>
+                        <label class="urgency-option">
+                            <input type="radio" name="urgency" value="seasonal" required>
+                            <div class="urgency-content">
+                                <span class="urgency-title">季節の変わり目に合わせて</span>
+                            </div>
+                        </label>
+                        <label class="urgency-option">
+                            <input type="radio" name="urgency" value="not-urgent" required>
+                            <div class="urgency-content">
+                                <span class="urgency-title">特に急ぎではないが、良いものがあれば欲しい</span>
+                            </div>
+                        </label>
+                        <label class="urgency-option">
+                            <input type="radio" name="urgency" value="regular" required>
+                            <div class="urgency-content">
+                                <span class="urgency-title">定期的な提案を希望</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div id="urgencyDateInput" class="urgency-date" style="display: none;">
+                        <input type="text" name="urgencyDate" placeholder="具体的な期日をご記入ください" class="form-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>4-3. 今特に欲しいアイテムと枚数などありますか？ <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="hasWantedItems" value="yes" required>
+                            <span>はい</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="hasWantedItems" value="no" required>
+                            <span>いいえ、特にありません</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="hasWantedItems" value="wait-proposal" required>
+                            <span>プロからの提案を待ちたいです</span>
+                        </label>
+                    </div>
+                    <div id="wantedItemsDetail" class="wanted-items-detail" style="display: none;">
+                        <p class="form-hint">欲しいアイテムと数量を選択してください</p>
+                        <div class="wanted-items-grid">
+                            <div class="item-request">
+                                <label class="checkbox-option item-checkbox">
+                                    <input type="checkbox" name="wantedItemType" value="suit">
+                                    <span>スーツ</span>
+                                </label>
+                                <input type="number" min="1" max="10" placeholder="数量" class="quantity-input">
+                            </div>
+                            <div class="item-request">
+                                <label class="checkbox-option item-checkbox">
+                                    <input type="checkbox" name="wantedItemType" value="jacket">
+                                    <span>ジャケット</span>
+                                </label>
+                                <input type="number" min="1" max="10" placeholder="数量" class="quantity-input">
+                            </div>
+                            <div class="item-request">
+                                <label class="checkbox-option item-checkbox">
+                                    <input type="checkbox" name="wantedItemType" value="shirts">
+                                    <span>シャツ</span>
+                                </label>
+                                <input type="number" min="1" max="10" placeholder="数量" class="quantity-input">
+                            </div>
+                            <div class="item-request">
+                                <label class="checkbox-option item-checkbox">
+                                    <input type="checkbox" name="wantedItemType" value="tshirts">
+                                    <span>Tシャツ</span>
+                                </label>
+                                <input type="number" min="1" max="10" placeholder="数量" class="quantity-input">
+                            </div>
+                            <div class="item-request">
+                                <label class="checkbox-option item-checkbox">
+                                    <input type="checkbox" name="wantedItemType" value="pants">
+                                    <span>パンツ</span>
+                                </label>
+                                <input type="number" min="1" max="10" placeholder="数量" class="quantity-input">
+                            </div>
+                            <div class="item-request">
+                                <label class="checkbox-option item-checkbox">
+                                    <input type="checkbox" name="wantedItemType" value="shoes">
+                                    <span>シューズ</span>
+                                </label>
+                                <input type="number" min="1" max="10" placeholder="数量" class="quantity-input">
+                            </div>
+                            <div class="item-request">
+                                <label class="checkbox-option item-checkbox">
+                                    <input type="checkbox" name="wantedItemType" value="outer">
+                                    <span>アウター</span>
+                                </label>
+                                <input type="number" min="1" max="10" placeholder="数量" class="quantity-input">
+                            </div>
+                            <div class="item-request">
+                                <label class="checkbox-option item-checkbox">
+                                    <input type="checkbox" name="wantedItemType" value="belt">
+                                    <span>ベルト</span>
+                                </label>
+                                <input type="number" min="1" max="10" placeholder="数量" class="quantity-input">
+                            </div>
+                        </div>
+                        <textarea name="wantedItemsOther" placeholder="その他、具体的なご要望があればご記入ください（例：ビジネス用のジャケットを2枚、休日に着られるカジュアルシャツを3枚など）" class="form-textarea" rows="3" style="margin-top: 16px;"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- セクション5: アイテムごとのご予算感と価値観 -->
+            <section class="form-section" id="section5">
+                <div class="section-header">
+                    <span class="section-number">5</span>
+                    <h2 class="section-title">アイテムごとのご予算感と価値観</h2>
+                </div>
+
+                <p class="section-description">ファッションに対する価値観を理解し、最適な価格帯でのご提案に繋げます。</p>
+
+                <div class="form-group">
+                    <label>よく着用するアイテム <span class="hint">該当するもの全てご選択し、予算感もお選びください</span></label>
+                    <div class="clothing-items-enhanced-grid">
+
+                        <!-- シャツ -->
+                        <div class="clothing-item-enhanced">
+                            <label class="checkbox-option clothing-item-checkbox">
+                                <input type="checkbox" name="clothingItems" value="shirt" class="item-checkbox-main">
+                                <div class="item-content-enhanced">
+                                    <div class="item-image-placeholder">シャツ</div>
+                                    <span class="item-name">シャツ</span>
+                                </div>
+                            </label>
+                            <div class="item-budget-selector" style="display: none;" data-item="shirt">
+                                <p class="budget-label">予算感を選択してください</p>
+                                <div class="budget-options-inline">
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="shirtBudget" value="under30k">
+                                        <span>〜3万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="shirtBudget" value="30k-50k">
+                                        <span>3〜5万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="shirtBudget" value="50k-80k">
+                                        <span>5〜8万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="shirtBudget" value="over80k">
+                                        <span>8万円〜</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tシャツ -->
+                        <div class="clothing-item-enhanced">
+                            <label class="checkbox-option clothing-item-checkbox">
+                                <input type="checkbox" name="clothingItems" value="tshirt" class="item-checkbox-main">
+                                <div class="item-content-enhanced">
+                                    <div class="item-image-placeholder">Tシャツ</div>
+                                    <span class="item-name">Tシャツ</span>
+                                </div>
+                            </label>
+                            <div class="item-budget-selector" style="display: none;" data-item="tshirt">
+                                <p class="budget-label">予算感を選択してください</p>
+                                <div class="budget-options-inline">
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="tshirtBudget" value="under15k">
+                                        <span>〜1.5万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="tshirtBudget" value="15k-30k">
+                                        <span>1.5〜3万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="tshirtBudget" value="30k-50k">
+                                        <span>3〜5万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="tshirtBudget" value="over50k">
+                                        <span>5万円〜</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ニット -->
+                        <div class="clothing-item-enhanced">
+                            <label class="checkbox-option clothing-item-checkbox">
+                                <input type="checkbox" name="clothingItems" value="knit" class="item-checkbox-main">
+                                <div class="item-content-enhanced">
+                                    <div class="item-image-placeholder">ニット</div>
+                                    <span class="item-name">ニット</span>
+                                </div>
+                            </label>
+                            <div class="item-budget-selector" style="display: none;" data-item="knit">
+                                <p class="budget-label">予算感を選択してください</p>
+                                <div class="budget-options-inline">
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="knitBudget" value="under50k">
+                                        <span>〜5万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="knitBudget" value="50k-100k">
+                                        <span>5〜10万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="knitBudget" value="100k-200k">
+                                        <span>10〜20万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="knitBudget" value="over200k">
+                                        <span>20万円〜</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ジャケット -->
+                        <div class="clothing-item-enhanced">
+                            <label class="checkbox-option clothing-item-checkbox">
+                                <input type="checkbox" name="clothingItems" value="jacket" class="item-checkbox-main">
+                                <div class="item-content-enhanced">
+                                    <div class="item-image-placeholder">ジャケット</div>
+                                    <span class="item-name">ジャケット</span>
+                                </div>
+                            </label>
+                            <div class="item-budget-selector" style="display: none;" data-item="jacket">
+                                <p class="budget-label">予算感を選択してください</p>
+                                <div class="budget-options-inline">
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="jacketBudget" value="under100k">
+                                        <span>〜10万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="jacketBudget" value="100k-200k">
+                                        <span>10〜20万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="jacketBudget" value="200k-350k">
+                                        <span>20〜35万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="jacketBudget" value="over350k">
+                                        <span>35万円〜</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- パンツ -->
+                        <div class="clothing-item-enhanced">
+                            <label class="checkbox-option clothing-item-checkbox">
+                                <input type="checkbox" name="clothingItems" value="pants" class="item-checkbox-main">
+                                <div class="item-content-enhanced">
+                                    <div class="item-image-placeholder">パンツ</div>
+                                    <span class="item-name">パンツ</span>
+                                </div>
+                            </label>
+                            <div class="item-budget-selector" style="display: none;" data-item="pants">
+                                <p class="budget-label">予算感を選択してください</p>
+                                <div class="budget-options-inline">
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="pantsBudget" value="under30k">
+                                        <span>〜3万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="pantsBudget" value="30k-60k">
+                                        <span>3〜6万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="pantsBudget" value="60k-100k">
+                                        <span>6〜10万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="pantsBudget" value="over100k">
+                                        <span>10万円〜</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 革靴 -->
+                        <div class="clothing-item-enhanced">
+                            <label class="checkbox-option clothing-item-checkbox">
+                                <input type="checkbox" name="clothingItems" value="shoes" class="item-checkbox-main">
+                                <div class="item-content-enhanced">
+                                    <div class="item-image-placeholder">革靴</div>
+                                    <span class="item-name">革靴</span>
+                                </div>
+                            </label>
+                            <div class="item-budget-selector" style="display: none;" data-item="shoes">
+                                <p class="budget-label">予算感を選択してください</p>
+                                <div class="budget-options-inline">
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="shoesBudget" value="under50k">
+                                        <span>〜5万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="shoesBudget" value="50k-100k">
+                                        <span>5〜10万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="shoesBudget" value="100k-200k">
+                                        <span>10〜20万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="shoesBudget" value="over200k">
+                                        <span>20万円〜</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- バッグ -->
+                        <div class="clothing-item-enhanced">
+                            <label class="checkbox-option clothing-item-checkbox">
+                                <input type="checkbox" name="clothingItems" value="bag" class="item-checkbox-main">
+                                <div class="item-content-enhanced">
+                                    <div class="item-image-placeholder">バッグ</div>
+                                    <span class="item-name">バッグ</span>
+                                </div>
+                            </label>
+                            <div class="item-budget-selector" style="display: none;" data-item="bag">
+                                <p class="budget-label">予算感を選択してください</p>
+                                <div class="budget-options-inline">
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="bagBudget" value="under80k">
+                                        <span>〜8万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="bagBudget" value="80k-150k">
+                                        <span>8〜15万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="bagBudget" value="150k-300k">
+                                        <span>15〜30万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="bagBudget" value="over300k">
+                                        <span>30万円〜</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 時計 -->
+                        <div class="clothing-item-enhanced">
+                            <label class="checkbox-option clothing-item-checkbox">
+                                <input type="checkbox" name="clothingItems" value="watch" class="item-checkbox-main">
+                                <div class="item-content-enhanced">
+                                    <div class="item-image-placeholder">時計</div>
+                                    <span class="item-name">時計</span>
+                                </div>
+                            </label>
+                            <div class="item-budget-selector" style="display: none;" data-item="watch">
+                                <p class="budget-label">予算感を選択してください</p>
+                                <div class="budget-options-inline">
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="watchBudget" value="under100k">
+                                        <span>〜10万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="watchBudget" value="100k-300k">
+                                        <span>10〜30万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="watchBudget" value="300k-500k">
+                                        <span>30〜50万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="radio" name="watchBudget" value="over500k">
+                                        <span>50万円〜</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- セクション6: 法人情報 -->
+            <section class="form-section" id="section6">
+                <div class="section-header">
+                    <span class="section-number">6</span>
+                    <h2 class="section-title">法人情報（該当される場合のみご記入ください）</h2>
+                </div>
+
+                <div class="form-group">
+                    <label for="companyName">会社名</label>
+                    <input type="text" id="companyName" name="companyName" placeholder="株式会社〇〇" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="department">部署・役職</label>
+                    <input type="text" id="department" name="department" placeholder="営業部 部長" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label>社員数</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="companySize" value="1-10">
+                            <span>1〜10名</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="companySize" value="11-50">
+                            <span>11〜50名</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="companySize" value="51-100">
+                            <span>51〜100名</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="companySize" value="101-500">
+                            <span>101〜500名</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="companySize" value="501+">
+                            <span>501名以上</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>年間売上規模</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="annualRevenue" value="under-1">
+                            <span>1億円未満</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="annualRevenue" value="1-10">
+                            <span>1億円〜10億円</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="annualRevenue" value="10-50">
+                            <span>10億円〜50億円</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="annualRevenue" value="50-100">
+                            <span>50億円〜100億円</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="annualRevenue" value="100-500">
+                            <span>100億円〜500億円</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="annualRevenue" value="500-1000">
+                            <span>500億円〜1000億円</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="annualRevenue" value="over-1000">
+                            <span>1000億円以上</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>社員が多い年代 <span class="hint">複数選択可</span></label>
+                    <div class="age-demographics-grid">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ageDemo" value="20s-male">
+                            <span>20代男性</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ageDemo" value="20s-female">
+                            <span>20代女性</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ageDemo" value="30s-male">
+                            <span>30代男性</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ageDemo" value="30s-female">
+                            <span>30代女性</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ageDemo" value="40s-male">
+                            <span>40代男性</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ageDemo" value="40s-female">
+                            <span>40代女性</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ageDemo" value="50s-male">
+                            <span>50代男性</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ageDemo" value="50s-female">
+                            <span>50代女性</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ageDemo" value="60s-male">
+                            <span>60代以上男性</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ageDemo" value="60s-female">
+                            <span>60代以上女性</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>業種</label>
+                    <select name="industry" class="form-select">
+                        <option value="">選択してください</option>
+                        <option value="finance">金融・保険</option>
+                        <option value="it">IT・通信</option>
+                        <option value="manufacturing">製造業</option>
+                        <option value="retail">小売・サービス</option>
+                        <option value="consulting">コンサルティング</option>
+                        <option value="realestate">不動産</option>
+                        <option value="medical">医療・ヘルスケア</option>
+                        <option value="education">教育</option>
+                        <option value="media">メディア・広告</option>
+                        <option value="other">その他</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- セクション7: サービス利用に関するご要望 -->
+            <section class="form-section" id="section7">
+                <div class="section-header">
+                    <span class="section-number">7</span>
+                    <h2 class="section-title">サービス利用に関するご要望</h2>
+                </div>
+
+                <!-- 7-1. アプリ利用 -->
+                <div class="form-group">
+                    <div class="service-visual-grid">
+                        <div class="service-option">
+                            <img src="images/service-app.jpg" alt="service-app.jpg" class="service-image">
+                            <div class="service-header">
+                                <h3 class="service-question">7-1. アプリのご利用について</h3>
+                                <p class="service-description">専用アプリで、いつでもどこでもスタイリングの相談やアイテムの確認ができます。</p>
+                            </div>
+                            <div class="service-options">
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="appUsage" value="active" required>
+                                        <span>はい、積極的に利用したいです。</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="appUsage" value="occasional" required>
+                                        <span>機会があれば利用したいです。</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="appUsage" value="rarely" required>
+                                        <span>あまり利用しないと思います。</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7-2. パートナー制度 -->
+                <div class="form-group">
+                    <div class="service-visual-grid">
+                        <div class="service-option">
+                            <img src="images/service-partner.jpg" alt="service-partner.jpg" class="service-image">
+                            <div class="service-header">
+                                <h3 class="service-question">7-2. パートナー制度のご利用について</h3>
+                                <p class="service-description">奥様やパートナーの方も無料でフィッティングサービスをご利用いただけます。</p>
+                                <p class="service-subtitle">大切な方と一緒にファッションを楽しみませんか？</p>
+                            </div>
+                            <div class="service-options">
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="partnerService" value="yes" required>
+                                        <span>はい、利用を希望します。</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="partnerService" value="no" required>
+                                        <span>いいえ、現時点では希望しません。</span>
+                                    </label>
+                                </div>
+                                <div id="partnerFittingOptions" class="conditional-options" style="display: none;">
+                                    <p class="sub-question">フィッティング時間について:</p>
+                                    <div class="radio-group">
+                                        <label class="radio-option">
+                                            <input type="radio" name="fittingTime" value="same">
+                                            <span>同じ時間にアイテムを揃え、ご提案/フィッティングを希望します。</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="fittingTime" value="separate">
+                                            <span>別々のお時間にてご予定をお取りし、ご提案/フィッティングを希望します。</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7-3. プレゼントサービス -->
+                <div class="form-group">
+                    <div class="service-visual-grid">
+                        <div class="service-option">
+                            <img src="images/service-gift.jpg" alt="service-gift.jpg" class="service-image">
+                            <div class="service-header">
+                                <h3 class="service-question">7-3. プレゼントサービスのご利用について</h3>
+                                <p class="service-description">スタイリストがリサーチを行い、他の店舗より10-30%お得にプレゼントをご提供します。</p>
+                                <p class="service-subtitle">大切な方への特別な贈り物をお手伝いします</p>
+                            </div>
+                            <div class="service-options">
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="giftService" value="yes" required>
+                                        <span>はい、利用する可能性があります。</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="giftService" value="no" required>
+                                        <span>いいえ、現時点では利用予定はありません。</span>
+                                    </label>
+                                </div>
+                                <div id="giftFrequencyOptions" class="conditional-options" style="display: none;">
+                                    <p class="sub-question">ご利用頻度の目安:</p>
+                                    <div class="radio-group">
+                                        <label class="radio-option">
+                                            <input type="radio" name="giftFrequency" value="monthly-1">
+                                            <span>毎月1回</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="giftFrequency" value="monthly-2-5">
+                                            <span>毎月2-5回</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="giftFrequency" value="bimonthly">
+                                            <span>2ヶ月に1回</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="giftFrequency" value="quarterly">
+                                            <span>3ヶ月に1回</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="giftFrequency" value="timing">
+                                            <span>タイミングで</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7-4. 送迎サービス -->
+                <div class="form-group">
+                    <div class="service-visual-grid">
+                        <div class="service-option">
+                            <img src="images/service-transport.jpg" alt="service-transport.jpg" class="service-image">
+                            <div class="service-header">
+                                <h3 class="service-question">7-4. 送迎のご利用について</h3>
+                                <p class="service-description">ご自宅や指定の場所への送迎サービスをご提供します。</p>
+                            </div>
+                            <div class="service-options">
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="transportService" value="daily" required>
+                                        <span>毎日</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="transportService" value="weekly-3" required>
+                                        <span>週に3回ほど</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="transportService" value="weekly-1" required>
+                                        <span>週に1回</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="transportService" value="timing" required>
+                                        <span>タイミングがあれば</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="transportService" value="none" required>
+                                        <span>利用しない</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7-5. サービスに期待すること -->
+                <div class="form-group">
+                    <div class="service-visual-grid">
+                        <div class="service-option">
+                            <img src="images/service-expectations.jpg" alt="service-expectations.jpg" class="service-image">
+                            <div class="service-header">
+                                <h3 class="service-question">7-5. サービスに期待していること</h3>
+                                <p class="service-description">私たちのサービスで実現したいことをお聞かせください（複数選択可）</p>
+                            </div>
+                            <div class="service-options">
+                                <div class="expectations-grid">
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="reaction-change">
+                                    <div class="expectation-content">
+                                        <span>周りからの反応変化</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="cost-performance">
+                                    <div class="expectation-content">
+                                        <span>コスパ</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="transport">
+                                    <div class="expectation-content">
+                                        <span>送迎</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="item-suggestions">
+                                    <div class="expectation-content">
+                                        <span>アイテム提案</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="app-usage">
+                                    <div class="expectation-content">
+                                        <span>アプリ利用</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="magazine">
+                                    <div class="expectation-content">
+                                        <span>マガジン</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="events">
+                                    <div class="expectation-content">
+                                        <span>イベント</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="community">
+                                    <div class="expectation-content">
+                                        <span>コミュニティ</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="hospitality">
+                                    <div class="expectation-content">
+                                        <span>ホスピタリティ</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="stylist-lifestyle">
+                                    <div class="expectation-content">
+                                        <span>スタイリストがついているライフスタイル</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="time-saving">
+                                    <div class="expectation-content">
+                                        <span>手間/時間が省ける</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="new-selections">
+                                    <div class="expectation-content">
+                                        <span>自分が選ばない服を選んでいただける</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="professional-advice">
+                                    <div class="expectation-content">
+                                        <span>ファッションのプロに相談できる</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="trends">
+                                    <div class="expectation-content">
+                                        <span>最新のトレンドを取り入れたい</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="self-discovery">
+                                    <div class="expectation-content">
+                                        <span>新しい自分を発見したい</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-option expectation-card">
+                                    <input type="checkbox" name="serviceExpectations" value="other">
+                                    <div class="expectation-content">
+                                        <span>その他</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <input type="text" name="serviceExpectationsOther" placeholder="具体的にご記入ください" class="form-input sub-input" style="display: none; margin-top: 20px;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- セクション8: ファッションへの関心と今後のご提案 -->
+            <section class="form-section" id="section8">
+                <div class="section-header">
+                    <span class="section-number">8</span>
+                    <h2 class="section-title">ファッションへの関心と今後のご提案</h2>
+                </div>
+
+                <div class="form-group">
+                    <label>8-1. ファッションに対するスタンス <span class="required">*</span> <span class="hint">最も近いものを1つご選択ください</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="fashionStance" value="minimum" required>
+                            <span>必要最低限で十分: 着回しができて、困らない程度の枚数があれば満足です。</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="fashionStance" value="active" required>
+                            <span>積極的に取り入れたい: 様々なスタイルや新しいアイテムに挑戦し、ファッションを楽しみたいです。</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="fashionStance" value="professional" required>
+                            <span>プロの意見を参考にしたい: 基礎から学び、知識を深めたいです。</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>8-2. ファッションのリテラシーを詳しくなりたいですか？ <span class="hint">複数選択可</span></label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="not-interested">
+                            <span>興味ない</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="vaguely-interested">
+                            <span>興味ある（漠然と）</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="conversational">
+                            <span>人に話せるくらいにはなりたい</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="personal-curiosity">
+                            <span>人には話さないが好奇心で自分が詳しくなりたい</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="basic-knowledge">
+                            <span>最低限は知っておきたい</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="brands">
+                            <span>ブランドについて知りたい</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="items">
+                            <span>アイテムについて知りたい</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="designers">
+                            <span>デザイナーについて知りたい</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="trends">
+                            <span>業界のトレンドについて知りたい</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="color-matching">
+                            <span>自分に似合う色の見つけ方を知りたい</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="coordination">
+                            <span>コーディネートの組み方を知りたい</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="materials">
+                            <span>素材の特性について知りたい</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="history">
+                            <span>ファッションの歴史について知りたい</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="fashionLiteracy" value="other">
+                            <span>その他</span>
+                        </label>
+                    </div>
+                    <input type="text" name="fashionLiteracyOther" placeholder="具体的にご記入ください" class="form-input sub-input" style="display: none;">
+                </div>
+
+                <div class="form-group">
+                    <label>8-3. 今後ご希望されるご提案頻度 <span class="required">*</span> <span class="hint">最も近いものを1つご選択ください</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="proposalFrequency" value="weekly" required>
+                            <span>毎週提案いただけると嬉しい！</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="proposalFrequency" value="monthly-2-3" required>
+                            <span>月に2-3回はフィッティングを行いたい</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="proposalFrequency" value="monthly" required>
+                            <span>月に1回だけ来たい</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="proposalFrequency" value="bimonthly" required>
+                            <span>2ヶ月に1回ほどで一気に揃えたい</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="proposalFrequency" value="quarterly" required>
+                            <span>3ヶ月に1回で一気に揃えたい</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="proposalFrequency" value="as-needed" required>
+                            <span>必要に応じて、その都度ご提案を依頼したいです。</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- セクション9: 旅行の頻度と服装のニーズ -->
+            <section class="form-section" id="section9">
+                <div class="section-header">
+                    <span class="section-number">9</span>
+                    <h2 class="section-title">旅行の頻度と服装のニーズ</h2>
+                </div>
+
+                <div class="form-group">
+                    <label>9-1. 旅行の頻度 <span class="required">*</span> <span class="hint">最も近いものを1つご選択ください</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="travelFrequency" value="almost-daily" required>
+                            <span>ほぼ毎日 / 週に複数回</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="travelFrequency" value="monthly" required>
+                            <span>月に1回程度</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="travelFrequency" value="few-months" required>
+                            <span>数ヶ月に1回程度</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="travelFrequency" value="half-yearly" required>
+                            <span>半年に1回程度</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="travelFrequency" value="yearly" required>
+                            <span>年に1回程度</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="travelFrequency" value="rarely" required>
+                            <span>ほとんど行かない</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>9-2. よく行かれる旅行先と、その際の服装の指定について <span class="hint">複数選択可</span></label>
+
+                    <div class="travel-category">
+                        <h4 class="travel-category-title">国内旅行:</h4>
+                        <div class="travel-destinations-grid">
+                            <div class="travel-destination-card">
+                                <label class="checkbox-option travel-destination-label">
+                                    <input type="checkbox" name="domesticTravel" value="city" id="domestic-city">
+                                    <div class="travel-card-content">
+                                        <img src="images/travel-domestic-city.jpg" alt="travel-domestic-city.jpg" class="travel-image">
+                                        <h5 class="travel-name">都市（例: 東京、大阪）</h5>
+                                    </div>
+                                </label>
+                                <div class="clothing-specifications" id="domestic-city-options" style="display: none;">
+                                    <p class="spec-label">服装の指定:</p>
+                                    <div class="spec-options">
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="domesticCityStyle" value="formal">
+                                            <span>フォーマルな場所に行くことがある</span>
+                                        </label>
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="domesticCityStyle" value="casual">
+                                            <span>カジュアルな場所が多い</span>
+                                        </label>
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="domesticCityStyle" value="business">
+                                            <span>ビジネス兼ねて行くことが多い</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="travel-destination-card">
+                                <label class="checkbox-option travel-destination-label">
+                                    <input type="checkbox" name="domesticTravel" value="resort" id="domestic-resort">
+                                    <div class="travel-card-content">
+                                        <img src="images/travel-domestic-resort.jpg" alt="travel-domestic-resort.jpg" class="travel-image">
+                                        <h5 class="travel-name">リゾート（例: 沖縄、北海道）</h5>
+                                    </div>
+                                </label>
+                                <div class="clothing-specifications" id="domestic-resort-options" style="display: none;">
+                                    <p class="spec-label">服装の指定:</p>
+                                    <div class="spec-options">
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="domesticResortStyle" value="casual-relax">
+                                            <span>カジュアルなリラックスできる服装</span>
+                                        </label>
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="domesticResortStyle" value="dress-up">
+                                            <span>ドレスアップする機会がある</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="travel-destination-card">
+                                <label class="checkbox-option travel-destination-label">
+                                    <input type="checkbox" name="domesticTravel" value="hot-springs" id="domestic-springs">
+                                    <div class="travel-card-content">
+                                        <img src="images/travel-hot-springs.jpg" alt="travel-hot-springs.jpg" class="travel-image">
+                                        <h5 class="travel-name">温泉地</h5>
+                                    </div>
+                                </label>
+                                <div class="clothing-specifications" id="domestic-springs-options" style="display: none;">
+                                    <p class="spec-label">服装の指定:</p>
+                                    <div class="spec-options">
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="domesticSpringsStyle" value="comfortable">
+                                            <span>動きやすく、リラックスできる服装</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="travel-destination-card">
+                                <label class="checkbox-option travel-destination-label">
+                                    <input type="checkbox" name="domesticTravel" value="outdoor" id="domestic-outdoor">
+                                    <div class="travel-card-content">
+                                        <img src="images/travel-outdoor.jpg" alt="travel-outdoor.jpg" class="travel-image">
+                                        <h5 class="travel-name">アウトドア/自然（例: 山、海）</h5>
+                                    </div>
+                                </label>
+                                <div class="clothing-specifications" id="domestic-outdoor-options" style="display: none;">
+                                    <p class="spec-label">服装の指定:</p>
+                                    <div class="spec-options">
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="domesticOutdoorStyle" value="activewear">
+                                            <span>機能性を重視したアクティブウェア</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="travel-destination-card">
+                                <label class="checkbox-option travel-destination-label">
+                                    <input type="checkbox" name="domesticTravel" value="other" id="domestic-other">
+                                    <div class="travel-card-content">
+                                        <img src="images/travel-other.jpg" alt="travel-other.jpg" class="travel-image">
+                                        <h5 class="travel-name">その他</h5>
+                                    </div>
+                                </label>
+                                <div class="clothing-specifications" id="domestic-other-options" style="display: none;">
+                                    <p class="spec-label">具体的な旅行先:</p>
+                                    <input type="text" name="domesticTravelOther" placeholder="具体的にご記入ください" class="form-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="travel-category">
+                        <h4 class="travel-category-title">海外旅行:</h4>
+                        <div class="travel-destinations-grid">
+                            <div class="travel-destination-card">
+                                <label class="checkbox-option travel-destination-label">
+                                    <input type="checkbox" name="overseasTravel" value="asia" id="overseas-asia">
+                                    <div class="travel-card-content">
+                                        <img src="images/travel-overseas-asia.jpg" alt="travel-overseas-asia.jpg" class="travel-image">
+                                        <h5 class="travel-name">アジア</h5>
+                                    </div>
+                                </label>
+                                <div class="clothing-specifications" id="overseas-asia-options" style="display: none;">
+                                    <p class="spec-label">服装の指定:</p>
+                                    <div class="spec-options">
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="overseasAsiaStyle" value="climate-casual">
+                                            <span>気候に合わせたカジュアルな服装</span>
+                                        </label>
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="overseasAsiaStyle" value="formal">
+                                            <span>フォーマルな場所に行くことがある</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="travel-destination-card">
+                                <label class="checkbox-option travel-destination-label">
+                                    <input type="checkbox" name="overseasTravel" value="europe-america" id="overseas-western">
+                                    <div class="travel-card-content">
+                                        <img src="images/travel-overseas-western.jpg" alt="travel-overseas-western.jpg" class="travel-image">
+                                        <h5 class="travel-name">欧米</h5>
+                                    </div>
+                                </label>
+                                <div class="clothing-specifications" id="overseas-western-options" style="display: none;">
+                                    <p class="spec-label">服装の指定:</p>
+                                    <div class="spec-options">
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="overseasWesternStyle" value="cultural">
+                                            <span>現地の文化に合わせた服装</span>
+                                        </label>
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="overseasWesternStyle" value="business-formal">
+                                            <span>ビジネスやフォーマルな場合がある</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="travel-destination-card">
+                                <label class="checkbox-option travel-destination-label">
+                                    <input type="checkbox" name="overseasTravel" value="resort" id="overseas-resort">
+                                    <div class="travel-card-content">
+                                        <img src="images/travel-overseas-resort.jpg" alt="travel-overseas-resort.jpg" class="travel-image">
+                                        <h5 class="travel-name">ビーチリゾート</h5>
+                                    </div>
+                                </label>
+                                <div class="clothing-specifications" id="overseas-resort-options" style="display: none;">
+                                    <p class="spec-label">服装の指定:</p>
+                                    <div class="spec-options">
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="overseasResortStyle" value="relaxed">
+                                            <span>リラックスしたリゾートウェア</span>
+                                        </label>
+                                        <label class="checkbox-option spec-option">
+                                            <input type="checkbox" name="overseasResortStyle" value="evening">
+                                            <span>イブニングウェアが必要</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="travel-destination-card">
+                                <label class="checkbox-option travel-destination-label">
+                                    <input type="checkbox" name="overseasTravel" value="other" id="overseas-other">
+                                    <div class="travel-card-content">
+                                        <img src="images/travel-overseas-other.jpg" alt="travel-overseas-other.jpg" class="travel-image">
+                                        <h5 class="travel-name">その他</h5>
+                                    </div>
+                                </label>
+                                <div class="clothing-specifications" id="overseas-other-options" style="display: none;">
+                                    <p class="spec-label">具体的な旅行先:</p>
+                                    <input type="text" name="overseasTravelOther" placeholder="具体的にご記入ください" class="form-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 送信ボタン -->
+            <div class="form-submit">
+                <button type="submit" id="submitBtn" class="btn-submit">
+                    <span class="btn-text">送信する</span>
+                    <span class="btn-loading" style="display: none;">
+                        <span class="spinner"></span> 送信中...
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- 完了画面 -->
+    <div id="completionScreen" class="completion-screen" style="display: none;">
+        <div class="completion-content">
+            <div class="completion-icon">✓</div>
+            <h2 class="completion-title">ご登録ありがとうございました</h2>
+            <p class="completion-message">
+                お客様の情報を確認次第、担当スタイリストより<br>
+                2営業日以内にご連絡させていただきます。
+            </p>
+            <div class="completion-info">
+                <p>お問い合わせ番号: <strong id="inquiryNumber"></strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 保存通知 -->
+    <div id="saveNotification" class="save-notification">
+        <span>✓ 自動保存しました</span>
+    </div>
+
+    <script src="location-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
