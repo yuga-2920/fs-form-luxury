@@ -1,0 +1,17 @@
+{
+  "name": "fs-form",
+  "version": "1.0.0",
+  "description": "Personal Style Configuration Form - Luxury Fashion Consultation Form",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve -s . -p 3000",
+    "build": "echo 'Static site - no build needed'",
+    "dev": "serve -s . -p 3000"
+  },
+  "keywords": ["fashion", "form", "consultation", "luxury", "styling"],
+  "author": "Fashion Styling Service",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}

@@ -1,0 +1,195 @@
+/* =============================================
+   Luxury Styles Override - Original Font System
+   ============================================= */
+
+/* Override all font families to match original index.html */
+body,
+.form-input,
+input,
+textarea,
+select,
+.card-description,
+.progress-time,
+label,
+.hint,
+.age-display,
+.selected-count,
+.suboption-title,
+.reason-title,
+.reason-label,
+.item-category,
+.brand-category-title,
+.coordination-label,
+.coordination-desc,
+.urgency-desc,
+.budget-monthly,
+.breakdown-title,
+.breakdown-detail,
+.investment-desc,
+.size-label,
+.age-group-title,
+.usage-desc,
+.toggle-desc,
+.service-description,
+.stance-desc,
+.literacy-option span,
+.frequency-desc,
+.travel-label,
+.sub-option span,
+.timeline-desc,
+.thanks-subtitle,
+.thanks-message {
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Montserrat for headings and special elements */
+.section-title,
+.progress-step,
+.card-number,
+.style-card-name,
+.btn,
+.budget-preset,
+#budgetAmount,
+.coordination-number,
+.urgency-title,
+.investment-label,
+.size-number,
+.usage-title,
+.toggle-title,
+.stance-title,
+.frequency-title,
+.thanks-title,
+.timeline-day {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Specific font weights to match original */
+body {
+    font-weight: 300;
+}
+
+.section-title {
+    font-weight: 200;
+    font-size: 2.5rem;
+    letter-spacing: 0.1em;
+}
+
+.progress-step {
+    font-weight: 300;
+    letter-spacing: 0.1em;
+}
+
+.card-number {
+    font-weight: 200;
+}
+
+#budgetAmount {
+    font-weight: 200;
+}
+
+.btn {
+    font-weight: 400;
+}
+
+label {
+    font-weight: 400;
+}
+
+.card-title {
+    font-weight: 500;
+}
+
+/* Remove italics from all elements */
+* {
+    font-style: normal !important;
+}
+
+/* Match original color scheme more closely */
+:root {
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --text-tertiary: rgba(255, 255, 255, 0.6);
+}
+
+/* White borders for all selected/checked items */
+.gender-toggle-container input[type="radio"]:checked + .gender-option,
+body.female-form .radio-option input:checked + img,
+body.female-form .checkbox-option input:checked + img,
+body.female-form .radio-option input:checked ~ span,
+body.female-form .checkbox-option input:checked ~ span,
+body.female-form input[type="radio"]:checked + .gender-option,
+body.female-form .scale-option input[type="radio"]:checked + label,
+body.female-form .day-option-card input[type="radio"]:checked + label,
+.good-option input:checked + span,
+.bad-option input:checked + span,
+.reason-options input[type="checkbox"]:checked,
+.expectation-item input[type="checkbox"]:checked,
+.service-radio-option input[type="radio"]:checked,
+.service-radio-option:has(input:checked),
+.wanted-item-card input[type="checkbox"]:checked ~ .quantity-selector .quantity-input,
+.weekday-lifestyle-card input[type="radio"]:checked + label,
+.weekend-card input:checked + label,
+.avoid-item input:checked + .avoid-item-label,
+.lifestyle-option-group:has(input:checked),
+.style-option input:checked + label,
+.brand-card input:checked + label,
+.scene-card input:checked + label,
+.budget-preset.selected,
+.chip-option input:checked + span,
+.pattern-option input:checked + img {
+    border-color: #ffffff !important;
+}
+
+/* Also update checked backgrounds to have subtle white glow */
+.gender-toggle-container input[type="radio"]:checked + .gender-option,
+body.female-form input[type="radio"]:checked + .gender-option,
+body.female-form .scale-option input[type="radio"]:checked + label,
+body.female-form .day-option-card input[type="radio"]:checked + label,
+.service-radio-option:has(input:checked),
+.weekend-card input:checked + label,
+.avoid-item input:checked + .avoid-item-label,
+.lifestyle-option-group:has(input:checked),
+.style-option input:checked + label,
+.brand-card input:checked + label,
+.scene-card input:checked + label {
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Coordination cards white theme */
+.coordination-card:hover .coordination-content {
+    border-color: #ffffff !important;
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.1) !important;
+}
+
+.coordination-card input:checked + .coordination-content {
+    border-color: #ffffff !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15) !important;
+}
+
+.coordination-card.recommended .coordination-content {
+    border-color: #ffffff !important;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1) !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+}
+
+.recommended-badge {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+/* Season budget items white theme */
+.season-budget-item::before {
+    background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.3) 100%) !important;
+}
+
+.season-budget-item:hover {
+    border-color: #ffffff !important;
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1) !important;
+}
+
+.season-budget-item .form-select:focus {
+    border-color: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1) !important;
+}

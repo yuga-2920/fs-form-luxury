@@ -1,0 +1,426 @@
+/* =============================================
+   Original Design System Override
+   以前のindex.htmlと完全に同じデザインに統一
+   ============================================= */
+
+/* ベースカラーシステム - 以前のindex.htmlから */
+:root {
+    /* ダークテーマのカラーパレット */
+    --bg-primary: #000000;
+    --bg-secondary: #0d0d0d;
+    --bg-tertiary: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --text-tertiary: rgba(255, 255, 255, 0.6);
+    --accent-color: #ffffff;
+    --accent-gold: #d4af37; /* ゴールドアクセントは残す */
+    --border-color: rgba(255, 255, 255, 0.1);
+    --border-hover: rgba(255, 255, 255, 0.2);
+    
+    /* スペーシング */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-2xl: 4rem;
+}
+
+/* ボディスタイル */
+body {
+    background: #000000 !important;
+    color: #ffffff !important;
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-weight: 300 !important;
+}
+
+/* 背景グラデーション */
+body::before {
+    background: 
+        radial-gradient(ellipse at top right, rgba(26, 26, 26, 0.4) 0%, transparent 70%),
+        radial-gradient(ellipse at bottom left, rgba(26, 26, 26, 0.3) 0%, transparent 70%) !important;
+}
+
+/* コンテナ */
+.container {
+    max-width: 1200px !important;
+    padding: 0 var(--spacing-md) !important;
+}
+
+/* プログレスバー */
+.progress-container {
+    background: rgba(0, 0, 0, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 2rem 3rem !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+}
+
+.progress-container::after {
+    display: none !important; /* シマーボーダーを削除 */
+}
+
+.progress-bar {
+    height: 1px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0 !important;
+    margin-bottom: 1rem !important;
+}
+
+.progress-fill {
+    background: #ffffff !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5) !important;
+}
+
+.progress-fill::after {
+    width: 8px !important;
+    height: 8px !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8) !important;
+    animation: none !important;
+}
+
+.progress-info {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.2em !important;
+}
+
+.progress-step {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 400 !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    text-shadow: none !important;
+}
+
+/* フォームスタイル */
+.style-form {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 2rem !important;
+    padding-top: 2rem !important; /* 一覧表示用 */
+}
+
+/* ステップ形式の場合 */
+body.step-form .style-form {
+    background: rgba(13, 13, 13, 0.8) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 4rem !important;
+    padding-top: 120px !important; /* プログレスバーの高さ分 */
+}
+
+/* セクションタイトル */
+.section-title {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 2.5rem !important;
+    font-weight: 200 !important;
+    letter-spacing: 0.3em !important;
+    text-transform: uppercase !important;
+    color: #ffffff !important;
+    margin-bottom: 3rem !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+.section-title::before {
+    display: none !important;
+}
+
+.section-title::after {
+    width: 80px !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, #ffffff 0%, transparent 100%) !important;
+    bottom: 0 !important;
+    animation: none !important;
+}
+
+.section-subtitle {
+    font-size: 0.9rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    margin-bottom: 2rem !important;
+    font-style: normal !important;
+}
+
+/* ラベル */
+label {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 0.7rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    margin-bottom: 1.5rem !important;
+    padding-left: 0 !important;
+}
+
+/* 住所入力フィールドのラベル */
+.address-field label {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 0.7rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    margin-bottom: 0.8rem !important;
+}
+
+label::before {
+    display: none !important; /* ダイヤモンドアイコンを削除 */
+}
+
+.required {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* 入力フィールド */
+.form-input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+textarea,
+select {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    padding: 1rem 1.5rem !important;
+    font-size: 0.9rem !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.05em !important;
+    border-radius: 0 !important;
+}
+
+/* セレクトボックス */
+select {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 1rem center !important;
+    background-size: 1.2em !important;
+    padding-right: 3rem !important;
+}
+
+/* ホバー/フォーカス状態 */
+.form-input:hover,
+input:hover,
+textarea:hover,
+select:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.form-input:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 0 1px #ffffff !important;
+    transform: none !important;
+}
+
+/* カード */
+.card-option,
+.radio-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0 !important;
+}
+
+.card-option::before,
+.radio-card::before {
+    display: none !important; /* グローエフェクトを削除 */
+}
+
+.card-option:hover,
+.radio-card:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+.card-number {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 3rem !important;
+    font-weight: 200 !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.card-title {
+    font-size: 1.2rem !important;
+    font-weight: 400 !important;
+    color: #ffffff !important;
+}
+
+.card-description {
+    font-size: 0.9rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.card-image {
+    border-radius: 0 !important;
+}
+
+.card-content {
+    border-radius: 0 !important;
+}
+
+/* ボタン */
+.btn {
+    background: transparent !important;
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
+    padding: 1rem 3rem !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn::before {
+    display: none !important;
+}
+
+.btn:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn-primary {
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+}
+
+.btn-primary:hover {
+    background: transparent !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+/* フローティングエレメントを削除 */
+.floating-element {
+    display: none !important;
+}
+
+/* アニメーションを最小限に */
+* {
+    animation-duration: 0.3s !important;
+}
+
+/* セレクトボックスのアニメーション・トランジションを無効化 */
+select,
+.date-selector select,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+textarea {
+    transition: none !important;
+    animation: none !important;
+}
+
+select:hover,
+select:focus,
+.date-selector select:hover,
+.date-selector select:focus {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* チップとトグル */
+.chip-option span,
+.toggle-option label {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 0 !important;
+}
+
+.chip-option input:checked ~ span,
+.toggle-option input:checked ~ label {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+}
+
+/* 予算表示 */
+#budgetAmount {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 200 !important;
+    font-size: 4rem !important;
+    color: #ffffff !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: none !important;
+    animation: none !important;
+}
+
+/* 日付セレクターのスタイル修正 */
+.date-selector select {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md) !important;
+    }
+    
+    .style-form {
+        padding: 2rem !important;
+        padding-top: 100px !important;
+    }
+    
+    .section-title {
+        font-size: 2rem !important;
+        letter-spacing: 0.1em !important;
+    }
+    
+    .progress-container {
+        padding: 1.5rem 1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--spacing-sm) !important;
+    }
+    
+    .style-form {
+        padding: 1rem !important;
+        padding-top: 80px !important;
+    }
+    
+    .section-title {
+        font-size: 1.5rem !important;
+    }
+}
