@@ -1,0 +1,230 @@
+/* Enhanced Style Patterns Layout - 3×5 = 15 patterns per style */
+
+/* 3x5 Grid specific styles */
+.style-patterns-grid-3x5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+}
+
+/* Pattern card adjustments for 3x5 layout */
+.style-patterns-grid-3x5 .style-pattern-card {
+    position: relative;
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-height: 220px;
+}
+
+.style-patterns-grid-3x5 .style-pattern-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.2);
+}
+
+/* Pattern image for 3x5 layout */
+.style-patterns-grid-3x5 .pattern-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+/* Pattern name styling */
+.style-patterns-grid-3x5 .pattern-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+
+/* Grid position indicator */
+.pattern-grid-position {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--accent-gold);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+/* Pattern content adjustments */
+.style-patterns-grid-3x5 .pattern-content {
+    padding: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Category section enhancements */
+.style-category-section {
+    margin-bottom: 48px;
+    padding: 24px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+}
+
+.style-category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--accent-gold);
+}
+
+.style-category-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.style-category-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+}
+
+/* Selected state for 3x5 grid */
+.style-patterns-grid-3x5 .style-pattern-card input[type="checkbox"]:checked ~ .pattern-content {
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.style-patterns-grid-3x5 .style-pattern-card input[type="checkbox"]:checked ~ .pattern-content::after {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background: var(--accent-gold);
+    color: var(--background-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Instructions panel for 3x5 layout */
+.pattern-selection-instructions {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--accent-gold);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.pattern-selection-instructions h4 {
+    font-size: 18px;
+    color: var(--accent-gold);
+    margin-bottom: 12px;
+}
+
+/* Summary bar adjustments */
+.selected-patterns-summary {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface-elevated);
+    border: 2px solid var(--accent-gold);
+    border-radius: var(--radius-lg);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.selected-patterns-summary.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Clear button styling */
+.btn-clear-patterns {
+    padding: 8px 16px;
+    background: transparent;
+    color: var(--accent-gold);
+    border: 1px solid var(--accent-gold);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn-clear-patterns:hover {
+    background: var(--accent-gold);
+    color: var(--background-color);
+}
+
+/* Responsive adjustments for 3x5 grid */
+@media (max-width: 1200px) {
+    .style-patterns-grid-3x5 {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+    }
+    
+    .style-patterns-grid-3x5 .style-pattern-card {
+        min-height: 180px;
+    }
+    
+    .style-patterns-grid-3x5 .pattern-name {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .style-patterns-grid-3x5 {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        gap: 10px;
+    }
+    
+    .style-category-title {
+        font-size: 20px;
+    }
+    
+    .pattern-grid-position {
+        font-size: 9px;
+        padding: 2px 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .style-patterns-grid-3x5 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .style-patterns-grid-3x5 .style-pattern-card {
+        min-height: 150px;
+    }
+    
+    .style-patterns-grid-3x5 .pattern-content {
+        padding: 8px;
+    }
+}

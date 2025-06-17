@@ -181,6 +181,43 @@ body {
     min-height: 300px;
 }
 
+.evaluation-items-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.evaluation-item {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    transition: all var(--transition-all);
+}
+
+.evaluation-item:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.evaluation-item-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.evaluation-item-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 12px;
+    text-align: center;
+}
+
 .item-good-bad-section {
     margin-bottom: 20px;
 }
@@ -680,11 +717,11 @@ body.gender-transitioning * {
     align-items: center;
     justify-content: center;
     padding: 20px 50px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-light);
+    border-radius: 16px;
     cursor: pointer;
-    transition: all 0.1s ease;
+    transition: all 0.15s ease;
     min-width: 180px;
     font-size: 1.1rem;
     letter-spacing: 2px;
@@ -692,9 +729,9 @@ body.gender-transitioning * {
 }
 
 .gender-option:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+    border-color: var(--border-color);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
 }
 
 .gender-toggle-container input[type="radio"]:checked + .gender-option {
@@ -712,55 +749,54 @@ body.gender-transitioning * {
     letter-spacing: 1px;
 }
 
-/* Form variations based on gender - Female Palace Theme */
+/* Form variations based on gender - Female Subtle Luxury Theme */
 body.female-form {
-    /* Muted gold palace theme - no pink */
-    --accent-gold: #b8a06a;      /* Muted gold */
-    --accent-gold-light: #d4c49e; /* Light muted gold */
-    --accent-gold-dark: #8a7850;  /* Dark muted gold */
-    --accent-burgundy: #8b3a3a;
-    --accent-velvet: #6b2c2c;
-    --palace-ivory: #f9f6f0;
-    --palace-cream: #f4ede3;
-    --palace-champagne: #f0e6d8;
-    --palace-marble: #ede7dd;
-    --palace-shadow: #d4c8b8;
-    --text-dark: #3d342b;
-    --text-medium: #5a4e42;
-    --text-light: #7a6d5f;
-    --border-soft: #d9cdb9;
-    --border-ornate: #b8a06a;    /* Muted gold border */
+    /* Subtle muted gold palette */
+    --primary-color: #d4c5a0;    /* Softer beige-gold */
+    --primary-hover: #e0d5b8;    /* Lighter beige */
+    --accent-gold: #d4c5a0;      /* Softer beige-gold */
+    --accent-gold-light: #e8dfc7; /* Very soft champagne */
+    --accent-gold-dark: #a08856;  /* Deeper muted gold */
+    --accent-pearl: #fdfcfa;     /* Pearl white */
+    --accent-cream: #fcf9f3;     /* Soft cream */
+    --palace-ivory: #fefdfb;
+    --palace-cream: #fcfaf6;
+    --palace-champagne: #faf7f0;
+    --palace-marble: #f8f8f8;
+    --palace-shadow: rgba(201, 169, 97, 0.08);
+    --text-dark: #3a3a3a;
+    --text-medium: #5a5a5a;
+    --text-light: #757575;
+    --border-soft: #ede8df;
+    --border-ornate: #d9cdb9;    /* Soft gold border */
 
-    /* Override dark theme variables for white/light theme */
-    --background-color: #ffffff !important;
-    --surface-color: #fafafa !important;
-    --surface-elevated: #ffffff !important;
-    --surface-dark: #f5f5f5 !important;
-    --text-primary: #2c2c2c !important;
-    --text-secondary: #555555 !important;
-    --text-muted: #888888 !important;
-    --text-light: #999999 !important;
-    --border-color: #e0e0e0 !important;
-    --border-light: #f0f0f0 !important;
-    --border-dark: #d0d0d0 !important;
+    /* Subtle white theme */
+    --background-color: #fafafa !important;
+    --surface-color: #fcfcfc !important;
+    --surface-elevated: #fefefe !important;
+    --surface-dark: #f8f8f8 !important;
+    --text-primary: #3a3a3a !important;
+    --text-secondary: #5a5a5a !important;
+    --text-muted: #757575 !important;
+    --text-light: #909090 !important;
+    --border-color: #e8e4dc !important;
+    --border-light: #f0ebe3 !important;
+    --border-dark: #ded8cc !important;
 
-    /* Override shadows for light theme */
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
-    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.16) !important;
-    --shadow-glow: 0 0 20px rgba(201, 169, 97, 0.15) !important;
-    --shadow-primary: 0 0 15px rgba(201, 169, 97, 0.1) !important;
+    /* Subtle shadows with reduced opacity */
+    --shadow-sm: 0 2px 4px rgba(201, 169, 97, 0.03) !important;
+    --shadow-md: 0 4px 8px rgba(201, 169, 97, 0.04) !important;
+    --shadow-lg: 0 8px 16px rgba(201, 169, 97, 0.05) !important;
+    --shadow-glow: 0 0 20px rgba(201, 169, 97, 0.06) !important;
+    --shadow-primary: 0 0 15px rgba(201, 169, 97, 0.05) !important;
 
     /* Light accent colors */
     /* --accent-light-gold: #e91e63; */
-    --accent-light-gold: #b8a06a;  /* Muted gold instead of pink */
+    --accent-light-gold: #c8b896;  /* Muted champagne */
 }
 
-/* Female form uses same background image as men's */
+/* Female form luxury background with subtle overlay */
 body.female-form {
-    background:
-        linear-gradient(rgba(10, 10, 10, 0.65), rgba(15, 15, 15, 0.65)),
-        url('images/fashion-store-background.jpg') center/cover fixed !important;
     position: relative;
     animation: fadeIn 1s ease-out;
     background-attachment: fixed;
@@ -777,15 +813,13 @@ body.female-form .complete-form-container {
     position: relative;
 }
 
-/* Form sections maintain light theme but with same structure */
+/* Form sections subtle white with muted accents */
 body.female-form .form-section {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(224, 224, 224, 0.5);
-    box-shadow:
-        0 4px 16px rgba(0, 0, 0, 0.06),
-        0 1px 4px rgba(0, 0, 0, 0.04);
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    border-radius: 16px;
     padding: 48px;
     margin-bottom: 32px;
     position: relative;
@@ -794,22 +828,37 @@ body.female-form .form-section {
 }
 
 body.female-form .section-header {
-    color: #333333 !important;
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border-soft);
 }
 
-/* Form header with light theme but same structure as men's */
+/* Form header subtle design */
 body.female-form .form-header {
     background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(224, 224, 224, 0.5);
-    box-shadow:
-        0 4px 16px rgba(0, 0, 0, 0.06),
-        0 1px 4px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-md);
     padding: 60px 48px;
     text-align: center;
     margin-bottom: 48px;
-    border-radius: 12px;
+    border-radius: 16px;
     position: relative;
+}
+
+body.female-form .form-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent,
+        var(--border-soft) 20%,
+        var(--accent-gold-light) 50%,
+        var(--border-soft) 80%,
+        transparent);
+    border-radius: 16px 16px 0 0;
     overflow: hidden;
     animation: fadeInDown 0.8s ease-out;
 }
@@ -822,13 +871,20 @@ body.female-form .form-header::after {
 
 body.female-form .main-title {
     color: var(--text-dark);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.025);
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: 2px;
     animation: slideInDown 0.8s ease-out;
+    position: relative;
+    display: inline-block;
 }
 
 body.female-form .main-subtitle {
     color: var(--text-medium);
     animation: fadeInUp 0.8s ease-out 0.2s both;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 /* Remove duplicate form-section styling (already defined above) */
@@ -843,7 +899,7 @@ body.female-form .section-number {
     color: #333333;
     border: 2px solid #e0e0e0;
     background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
     font-weight: 500;
 }
 
@@ -891,14 +947,15 @@ body.female-form select:focus {
 /* Radio and checkbox options */
 body.female-form .radio-option,
 body.female-form .checkbox-option {
-    background: var(--palace-marble) !important;
+    background: var(--surface-elevated) !important;
     border-color: var(--border-soft) !important;
 }
 
 body.female-form .radio-option:hover,
 body.female-form .checkbox-option:hover {
-    /* background: var(--palace-ivory) !important; */
     border-color: var(--accent-gold-light) !important;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
 }
 
 /* Override dark backgrounds */
@@ -939,12 +996,18 @@ body.female-form .checkbox-option:hover img {
     filter: sepia(0) brightness(1);
 }
 
-body.female-form .radio-option input:checked + img,
-body.female-form .checkbox-option input:checked + img,
-body.female-form .radio-option input:checked ~ span,
-body.female-form .checkbox-option input:checked ~ span {
+body.female-form .radio-option:has(input:checked),
+body.female-form .checkbox-option:has(input:checked) {
     border-color: var(--accent-gold);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    border-width: 2px;
+    background: rgba(201, 169, 97, 0.02);
+    box-shadow: 0 0 15px rgba(201, 169, 97, 0.04);
+}
+
+body.female-form .radio-option:has(input:checked) span,
+body.female-form .checkbox-option:has(input:checked) span {
+    color: var(--text-primary);
+    font-weight: 500;
 }
 
 /* Gender selector - same dark style for both forms */
@@ -997,32 +1060,19 @@ body.female-form input[type="radio"]:checked + .gender-option .gender-icon {
     opacity: 1;
 }
 
-/* Submit button with royal style */
+/* Submit button with subtle elegance */
 body.female-form .submit-btn {
-    background:
-        linear-gradient(135deg,
-            var(--accent-gold) 0%,
-            var(--accent-gold-dark) 50%,
-            var(--accent-gold) 100%);
+    background: var(--accent-gold);
     color: white;
-    border: 2px solid var(--accent-gold-dark);
-    box-shadow:
-        0 6px 20px rgba(201, 169, 97, 0.35),
-        inset 0 1px 2px rgba(255, 255, 255, 0.3),
-        inset 0 -1px 2px rgba(160, 132, 80, 0.4);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--accent-gold-dark);
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.075);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     font-weight: 500;
 }
 
 body.female-form .submit-btn:hover {
-    background:
-        linear-gradient(135deg,
-            var(--accent-gold-light) 0%,
-            var(--accent-gold) 50%,
-            var(--accent-gold-light) 100%);
-    box-shadow:
-        0 8px 25px rgba(201, 169, 97, 0.4),
-        inset 0 1px 3px rgba(255, 255, 255, 0.4);
+    background: var(--primary-hover);
+    box-shadow: 0 6px 16px rgba(201, 169, 97, 0.1);
     transform: translateY(-2px);
 }
 
@@ -1051,9 +1101,24 @@ body.female-form input[type="text"],
 body.female-form input[type="email"],
 body.female-form input[type="tel"],
 body.female-form textarea {
-    background: var(--palace-ivory) !important;
+    background: #ffffff !important;
     color: var(--text-dark) !important;
-    border-color: var(--border-soft) !important;
+    border: 1px solid var(--border-soft) !important;
+    box-shadow: inset 0 1px 3px rgba(212, 175, 55, 0.05) !important;
+}
+
+body.female-form .date-select:focus,
+body.female-form .location-select:focus,
+body.female-form select:focus,
+body.female-form input[type="text"]:focus,
+body.female-form input[type="email"]:focus,
+body.female-form input[type="tel"]:focus,
+body.female-form textarea:focus {
+    border-color: var(--accent-gold) !important;
+    box-shadow:
+        0 0 0 3px rgba(212, 175, 55, 0.15),
+        inset 0 1px 3px rgba(212, 175, 55, 0.05) !important;
+    outline: none !important;
 }
 
 body.female-form .style-evaluation-item {
@@ -1995,14 +2060,130 @@ body.female-form .street-group label {
     gap: 16px;
 }
 
+/* Basic Knowledge Details */
+.basic-knowledge-details {
+    margin-top: 24px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    animation: fadeIn 0.3s ease;
+}
+
+.basic-knowledge-details .sub-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    display: block;
+}
+
+/* Validation Styles */
+.error {
+    border-color: #dc3545 !important;
+    background-color: rgba(220, 53, 69, 0.1) !important;
+}
+
+.error-message {
+    display: block;
+    color: #ff6b6b;
+    font-size: 0.875rem;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.group-error {
+    margin-top: 8px;
+}
+
+.validation-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 16px 48px 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+    max-width: 400px;
+}
+
+.validation-notification.info {
+    background-color: rgba(66, 165, 245, 0.95);
+    color: #ffffff;
+    border-left: 4px solid #1976d2;
+}
+
+.validation-notification.success {
+    background-color: rgba(76, 175, 80, 0.95);
+    color: #ffffff;
+    border-left: 4px solid #388e3c;
+}
+
+.validation-notification.error {
+    background-color: rgba(244, 67, 54, 0.95);
+    color: #ffffff;
+    border-left: 4px solid #d32f2f;
+}
+
+.notification-close {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-close:hover {
+    opacity: 1;
+}
+
+.validation-notification.fade-out {
+    animation: slideOut 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
 .radio-option {
     position: relative;
     display: flex;
     align-items: center;
     padding: 18px 24px;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--surface-elevated);
     border: 2px solid var(--border-light);
-    border-radius: 12px;
+    border-radius: 16px;
     cursor: pointer;
     transition: all 0.15s ease;
     overflow: hidden;
@@ -2025,8 +2206,8 @@ body.female-form .street-group label {
 
 .radio-option:hover {
     border-color: var(--border-color);
-    background: rgba(255, 255, 255, 0.04);
-    transform: translateX(4px);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
 }
 
 .radio-option input[type="radio"] {
@@ -2044,7 +2225,7 @@ body.female-form .street-group label {
 
 .radio-option:has(input:checked) {
     border-color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .radio-option:has(input:checked) span {
@@ -2061,59 +2242,71 @@ body.female-form .street-group label {
 
 .checkbox-option {
     position: relative;
-    display: flex;
-    align-items: center;
-    padding: 18px 24px;
-    background: rgba(255, 255, 255, 0.02);
+    display: block;
+    background: var(--surface-elevated);
     border: 2px solid var(--border-light);
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.15s ease;
+    border-radius: 16px;
     overflow: hidden;
-}
-
-.checkbox-option::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-    transition: width 0.6s ease;
-}
-
-.checkbox-option:hover::before {
-    width: 100%;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    padding: 0;
 }
 
 .checkbox-option:hover {
     border-color: var(--border-color);
-    background: rgba(255, 255, 255, 0.04);
-    transform: translateX(4px);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
 }
 
 .checkbox-option input[type="checkbox"] {
-    margin-right: 16px;
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-    accent-color: var(--primary-color);
+    position: absolute;
+    opacity: 0;
+}
+
+.checkbox-option img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background: var(--surface-dark);
 }
 
 .checkbox-option span {
+    display: block;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 400;
     color: var(--text-secondary);
+    text-align: center;
     transition: color 0.3s ease;
 }
 
 .checkbox-option:has(input:checked) {
     border-color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .checkbox-option:has(input:checked) span {
     color: var(--text-primary);
     font-weight: 500;
+}
+
+/* Text-only checkbox options */
+.checkbox-option.text-only {
+    padding: 18px 24px;
+}
+
+.checkbox-option.text-only span {
+    padding: 0;
+}
+
+/* Chip-style checkbox options */
+.chip-option {
+    padding: 16px 24px;
+}
+
+.chip-option span {
+    padding: 0;
+    font-size: 0.95rem;
 }
 
 /* Address Input Styles */
@@ -2158,7 +2351,7 @@ body.female-form .street-group label {
     background: var(--primary-color);
     color: #000;
     border: none;
-    border-radius: 10px;
+    border-radius: 16px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.15s ease;
@@ -2167,8 +2360,8 @@ body.female-form .street-group label {
 
 .btn-address-lookup:hover {
     background: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-address-lookup:disabled {
@@ -2241,8 +2434,8 @@ body.female-form .street-group label {
 
 .lifestyle-option-group {
     background: var(--surface-elevated);
-    border: 1px solid var(--border-light);
-    border-radius: 12px;
+    border: 2px solid var(--border-light);
+    border-radius: 16px;
     transition: all 0.15s ease;
     overflow: hidden;
 }
@@ -2339,11 +2532,11 @@ body.female-form .street-group label {
 
 .chip-option span {
     display: inline-block;
-    padding: 8px 16px;
-    background: var(--surface-elevated);
-    border: 1px solid var(--border-light);
+    padding: 6px 12px;
+    /* background: var(--surface-elevated);
+    border: 1px solid var(--border-light); */
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
     transition: all 0.15s ease;
     cursor: pointer;
@@ -2356,7 +2549,7 @@ body.female-form .street-group label {
 
 .chip-option:has(input:checked) span {
     background: var(--primary-color);
-    color: #000;
+    /* color: #000; */
     border-color: var(--primary-color);
     font-weight: 500;
 }
@@ -3339,29 +3532,10 @@ body.female-form .street-group label {
 
 /* Enhanced Clothing Items Grid */
 .clothing-items-enhanced-grid {
-    display: flex;
-    overflow-x: auto;
-    gap: 24px;
-    padding-bottom: 16px;
-    -webkit-overflow-scrolling: touch;
-}
-
-.clothing-items-enhanced-grid::-webkit-scrollbar {
-    height: 8px;
-}
-
-.clothing-items-enhanced-grid::-webkit-scrollbar-track {
-    background: var(--surface-dark);
-    border-radius: 4px;
-}
-
-.clothing-items-enhanced-grid::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 4px;
-}
-
-.clothing-items-enhanced-grid::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-color);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px 0;
 }
 
 .clothing-item-enhanced {
@@ -3370,8 +3544,7 @@ body.female-form .street-group label {
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.15s ease;
-    flex: 0 0 320px;
-    min-width: 320px;
+    position: relative;
 }
 
 .clothing-item-enhanced:hover {
@@ -3384,7 +3557,33 @@ body.female-form .street-group label {
     display: block;
     cursor: pointer;
     padding: 20px;
-    border-bottom: 1px solid var(--border-light);
+    position: relative;
+}
+
+.clothing-item-checkbox::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    transition: all 0.15s ease;
+}
+
+.clothing-item-enhanced:has(.item-checkbox-main:checked) .clothing-item-checkbox::after {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.clothing-item-enhanced:has(.item-checkbox-main:checked) .clothing-item-checkbox::after {
+    content: '✓';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--background-color);
+    font-weight: bold;
 }
 
 .item-content-enhanced {
@@ -3405,6 +3604,21 @@ body.female-form .street-group label {
     color: var(--text-muted);
     border: 1px solid var(--border-light);
     flex-shrink: 0;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+}
+
+.clothing-item-enhanced:hover .item-image {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .item-name {
@@ -3433,6 +3647,34 @@ body.female-form .street-group label {
     display: block !important;
 }
 
+/* Female form adjustments */
+.female-form .clothing-item-enhanced {
+    border-color: var(--border-light-gold);
+}
+
+.female-form .clothing-item-enhanced:hover {
+    border-color: var(--accent-light-gold);
+    box-shadow: 0 4px 20px rgba(201, 169, 97, 0.075);
+}
+
+.female-form .clothing-item-enhanced:has(.item-checkbox-main:checked) {
+    border-color: var(--accent-gold);
+    background: rgba(201, 169, 97, 0.025);
+}
+
+.female-form .item-image {
+    border-color: var(--border-light-gold);
+}
+
+.female-form .clothing-item-checkbox::after {
+    border-color: var(--border-light-gold);
+}
+
+.female-form .clothing-item-enhanced:has(.item-checkbox-main:checked) .clothing-item-checkbox::after {
+    background: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
 /* Budget Selector Inline */
 .item-budget-selector {
     padding: 20px;
@@ -3450,20 +3692,20 @@ body.female-form .street-group label {
 
 .budget-options-inline {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 12px;
 }
 
 .budget-option-inline {
     position: relative;
-    cursor: pointer;
     display: flex;
     align-items: center;
     padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--border-light);
-    border-radius: 8px;
-    transition: all 0.15s ease;
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-light);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
     overflow: hidden;
 }
 
@@ -3614,7 +3856,7 @@ body.female-form .street-group label {
 
 .style-preference-card label:hover {
     border-color: var(--border-color);
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
 
@@ -3843,7 +4085,7 @@ body.female-form .street-group label {
 
 .avoid-item-label img {
     width: 100%;
-    height: 120px;
+    height: 200px;
     object-fit: cover;
     background: var(--surface-dark);
 }
@@ -3927,7 +4169,7 @@ body.female-form .street-group label {
 
 /* Face Photo Upload Section */
 .face-photo-section {
-    max-width: 600px;
+    /* max-width: 600px; */
     margin: 30px auto;
     padding: 30px;
     background: var(--surface-elevated);
@@ -4045,11 +4287,11 @@ body.female-form .street-group label {
 }
 
 .female-form .photo-upload-btn {
-    background: #b8a06a;
+    background: #c8b896;
 }
 
 .female-form .photo-upload-btn:hover {
-    background: #a08d5f;
+    background: #d4c5a0;
 }
 
 .brand-category {
@@ -4228,11 +4470,45 @@ body.female-form .street-group label {
     font-weight: 600;
     position: relative;
     z-index: 1;
+    overflow: hidden;
+}
+
+.brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.brand-logo .brand-initial {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.brand-logo img[style*="display: none"] + .brand-initial {
+    position: static;
+    transform: none;
+    z-index: 1;
 }
 
 .brand-tag.selected .brand-logo {
     background: rgba(0, 0, 0, 0.1);
     color: #000;
+}
+
+.brand-tag.selected .brand-logo img {
+    opacity: 1;
+}
+
+/* Ensure brand logos are properly sized in selected chips */
+.selected-brand-chip .brand-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    flex-shrink: 0;
 }
 
 /* Selected Brands Display */
@@ -4454,14 +4730,22 @@ body.female-form .street-group label {
 
 .weekend-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
 .weekday-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+    .weekend-grid,
+    .weekday-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .weekend-card,
@@ -4503,7 +4787,7 @@ body.female-form .street-group label {
 .weekend-card img,
 .weekday-card img {
     width: 100%;
-    height: 160px;
+    height: 180px;
     object-fit: cover;
     background: var(--surface-dark);
 }
@@ -4527,30 +4811,37 @@ body.female-form .street-group label {
 
 /* Weekday card sub-options */
 .weekday-card .sub-options {
-    padding: 24px;
-    background: var(--surface-elevated);
-    border: 2px solid var(--border-light);
+    padding: 16px;
+    background: transparent;
+    border: none;
     border-radius: var(--radius-lg);
-    margin-top: 16px;
+    margin-top: 12px;
     transition: all var(--transition-all);
 }
 
 .weekday-card .sub-label {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     font-weight: 500;
 }
 
 .weekday-card .chip-group {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 16px;
-    margin-top: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+    margin-top: 12px;
 }
 
 .weekday-card .chip-option {
     display: block;
+}
+
+/* Smaller chip options specifically for weekday sub-options */
+.weekday-card .chip-option span {
+    /* padding: 5px 10px; */
+    font-size: 0.75rem;
+    border-radius: 16px;
 }
 
 .weekday-card .chip-option input {
@@ -4560,10 +4851,10 @@ body.female-form .street-group label {
 
 .weekday-card .chip-option span {
     display: block;
-    padding: 16px;
-    background: var(--surface-base);
+    /* padding: 16px; */
+    /* background: var(--surface-base);
     border: 2px solid var(--border-light);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-md); */
     font-size: 0.9rem;
     color: var(--text-secondary);
     cursor: pointer;
@@ -4572,12 +4863,12 @@ body.female-form .street-group label {
 }
 
 .weekday-card .chip-option input:checked + span {
-    background: var(--surface-elevated);
-    border-color: var(--primary-color);
+    background: initial;
+    /* border-color: var(--primary-color);
     color: var(--text-primary);
     font-weight: 500;
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md); */
 }
 
 .weekday-card .chip-option:hover span {
@@ -4947,6 +5238,108 @@ body.female-form .street-group label {
     margin-top: 32px;
 }
 
+/* Two-tier coordination layout */
+.coordination-grid.two-tier {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.coordination-row {
+    display: grid;
+    gap: 20px;
+}
+
+.coordination-row.recommended-row {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Make recommended cards more prominent */
+.recommended-row .coordination-card .coordination-content {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border-width: 2px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.recommended-row .coordination-card:hover .coordination-content {
+    box-shadow: 0 16px 40px rgba(212, 175, 55, 0.25);
+}
+
+.coordination-row.other-options {
+    grid-template-columns: repeat(4, 1fr);
+    opacity: 0.85;
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+}
+
+.coordination-row.other-options:hover {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Smaller cards for other options */
+.other-options .coordination-content {
+    min-height: 140px;
+    padding: 24px 16px;
+}
+
+.other-options .coordination-content .count {
+    font-size: 2.5rem;
+}
+
+.other-options .coordination-content .unit {
+    font-size: 1rem;
+}
+
+.other-options .coordination-content .description {
+    font-size: 0.85rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .coordination-row.recommended-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .coordination-row.other-options {
+        grid-template-columns: repeat(2, 1fr);
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .coordination-grid.two-tier {
+        gap: 30px;
+    }
+
+    .coordination-row.recommended-row,
+    .coordination-row.other-options {
+        grid-template-columns: 1fr;
+    }
+
+    .coordination-row.other-options {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .other-options .coordination-content {
+        min-height: 180px;
+        padding: 32px 24px;
+    }
+
+    .other-options .coordination-content .count {
+        font-size: 3rem;
+    }
+
+    .other-options .coordination-content .unit {
+        font-size: 1.1rem;
+    }
+
+    .other-options .coordination-content .description {
+        font-size: 0.9rem;
+    }
+}
+
 .coordination-card {
     position: relative;
     display: block;
@@ -4987,6 +5380,11 @@ body.female-form .street-group label {
 }
 
 .coordination-card.recommended .coordination-content {
+    border-color: var(--border-color);
+    position: relative;
+}
+
+.coordination-card.recommended input[type="radio"]:checked ~ .coordination-content {
     border-color: var(--primary-color);
     box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 100%);
@@ -5860,15 +6258,6 @@ body.female-form .spec-option:has(input:checked) {
 }
 
 /* Female form button styling */
-body.female-form .btn-submit {
-    background: linear-gradient(135deg, #e91e63 0%, #f8bbd0 50%, #e91e63 100%);
-    color: #ffffff;
-    box-shadow:
-        0 10px 30px rgba(233, 30, 99, 0.3),
-        0 5px 15px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-
 body.female-form .btn-submit:hover {
     box-shadow:
         0 15px 40px rgba(233, 30, 99, 0.4),
@@ -6054,6 +6443,13 @@ body.female-form .btn-submit:active {
     transform: translateY(0);
 }
 
+/* Tablet breakpoint */
+@media (max-width: 1024px) {
+    .clothing-items-enhanced-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .complete-form-container {
@@ -6209,15 +6605,11 @@ body.female-form .btn-submit:active {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 
+
     .clothing-items-enhanced-grid {
-        /* Keep horizontal scroll on mobile */
-        display: flex;
-        overflow-x: auto;
-    }
-    
-    .clothing-item-enhanced {
-        flex: 0 0 280px;
-        min-width: 280px;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 16px 0;
     }
 
     .budget-options-inline {
@@ -6659,9 +7051,7 @@ body.female-form .btn-submit:active {
 
 /* Good/Bad Selection */
 .good-bad-selection {
-    background: rgba(255, 255, 255, 0.02);
     border-radius: 16px;
-    padding: 24px;
     text-align: center;
 }
 
@@ -7216,17 +7606,18 @@ body.female-form .btn-submit:active {
 .radio-option {
     display: flex;
     align-items: flex-start;
-    padding: 16px;
+    padding: 18px 24px;
     background: var(--surface-elevated);
-    border: 1px solid var(--border-light);
-    border-radius: 8px;
+    border: 2px solid var(--border-light);
+    border-radius: 16px;
     cursor: pointer;
     transition: all 0.15s ease;
 }
 
 .radio-option:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--text-secondary);
+    border-color: var(--border-color);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
 }
 
 .radio-option input[type="radio"] {
@@ -8121,24 +8512,34 @@ body.gender-transitioning .form-section {
 
 .birthdate-select {
     flex: 1;
-    padding: 10px 16px;
-    background: var(--surface-dark);
+    padding: 12px 16px;
+    background: var(--surface-elevated);
     border: 2px solid var(--border-light);
-    border-radius: 8px;
+    border-radius: 12px;
     color: var(--text-primary);
     font-size: 1rem;
-    transition: all 0.15s ease;
+    font-weight: 500;
+    transition: all 0.2s ease;
     cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
 }
 
 .birthdate-select:hover {
     border-color: var(--accent-gold);
+    background-color: var(--surface-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .birthdate-select:focus {
     outline: none;
     border-color: var(--accent-gold);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1), 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
 }
 
 .date-separator {
@@ -8161,7 +8562,7 @@ body.gender-transitioning .form-section {
 
 .female-form .birthdate-select:focus {
     border-color: var(--accent-light-gold);
-    box-shadow: 0 0 0 3px rgba(184, 160, 106, 0.1);
+    box-shadow: 0 0 0 3px rgba(200, 184, 150, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .female-form .age-display {
@@ -8169,21 +8570,24 @@ body.gender-transitioning .form-section {
 }
 
 .birthdate-display {
-    background: var(--surface-dark);
+    background: var(--surface-elevated);
     border: 2px solid var(--border-light);
-    border-radius: 12px;
-    padding: 16px 20px;
+    border-radius: 14px;
+    padding: 18px 24px;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.2s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 56px;
+    min-height: 60px;
+    font-weight: 500;
 }
 
 .birthdate-display:hover {
     border-color: var(--accent-gold);
-    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.08);
+    transform: translateY(-2px);
+    background: var(--surface-color);
 }
 
 .birthdate-placeholder {
@@ -8636,7 +9040,7 @@ body.gender-transitioning .form-section {
 
 .chip-option:hover {
     border-color: var(--accent-gold);
-    background: rgba(212, 175, 55, 0.1);
+    /* background: rgba(212, 175, 55, 0.1); */
 }
 
 .chip-option input[type="checkbox"] {
@@ -8875,31 +9279,105 @@ body.gender-transitioning .form-section {
 
 .pattern-variation-card {
     position: relative;
-    background: white;
-    border-radius: 12px;
+    background: var(--surface-elevated);
+    border-radius: 16px;
     overflow: hidden;
     border: 2px solid var(--border-light);
     transition: all 0.15s ease;
-    cursor: pointer;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .pattern-variation-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-md);
 }
 
-.pattern-variation-card input[type="radio"] {
-    position: absolute;
-    opacity: 0;
+.pattern-variation-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
 }
 
-.pattern-variation-card input[type="radio"]:checked + label {
-    border-color: var(--primary-color);
+.pattern-variation-name {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 8px;
 }
 
-.pattern-variation-card input[type="radio"]:checked + label::after {
-    content: '✓';
-    position: absolute;
+/* Pattern variation specific Good/Bad selection */
+.pattern-variation-card .good-bad-selection {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.pattern-variation-card .good-bad-option {
+    flex: none;
+    width: auto;
+}
+
+.pattern-variation-card .good-bad-option span {
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* Pattern variation reason checkboxes */
+.pattern-variation-card .good-bad-reasons {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    /* padding: 12px; */
+    margin-top: 8px;
+}
+
+.pattern-variation-card .reason-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    margin: 4px 0;
+    font-size: 0.8rem;
+    gap: 6px;
+}
+
+.pattern-variation-card .reason-label {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Good/Bad button styling for pattern variations */
+.pattern-variation-card .good-option span {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.pattern-variation-card .bad-option span {
+    background: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.pattern-variation-card .good-option input[type="radio"]:checked ~ span {
+    background: rgba(76, 175, 80, 0.2);
+    border-color: #4caf50;
+    font-weight: 600;
+}
+
+.pattern-variation-card .bad-option input[type="radio"]:checked ~ span {
+    background: rgba(244, 67, 54, 0.2);
+    border-color: #f44336;
+    font-weight: 600;
+}
     top: 8px;
     right: 8px;
     width: 24px;
@@ -9062,6 +9540,32 @@ body.gender-transitioning .form-section {
     margin-top: 20px;
 }
 
+/* Updated pattern variation styles for Good/Bad */
+.pattern-variations-grid .pattern-variation-card {
+    padding: 16px;
+    cursor: default;
+}
+
+.pattern-variations-grid .pattern-variation-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.pattern-variations-grid .pattern-variation-name {
+    margin-bottom: 12px;
+}
+
+.pattern-variations-grid .good-bad-selection {
+    margin-top: 12px;
+}
+
+.pattern-variations-grid .good-bad-reasons {
+    margin-top: 12px;
+}
+
 .pattern-good-bad-item {
     background: var(--surface-elevated);
     border: 2px solid var(--border-color);
@@ -9149,7 +9653,7 @@ body.gender-transitioning .form-section {
 .good-bad-reasons {
     background: rgba(255, 255, 255, 0.02);
     border-radius: 12px;
-    padding: 20px;
+    padding: 20px 0;
     margin-top: 16px;
     border: 1px solid var(--border-light);
     text-align: left;
@@ -9257,21 +9761,21 @@ body.gender-transitioning .form-section {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .pattern-good-bad-item {
         min-width: auto;
         padding: 16px;
     }
-    
+
     .good-bad-reasons .reason-options {
         grid-template-columns: 1fr;
         gap: 10px;
     }
-    
+
     .pattern-good-bad-item .good-bad-selection {
         gap: 10px;
     }
-    
+
     .pattern-good-bad-item .good-bad-option {
         padding: 8px 15px;
     }
@@ -9496,7 +10000,7 @@ body.gender-transitioning .form-section {
 .sub-option:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.08) !important;
+    /* background: rgba(255, 255, 255, 0.08) !important; */
     border-color: var(--accent-gold) !important;
 }
 
@@ -9514,7 +10018,7 @@ body.gender-transitioning .form-section {
 .pattern-card.selected,
 .travel-option.selected,
 .sub-option.selected {
-    background: rgba(212, 175, 55, 0.2) !important;
+    /* background: rgba(212, 175, 55, 0.2) !important; */
     border-color: var(--accent-gold) !important;
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
 }
@@ -9695,7 +10199,7 @@ body.gender-transitioning .form-section {
 .dress-code-option:has(input:checked),
 .travel-option:has(input:checked),
 .sub-option:has(input:checked) {
-    background: rgba(212, 175, 55, 0.15);
+    /* background: rgba(212, 175, 55, 0.15); */
     border-color: var(--accent-gold);
     box-shadow: 0 0 0 1px var(--accent-gold), 0 4px 12px rgba(212, 175, 55, 0.3);
 }
@@ -9866,7 +10370,7 @@ body.female-form .radio-option.selected,
 body.female-form .checkbox-option.selected,
 body.female-form .radio-option:has(input:checked),
 body.female-form .checkbox-option:has(input:checked) {
-    background-color: #fef9e7;
+    /* background-color: #fef9e7; */
     border-color: #d4af37;
 }
 
@@ -9875,8 +10379,8 @@ body.female-form .style-preference-card,
 body.female-form .lifestyle-card,
 body.female-form .weekend-activity-card,
 body.female-form .scene-card {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
+    /* background-color: #ffffff;
+    border: 1px solid #e0e0e0; */
 }
 
 body.female-form .style-preference-card:hover,
@@ -9985,6 +10489,85 @@ body:not(.female-form) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: var(--spacing-sm);
+}
+
+/* Toggle Styles for Sections */
+.corporate-toggle,
+.fashion-stance-toggle,
+.proposal-frequency-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: var(--spacing-md);
+    background: var(--surface-elevated);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-normal);
+    margin-bottom: var(--spacing-md);
+}
+
+.corporate-toggle:hover,
+.fashion-stance-toggle:hover,
+.proposal-frequency-toggle:hover {
+    background: var(--surface-color);
+    border-color: var(--border-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.corporate-toggle input[type="checkbox"],
+.fashion-stance-toggle input[type="checkbox"],
+.proposal-frequency-toggle input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: var(--spacing-sm);
+    cursor: pointer;
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    background: transparent;
+    transition: all var(--transition-fast);
+}
+
+.corporate-toggle input[type="checkbox"]:checked,
+.fashion-stance-toggle input[type="checkbox"]:checked,
+.proposal-frequency-toggle input[type="checkbox"]:checked {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.corporate-toggle input[type="checkbox"]:checked::after,
+.fashion-stance-toggle input[type="checkbox"]:checked::after,
+.proposal-frequency-toggle input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--background-color);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.toggle-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    user-select: none;
+}
+
+#corporateInfoContent,
+#fashionStanceContent,
+#proposalFrequencyContent {
+    transition: opacity 0.3s ease;
+}
+
+/* Nested content styling */
+#corporateInfoContent .form-group:first-child,
+#fashionStanceContent > label:first-child,
+#proposalFrequencyContent > label:first-child {
+    margin-top: 0;
 }
 
 .pattern-item-evaluation .item-option {

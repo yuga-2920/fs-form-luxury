@@ -1,0 +1,247 @@
+/* Enhanced Style Patterns Layout - 5×3 = 15 patterns */
+
+/* Style variations container */
+#styleVariations {
+    margin-top: 40px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+}
+
+/* Style category section */
+.style-category-section {
+    margin-bottom: 48px;
+    padding: 24px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+}
+
+.style-category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--accent-gold);
+}
+
+.style-category-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.style-category-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+}
+
+/* Pattern grid - 5 columns */
+.style-patterns-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-top: 24px;
+}
+
+/* Individual pattern card */
+.style-pattern-card {
+    position: relative;
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.style-pattern-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.2);
+}
+
+.style-pattern-card input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.style-pattern-card input[type="checkbox"]:checked ~ .pattern-content {
+    border-color: var(--accent-gold);
+}
+
+.style-pattern-card input[type="checkbox"]:checked ~ .pattern-content::after {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    background: var(--accent-gold);
+    color: var(--background-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.pattern-content {
+    position: relative;
+    padding: 12px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.pattern-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.pattern-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.pattern-number {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* Pattern indicators */
+.pattern-indicators {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pattern-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.pattern-indicator.active {
+    background: var(--accent-gold);
+    transform: scale(1.2);
+}
+
+/* Visual hierarchy for patterns */
+.pattern-level {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--accent-gold);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Category badge */
+.style-category-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: var(--accent-gold);
+    color: var(--background-color);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Instructions panel */
+.pattern-selection-instructions {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--accent-gold);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.pattern-selection-instructions h4 {
+    font-size: 18px;
+    color: var(--accent-gold);
+    margin-bottom: 12px;
+}
+
+.pattern-selection-instructions p {
+    font-size: 14px;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Selected patterns summary */
+.selected-patterns-summary {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface-elevated);
+    border: 2px solid var(--accent-gold);
+    border-radius: var(--radius-lg);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.selected-patterns-summary.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.selected-count {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent-gold);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .style-patterns-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .style-patterns-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .style-category-title {
+        font-size: 20px;
+    }
+    
+    .pattern-name {
+        font-size: 12px;
+    }
+}

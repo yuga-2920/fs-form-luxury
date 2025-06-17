@@ -1,0 +1,784 @@
+
+                <div class="form-group brand-selection-enhanced">
+                    <div class="brand-selection-header">
+                        <label>ブランドの好み</label>
+                        <div class="brand-selection-legend">
+                            <div class="legend-item">
+                                <span class="legend-circle like">○</span>
+                                <span>好き</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-circle dislike">×</span>
+                                <span>苦手</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="brand-selection-grid">
+                        <div class="brand-category-header">ハイエンド・ラグジュアリーブランド</div>
+                        <!-- HERMES -->
+                        <div class="brand-selection-item" data-brand="HERMES">
+                            <div class="brand-logo-container" data-brand-initial="H">
+                                <img src="images/brand-hermes.jpg" alt="HERMES" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">HERMES</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="HERMES" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="HERMES" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_HERMES" value="">
+                        </div>
+                        <!-- LOUIS VUITTON -->
+                        <div class="brand-selection-item" data-brand="LOUIS_VUITTON">
+                            <div class="brand-logo-container" data-brand-initial="LV">
+                                <img src="images/brand-lv.jpg" alt="LOUIS VUITTON" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">LOUIS VUITTON</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="LOUIS_VUITTON" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="LOUIS_VUITTON" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_LOUIS_VUITTON" value="">
+                        </div>
+                        <!-- CHANEL -->
+                        <div class="brand-selection-item" data-brand="CHANEL">
+                            <div class="brand-logo-container" data-brand-initial="C">
+                                <img src="images/brand-chanel.jpg" alt="CHANEL" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">CHANEL</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="CHANEL" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="CHANEL" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_CHANEL" value="">
+                        </div>
+                        <div class="brand-category-header">ラグジュアリーブランド（クラシック & エレガント）</div>
+                        <!-- Dior -->
+                        <div class="brand-selection-item" data-brand="DIOR">
+                            <div class="brand-logo-container" data-brand-initial="D">
+                                <img src="images/brand-dior.jpg" alt="Dior" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Dior</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="DIOR" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="DIOR" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_DIOR" value="">
+                        </div>
+                        <!-- Saint Laurent -->
+                        <div class="brand-selection-item" data-brand="SAINT_LAURENT">
+                            <div class="brand-logo-container" data-brand-initial="SL">
+                                <img src="images/brand-sl.jpg" alt="Saint Laurent" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Saint Laurent</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="SAINT_LAURENT" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="SAINT_LAURENT" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_SAINT_LAURENT" value="">
+                        </div>
+                        <!-- Fendi -->
+                        <div class="brand-selection-item" data-brand="FENDI">
+                            <div class="brand-logo-container" data-brand-initial="F">
+                                <img src="images/brand-fendi.jpg" alt="Fendi" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Fendi</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="FENDI" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="FENDI" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_FENDI" value="">
+                        </div>
+                        <!-- Valentino -->
+                        <div class="brand-selection-item" data-brand="VALENTINO">
+                            <div class="brand-logo-container" data-brand-initial="V">
+                                <img src="images/brand-valentino.jpg" alt="Valentino" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Valentino</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="VALENTINO" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="VALENTINO" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_VALENTINO" value="">
+                        </div>
+                        <div class="brand-category-header">ラグジュアリーブランド（ミニマル & モダン）</div>
+                        <!-- Celine -->
+                        <div class="brand-selection-item" data-brand="CELINE">
+                            <div class="brand-logo-container" data-brand-initial="C">
+                                <img src="images/brand-celine.jpg" alt="Celine" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Celine</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="CELINE" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="CELINE" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_CELINE" value="">
+                        </div>
+                        <!-- Loewe -->
+                        <div class="brand-selection-item" data-brand="LOEWE">
+                            <div class="brand-logo-container" data-brand-initial="L">
+                                <img src="images/brand-loewe.jpg" alt="Loewe" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Loewe</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="LOEWE" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="LOEWE" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_LOEWE" value="">
+                        </div>
+                        <!-- Prada -->
+                        <div class="brand-selection-item" data-brand="PRADA">
+                            <div class="brand-logo-container" data-brand-initial="P">
+                                <img src="images/brand-prada.jpg" alt="Prada" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Prada</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="PRADA" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="PRADA" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_PRADA" value="">
+                        </div>
+                        <!-- Jil Sander -->
+                        <div class="brand-selection-item" data-brand="JIL_SANDER">
+                            <div class="brand-logo-container" data-brand-initial="JS">
+                                <img src="images/brand-jilsander.jpg" alt="Jil Sander" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Jil Sander</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="JIL_SANDER" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="JIL_SANDER" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_JIL_SANDER" value="">
+                        </div>
+                        <!-- Bottega Veneta -->
+                        <div class="brand-selection-item" data-brand="BOTTEGA_VENETA">
+                            <div class="brand-logo-container" data-brand-initial="BV">
+                                <img src="images/brand-bottega.jpg" alt="Bottega Veneta" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Bottega Veneta</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="BOTTEGA_VENETA" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="BOTTEGA_VENETA" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_BOTTEGA_VENETA" value="">
+                        </div>
+                        <div class="brand-category-header">ラグジュアリーブランド（個性/華やか）</div>
+                        <!-- Gucci -->
+                        <div class="brand-selection-item" data-brand="GUCCI">
+                            <div class="brand-logo-container" data-brand-initial="G">
+                                <img src="images/brand-gucci.jpg" alt="Gucci" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Gucci</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="GUCCI" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="GUCCI" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_GUCCI" value="">
+                        </div>
+                        <!-- Balenciaga -->
+                        <div class="brand-selection-item" data-brand="BALENCIAGA">
+                            <div class="brand-logo-container" data-brand-initial="B">
+                                <img src="images/brand-balenciaga.jpg" alt="Balenciaga" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Balenciaga</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="BALENCIAGA" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="BALENCIAGA" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_BALENCIAGA" value="">
+                        </div>
+                        <!-- Versace -->
+                        <div class="brand-selection-item" data-brand="VERSACE">
+                            <div class="brand-logo-container" data-brand-initial="V">
+                                <img src="images/brand-versace.jpg" alt="Versace" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Versace</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="VERSACE" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="VERSACE" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_VERSACE" value="">
+                        </div>
+                        <div class="brand-category-header">ラグジュアリーブランド（個性/アバンギャルド）</div>
+                        <!-- Comme des Garçons -->
+                        <div class="brand-selection-item" data-brand="COMME_DES_GARCONS">
+                            <div class="brand-logo-container" data-brand-initial="CDG">
+                                <img src="images/brand-cdg.jpg" alt="Comme des Garçons" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Comme des Garçons</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="COMME_DES_GARCONS" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="COMME_DES_GARCONS" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_COMME_DES_GARCONS" value="">
+                        </div>
+                        <!-- Yohji Yamamoto -->
+                        <div class="brand-selection-item" data-brand="YOHJI_YAMAMOTO">
+                            <div class="brand-logo-container" data-brand-initial="YY">
+                                <img src="images/brand-yohji.jpg" alt="Yohji Yamamoto" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Yohji Yamamoto</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="YOHJI_YAMAMOTO" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="YOHJI_YAMAMOTO" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_YOHJI_YAMAMOTO" value="">
+                        </div>
+                        <!-- Maison Margiela -->
+                        <div class="brand-selection-item" data-brand="MAISON_MARGIELA">
+                            <div class="brand-logo-container" data-brand-initial="MM">
+                                <img src="images/brand-margiela.jpg" alt="Maison Margiela" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Maison Margiela</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="MAISON_MARGIELA" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="MAISON_MARGIELA" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_MAISON_MARGIELA" value="">
+                        </div>
+                        <!-- Rick Owens -->
+                        <div class="brand-selection-item" data-brand="RICK_OWENS">
+                            <div class="brand-logo-container" data-brand-initial="RO">
+                                <img src="images/brand-rickowens.jpg" alt="Rick Owens" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Rick Owens</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="RICK_OWENS" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="RICK_OWENS" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_RICK_OWENS" value="">
+                        </div>
+                        <div class="brand-category-header">ラグジュアリーブランド（スポーツ & カジュアル ラグジュアリー）</div>
+                        <!-- Moncler -->
+                        <div class="brand-selection-item" data-brand="MONCLER">
+                            <div class="brand-logo-container" data-brand-initial="M">
+                                <img src="images/brand-moncler.jpg" alt="Moncler" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Moncler</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="MONCLER" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="MONCLER" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_MONCLER" value="">
+                        </div>
+                        <!-- Stone Island -->
+                        <div class="brand-selection-item" data-brand="STONE_ISLAND">
+                            <div class="brand-logo-container" data-brand-initial="SI">
+                                <img src="images/brand-stoneisland.jpg" alt="Stone Island" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Stone Island</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="STONE_ISLAND" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="STONE_ISLAND" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_STONE_ISLAND" value="">
+                        </div>
+                        <!-- Off-White -->
+                        <div class="brand-selection-item" data-brand="OFF_WHITE">
+                            <div class="brand-logo-container" data-brand-initial="OW">
+                                <img src="images/brand-offwhite.jpg" alt="Off-White" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Off-White</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="OFF_WHITE" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="OFF_WHITE" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_OFF_WHITE" value="">
+                        </div>
+                        <div class="brand-category-header">プレミアムブランド（クラシック & ビジネス）</div>
+                        <!-- Burberry -->
+                        <div class="brand-selection-item" data-brand="BURBERRY">
+                            <div class="brand-logo-container" data-brand-initial="B">
+                                <img src="images/brand-burberry.jpg" alt="Burberry" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Burberry</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="BURBERRY" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="BURBERRY" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_BURBERRY" value="">
+                        </div>
+                        <!-- Max Mara -->
+                        <div class="brand-selection-item" data-brand="MAX_MARA">
+                            <div class="brand-logo-container" data-brand-initial="MM">
+                                <img src="images/brand-maxmara.jpg" alt="Max Mara" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Max Mara</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="MAX_MARA" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="MAX_MARA" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_MAX_MARA" value="">
+                        </div>
+                        <!-- Ralph Lauren -->
+                        <div class="brand-selection-item" data-brand="RALPH_LAUREN">
+                            <div class="brand-logo-container" data-brand-initial="RL">
+                                <img src="images/brand-ralphlauren.jpg" alt="Ralph Lauren" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Ralph Lauren</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="RALPH_LAUREN" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="RALPH_LAUREN" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_RALPH_LAUREN" value="">
+                        </div>
+                        <!-- Thom Browne -->
+                        <div class="brand-selection-item" data-brand="THOM_BROWNE">
+                            <div class="brand-logo-container" data-brand-initial="TB">
+                                <img src="images/brand-thombrowne.jpg" alt="Thom Browne" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Thom Browne</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="THOM_BROWNE" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="THOM_BROWNE" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_THOM_BROWNE" value="">
+                        </div>
+                        <div class="brand-category-header">プレミアムブランド（カジュアル & トレンド）</div>
+                        <!-- Alexander Wang -->
+                        <div class="brand-selection-item" data-brand="ALEXANDER_WANG">
+                            <div class="brand-logo-container" data-brand-initial="AW">
+                                <img src="images/brand-alexanderwang.jpg" alt="Alexander Wang" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Alexander Wang</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="ALEXANDER_WANG" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="ALEXANDER_WANG" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_ALEXANDER_WANG" value="">
+                        </div>
+                        <!-- MSGM -->
+                        <div class="brand-selection-item" data-brand="MSGM">
+                            <div class="brand-logo-container" data-brand-initial="M">
+                                <img src="images/brand-msgm.jpg" alt="MSGM" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">MSGM</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="MSGM" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="MSGM" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_MSGM" value="">
+                        </div>
+                        <!-- Kenzo -->
+                        <div class="brand-selection-item" data-brand="KENZO">
+                            <div class="brand-logo-container" data-brand-initial="K">
+                                <img src="images/brand-kenzo.jpg" alt="Kenzo" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Kenzo</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="KENZO" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="KENZO" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_KENZO" value="">
+                        </div>
+                        <!-- Isabel Marant -->
+                        <div class="brand-selection-item" data-brand="ISABEL_MARANT">
+                            <div class="brand-logo-container" data-brand-initial="IM">
+                                <img src="images/brand-isabelmarant.jpg" alt="Isabel Marant" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Isabel Marant</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="ISABEL_MARANT" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="ISABEL_MARANT" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_ISABEL_MARANT" value="">
+                        </div>
+                        <!-- Ganni -->
+                        <div class="brand-selection-item" data-brand="GANNI">
+                            <div class="brand-logo-container" data-brand-initial="G">
+                                <img src="images/brand-ganni.jpg" alt="Ganni" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Ganni</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="GANNI" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="GANNI" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_GANNI" value="">
+                        </div>
+                        <div class="brand-category-header">プレミアムブランド（ミニマル）</div>
+                        <!-- COS -->
+                        <div class="brand-selection-item" data-brand="COS">
+                            <div class="brand-logo-container" data-brand-initial="C">
+                                <img src="images/brand-cos.jpg" alt="COS" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">COS</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="COS" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="COS" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_COS" value="">
+                        </div>
+                        <!-- Theory -->
+                        <div class="brand-selection-item" data-brand="THEORY">
+                            <div class="brand-logo-container" data-brand-initial="T">
+                                <img src="images/brand-theory.jpg" alt="Theory" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Theory</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="THEORY" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="THEORY" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_THEORY" value="">
+                        </div>
+                        <!-- Everlane -->
+                        <div class="brand-selection-item" data-brand="EVERLANE">
+                            <div class="brand-logo-container" data-brand-initial="E">
+                                <img src="images/brand-everlane.jpg" alt="Everlane" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Everlane</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="EVERLANE" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="EVERLANE" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_EVERLANE" value="">
+                        </div>
+                        <!-- Arket -->
+                        <div class="brand-selection-item" data-brand="ARKET">
+                            <div class="brand-logo-container" data-brand-initial="A">
+                                <img src="images/brand-arket.jpg" alt="Arket" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Arket</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="ARKET" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="ARKET" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_ARKET" value="">
+                        </div>
+                        <div class="brand-category-header">プレミアムブランド（アメリカン & ワーク）</div>
+                        <!-- Carhartt WIP -->
+                        <div class="brand-selection-item" data-brand="CARHARTT_WIP">
+                            <div class="brand-logo-container" data-brand-initial="C">
+                                <img src="images/brand-carhartt.jpg" alt="Carhartt WIP" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Carhartt WIP</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="CARHARTT_WIP" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="CARHARTT_WIP" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_CARHARTT_WIP" value="">
+                        </div>
+                        <!-- Stussy -->
+                        <div class="brand-selection-item" data-brand="STUSSY">
+                            <div class="brand-logo-container" data-brand-initial="S">
+                                <img src="images/brand-stussy.jpg" alt="Stussy" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Stussy</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="STUSSY" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="STUSSY" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_STUSSY" value="">
+                        </div>
+                        <!-- Supreme -->
+                        <div class="brand-selection-item" data-brand="SUPREME">
+                            <div class="brand-logo-container" data-brand-initial="S">
+                                <img src="images/brand-supreme.jpg" alt="Supreme" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Supreme</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="SUPREME" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="SUPREME" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_SUPREME" value="">
+                        </div>
+                        <!-- A.P.C. -->
+                        <div class="brand-selection-item" data-brand="APC">
+                            <div class="brand-logo-container" data-brand-initial="APC">
+                                <img src="images/brand-apc.jpg" alt="A.P.C." onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">A.P.C.</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="APC" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="APC" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_APC" value="">
+                        </div>
+                        <div class="brand-category-header">ジャパンブランド（モード）</div>
+                        <!-- Issey Miyake -->
+                        <div class="brand-selection-item" data-brand="ISSEY_MIYAKE">
+                            <div class="brand-logo-container" data-brand-initial="IM">
+                                <img src="images/brand-isseymiyake.jpg" alt="Issey Miyake" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Issey Miyake</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="ISSEY_MIYAKE" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="ISSEY_MIYAKE" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_ISSEY_MIYAKE" value="">
+                        </div>
+                        <!-- sacai -->
+                        <div class="brand-selection-item" data-brand="SACAI">
+                            <div class="brand-logo-container" data-brand-initial="S">
+                                <img src="images/brand-sacai.jpg" alt="sacai" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">sacai</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="SACAI" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="SACAI" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_SACAI" value="">
+                        </div>
+                        <!-- Undercover -->
+                        <div class="brand-selection-item" data-brand="UNDERCOVER">
+                            <div class="brand-logo-container" data-brand-initial="U">
+                                <img src="images/brand-undercover.jpg" alt="Undercover" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Undercover</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="UNDERCOVER" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="UNDERCOVER" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_UNDERCOVER" value="">
+                        </div>
+                        <!-- Toga -->
+                        <div class="brand-selection-item" data-brand="TOGA">
+                            <div class="brand-logo-container" data-brand-initial="T">
+                                <img src="images/brand-toga.jpg" alt="Toga" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Toga</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="TOGA" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="TOGA" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_TOGA" value="">
+                        </div>
+                        <div class="brand-category-header">ジャパンブランド（カジュアル）</div>
+                        <!-- Uniqlo -->
+                        <div class="brand-selection-item" data-brand="UNIQLO">
+                            <div class="brand-logo-container" data-brand-initial="U">
+                                <img src="images/brand-uniqlo.jpg" alt="Uniqlo" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Uniqlo</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="UNIQLO" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="UNIQLO" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_UNIQLO" value="">
+                        </div>
+                        <!-- Muji -->
+                        <div class="brand-selection-item" data-brand="MUJI">
+                            <div class="brand-logo-container" data-brand-initial="M">
+                                <img src="images/brand-muji.jpg" alt="Muji" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Muji</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="MUJI" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="MUJI" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_MUJI" value="">
+                        </div>
+                        <!-- Beams -->
+                        <div class="brand-selection-item" data-brand="BEAMS">
+                            <div class="brand-logo-container" data-brand-initial="B">
+                                <img src="images/brand-beams.jpg" alt="Beams" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Beams</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="BEAMS" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="BEAMS" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_BEAMS" value="">
+                        </div>
+                        <!-- United Arrows -->
+                        <div class="brand-selection-item" data-brand="UNITED_ARROWS">
+                            <div class="brand-logo-container" data-brand-initial="UA">
+                                <img src="images/brand-unitedarrows.jpg" alt="United Arrows" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">United Arrows</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="UNITED_ARROWS" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="UNITED_ARROWS" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_UNITED_ARROWS" value="">
+                        </div>
+                    </div>
+                </div>
+Brand section HTML has been generated and saved to brand-section-updated.html

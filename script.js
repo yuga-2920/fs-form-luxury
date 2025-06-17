@@ -2,7 +2,15 @@
 function handleGenderChange(radio) {
     const body = document.body;
 
-    // Simple immediate switch
+    // Add transitioning class for smooth animation
+    body.classList.add('gender-transitioning');
+
+    // Remove the class after transition is complete
+    setTimeout(() => {
+        body.classList.remove('gender-transitioning');
+    }, 600);
+
+    // Apply gender switch with smooth transition
     if (radio.value === 'female') {
         body.classList.add('female-form');
         // Update content for female form
@@ -148,12 +156,13 @@ function updateStyleImages(gender) {
     } else {
         // Reset to male styles
         const maleStyles = {
-            'mode': { name: 'モード', image: 'images/style-mode.jpg' },
-            'classic': { name: 'クラシック', image: 'images/style-classic.jpg' },
-            'casual-chic': { name: 'カジュアルシック', image: 'images/style-casual-chic.jpg' },
-            'street': { name: 'ストリート', image: 'images/style-street.jpg' },
+            'mode': { name: 'スーツ/トラッド', image: 'images/style-suit-level1.jpg' },
+            'mode': { name: 'モード', image: 'images/style-mode-level1.jpg' },
+            'classic': { name: 'エレガント/シック', image: 'images/attractive-classic1.jpg' },
+            'casual-chic': { name: 'ミニマム/シンプル', image: 'images/images/minimal1.jpg' },
+            'street': { name: 'エレガント', image: 'images/images/pattern-elegant-modern.jpg' },
             'conservative': { name: 'コンサバティブ', image: 'images/style-conservative.jpg' },
-            'minimal': { name: 'ミニマル', image: 'images/style-minimal.jpg' },
+            'minimal': { name: 'ミニマム/シンプル', image: 'images/style-minimal.jpg' },
             'relax': { name: 'リラックス', image: 'images/style-relax.jpg' },
             'american-casual': { name: 'アメリカンカジュアル', image: 'images/style-american-casual.jpg' },
             'elegant': { name: 'エレガント', image: 'images/style-elegant.jpg' }
@@ -498,6 +507,32 @@ function switchFormGender(gender) {
     }
 }
 
+// Function to update all images based on gender - moved to global scope
+function updateAllImages(gender) {
+    // Get all images in the form
+    const allImages = document.querySelectorAll('img');
+
+    allImages.forEach(img => {
+        const currentSrc = img.src || img.getAttribute('src');
+        if (!currentSrc) return;
+
+        // Extract filename from path
+        const filename = currentSrc.split('/').pop();
+
+        // Check if this image has a gender variant
+        if (imageMapping[filename]) {
+            const newFilename = imageMapping[filename][gender] || filename;
+            const newSrc = currentSrc.replace(filename, newFilename);
+            img.src = newSrc;
+
+            // Update srcset if exists
+            if (img.srcset) {
+                img.srcset = img.srcset.replace(filename, newFilename);
+            }
+        }
+    });
+}
+
 // Function to update form content based on gender
 function updateFormContent(gender) {
     // Update main title and subtitle
@@ -531,6 +566,8 @@ function updateFormContent(gender) {
             updateWeekendActivities('male');
         }
 
+        // Update all images based on gender
+        updateAllImages(gender);
 }
 
 // Function to update attractive styles based on gender
@@ -714,34 +751,44 @@ function initializePatternSelection() {
 
     // Pattern variations for each style
     const stylePatterns = {
+        suit: {
+            name: 'スーツ/トラッド',
+            patterns: [
+                { id: 'mode-level1', name: '1', image: 'images/style-suit-level1.jpg' },
+                { id: 'mode-level2', name: '2', image: 'images/style-mode-level2.jpg' },
+                { id: 'mode-level3', name: '3', image: 'images/style-mode-level3.jpg' },
+                { id: 'mode-level4', name: '4', image: 'images/style-mode-level4.jpg' },
+                { id: 'mode-level5', name: '5', image: 'images/style-mode-level5.jpg' }
+            ]
+        },
         mode: {
             name: 'モード',
             patterns: [
-                { id: 'mode-level1', name: 'モード レベル1', image: 'images/style-mode-level1.jpg' },
-                { id: 'mode-level2', name: 'モード レベル2', image: 'images/style-mode-level2.jpg' },
-                { id: 'mode-level3', name: 'モード レベル3', image: 'images/style-mode-level3.jpg' },
-                { id: 'mode-level4', name: 'モード レベル4', image: 'images/style-mode-level4.jpg' },
-                { id: 'mode-level5', name: 'モード レベル5', image: 'images/style-mode-level5.jpg' }
+                { id: 'mode-level1', name: '1', image: 'images/style-mode-level1.jpg' },
+                { id: 'mode-level2', name: '2', image: 'images/style-mode-level2.jpg' },
+                { id: 'mode-level3', name: '3', image: 'images/style-mode-level3.jpg' },
+                { id: 'mode-level4', name: '4', image: 'images/style-mode-level4.jpg' },
+                { id: 'mode-level5', name: '5', image: 'images/style-mode-level5.jpg' }
             ]
         },
         classic: {
-            name: 'クラシック',
+            name: 'エレガント/シック',
             patterns: [
-                { id: 'classic-british', name: 'ブリティッシュ', image: 'images/pattern-classic-british.jpg' },
-                { id: 'classic-italian', name: 'イタリアン', image: 'images/pattern-classic-italian.jpg' },
-                { id: 'classic-american', name: 'アメリカントラッド', image: 'images/pattern-classic-american.jpg' },
-                { id: 'classic-french', name: 'フレンチ', image: 'images/pattern-classic-french.jpg' },
-                { id: 'classic-preppy', name: 'プレッピー', image: 'images/pattern-classic-preppy.jpg' }
+                { id: 'classic-british', name: '1', image: 'images/attractive-classic1.jpg' },
+                { id: 'classic-italian', name: '2', image: 'images/attractive-classic2.jpg' },
+                { id: 'classic-american', name: '3', image: 'images/attractive-classic3.jpg' },
+                { id: 'classic-french', name: '4', image: 'images/attractive-classic4.jpg' },
+                { id: 'classic-preppy', name: '5', image: 'images/attractive-classic5.jpg' }
             ]
         },
         minimal: {
-            name: 'ミニマル',
+            name: 'ミニマム/シンプル',
             patterns: [
-                { id: 'minimal-nordic', name: 'ノルディック', image: 'images/pattern-minimal-nordic.jpg' },
-                { id: 'minimal-zen', name: 'ゼン', image: 'images/pattern-minimal-zen.jpg' },
-                { id: 'minimal-urban', name: 'アーバンミニマル', image: 'images/pattern-minimal-urban.jpg' },
-                { id: 'minimal-tech', name: 'テックミニマル', image: 'images/pattern-minimal-tech.jpg' },
-                { id: 'minimal-essential', name: 'エッセンシャル', image: 'images/pattern-minimal-essential.jpg' }
+                { id: 'minimal-nordic', name: '1', image: 'images/minimal1.jpg' },
+                // { id: 'minimal-zen', name: '2', image: 'images/minimal2.jpg' },
+                { id: 'minimal-urban', name: '3', image: 'images/minimal3.jpg' },
+                { id: 'minimal-tech', name: '4', image: 'images/minimal4.jpg' },
+                { id: 'minimal-essential', name: '5', image: 'images/minimal5.jpg' }
             ]
         },
         elegant: {
@@ -775,13 +822,13 @@ function initializePatternSelection() {
             ]
         },
         'american-casual': {
-            name: 'アメリカンカジュアル',
+            name: 'アメカジ',
             patterns: [
-                { id: 'amecas-ivy', name: 'アイビー', image: 'images/pattern-amecas-ivy.jpg' },
-                { id: 'amecas-west', name: 'ウエストコースト', image: 'images/pattern-amecas-west.jpg' },
-                { id: 'amecas-preppy', name: 'プレッピー', image: 'images/pattern-amecas-preppy.jpg' },
-                { id: 'amecas-heritage', name: 'ヘリテージ', image: 'images/pattern-amecas-heritage.jpg' },
-                { id: 'amecas-sports', name: 'スポーツミックス', image: 'images/pattern-amecas-sports.jpg' }
+                { id: 'amecas-ivy', name: '1', image: 'images/american-casual1.jpg' },
+                { id: 'amecas-west', name: '2', image: 'images/american-casual2.jpg' },
+                { id: 'amecas-preppy', name: '3', image: 'images/american-casual3.jpg' },
+                { id: 'amecas-heritage', name: '4', image: 'images/american-casual4.jpg' },
+                { id: 'amecas-sports', name: '5', image: 'images/american-casual5.jpg' }
             ]
         },
         conservative: {
@@ -795,13 +842,13 @@ function initializePatternSelection() {
             ]
         },
         street: {
-            name: 'ストリート',
+            name: 'ストリート/スポーティー',
             patterns: [
-                { id: 'street-urban', name: 'アーバンストリート', image: 'images/pattern-street-urban.jpg' },
-                { id: 'street-skate', name: 'スケーター', image: 'images/pattern-street-skate.jpg' },
-                { id: 'street-hiphop', name: 'ヒップホップ', image: 'images/pattern-street-hiphop.jpg' },
-                { id: 'street-grunge', name: 'グランジ', image: 'images/pattern-street-grunge.jpg' },
-                { id: 'street-tech', name: 'テックストリート', image: 'images/pattern-street-tech.jpg' }
+                { id: 'street-urban', name: '1', image: 'images/pattern-street1.jpg' },
+                { id: 'street-skate', name: '2', image: 'images/pattern-street2.jpg' },
+                { id: 'street-hiphop', name: '3', image: 'images/pattern-street3.jpg' },
+                { id: 'street-grunge', name: '4', image: 'images/pattern-street4.jpg' },
+                { id: 'street-tech', name: '5', image: 'images/pattern-street5.jpg' }
             ]
         },
         feminine: {
@@ -870,9 +917,13 @@ function initializePatternSelection() {
             patternSection.style.display = 'block';
             patternSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             renderPatternSelections(selectedStyles);
+            // Also populate the 3-column evaluation section - Disabled as section is hidden
+            // populateEvaluationColumns(selectedStyles);
         } else {
             patternSection.style.display = 'none';
             patternContainer.innerHTML = '';
+            // Clear the 3-column evaluation section - Disabled as section is hidden
+            // clearEvaluationColumns();
         }
     }
 
@@ -894,15 +945,56 @@ function initializePatternSelection() {
                     <img src="images/style-${styleKey}.jpg" alt="${styleData.name}" class="style-pattern-icon">
                     <h3 class="style-pattern-title">${styleData.name}のパターンバリエーション</h3>
                 </div>
-                <p class="form-hint" style="margin-bottom: 20px;">以下の5つのパターンから、お好みのものを1つ選択してください。</p>
+                <p class="form-hint" style="margin-bottom: 20px;">以下の5つのパターンについて、それぞれGOOD/BADを評価してください。</p>
                 <div class="pattern-variations-grid">
-                    ${styleData.patterns.map(pattern => `
+                    ${styleData.patterns.map((pattern, patternIndex) => `
                         <div class="pattern-variation-card">
-                            <input type="radio" name="pattern_${styleKey}" value="${pattern.id}" id="${pattern.id}">
-                            <label for="${pattern.id}">
-                                <img src="${pattern.image}" alt="${pattern.name}" onerror="this.src='images/placeholder.jpg'">
-                                <div class="pattern-variation-name">${pattern.name}</div>
-                            </label>
+                            <img src="${pattern.image}" alt="${pattern.name}" onerror="this.src='images/placeholder.jpg'" class="pattern-variation-image">
+                            <div class="pattern-variation-name">${pattern.name}</div>
+                            <div class="good-bad-selection">
+                                <label class="good-bad-option good-option">
+                                    <input type="radio" name="pattern_${styleKey}_${patternIndex}_eval" value="good" onchange="toggleReasonSection(this, 'pattern_${styleKey}_${patternIndex}')">
+                                    <span>GOOD</span>
+                                </label>
+                                <label class="good-bad-option bad-option">
+                                    <input type="radio" name="pattern_${styleKey}_${patternIndex}_eval" value="bad" onchange="toggleReasonSection(this, 'pattern_${styleKey}_${patternIndex}')">
+                                    <span>BAD</span>
+                                </label>
+                            </div>
+                            <div class="good-bad-reasons" id="reasons_pattern_${styleKey}_${patternIndex}" style="display: none;">
+                                <p class="reason-label">理由（複数選択可）:</p>
+                                <div class="reason-options">
+                                    <label class="reason-checkbox">
+                                        <input type="checkbox" name="pattern_${styleKey}_${patternIndex}_reasons" value="design">
+                                        <span>デザイン</span>
+                                    </label>
+                                    <label class="reason-checkbox">
+                                        <input type="checkbox" name="pattern_${styleKey}_${patternIndex}_reasons" value="color">
+                                        <span>色味</span>
+                                    </label>
+                                    <label class="reason-checkbox">
+                                        <input type="checkbox" name="pattern_${styleKey}_${patternIndex}_reasons" value="silhouette">
+                                        <span>シルエット</span>
+                                    </label>
+                                    <label class="reason-checkbox">
+                                        <input type="checkbox" name="pattern_${styleKey}_${patternIndex}_reasons" value="material">
+                                        <span>素材感</span>
+                                    </label>
+                                    <label class="reason-checkbox">
+                                        <input type="checkbox" name="pattern_${styleKey}_${patternIndex}_reasons" value="trendiness">
+                                        <span>トレンド感</span>
+                                    </label>
+                                    <label class="reason-checkbox">
+                                        <input type="checkbox" name="pattern_${styleKey}_${patternIndex}_reasons" value="practicality">
+                                        <span>実用性</span>
+                                    </label>
+                                    <label class="reason-checkbox">
+                                        <input type="checkbox" name="pattern_${styleKey}_${patternIndex}_reasons" value="other">
+                                        <span>その他</span>
+                                    </label>
+                                    <input type="text" name="pattern_${styleKey}_${patternIndex}_reasons_other" class="reason-other-input" placeholder="具体的に：" style="display: none;">
+                                </div>
+                            </div>
                         </div>
                     `).join('')}
                 </div>
@@ -1216,14 +1308,161 @@ function initializePatternSelection() {
             });
         });
     }
+
+    // Function to populate the 3-column evaluation section
+    function populateEvaluationColumns(selectedStyles) {
+        const topsContainer = document.getElementById('topsEvaluationContainer');
+        const bottomsContainer = document.getElementById('bottomsEvaluationContainer');
+        const accessoriesContainer = document.getElementById('accessoriesEvaluationContainer');
+
+        if (!topsContainer || !bottomsContainer || !accessoriesContainer) {
+            console.error('Evaluation containers not found');
+            return;
+        }
+
+        // Define items for each category based on selected styles
+        const evaluationItems = {
+            tops: [
+                { id: 'shirt1', name: 'ドレスシャツ', image: 'images/item-shirt1.jpg' },
+                { id: 'shirt2', name: 'カジュアルシャツ', image: 'images/item-shirt2.jpg' },
+                { id: 'jacket1', name: 'テーラードジャケット', image: 'images/item-jacket1.jpg' },
+                { id: 'jacket2', name: 'カジュアルジャケット', image: 'images/item-jacket2.jpg' }
+            ],
+            bottoms: [
+                { id: 'pants1', name: 'ドレスパンツ', image: 'images/item-pants1.jpg' },
+                { id: 'pants2', name: 'カジュアルパンツ', image: 'images/item-pants2.jpg' }
+            ],
+            accessories: [
+                { id: 'shoes1', name: 'ドレスシューズ', image: 'images/item-shoes1.jpg' },
+                { id: 'shoes2', name: 'カジュアルシューズ', image: 'images/item-shoes2.jpg' },
+                { id: 'bag1', name: 'ビジネスバッグ', image: 'images/item-bag1.jpg' },
+                { id: 'bag2', name: 'カジュアルバッグ', image: 'images/item-bag2.jpg' }
+            ]
+        };
+
+        // Populate each column
+        populateEvaluationColumn(topsContainer, evaluationItems.tops, 'tops');
+        populateEvaluationColumn(bottomsContainer, evaluationItems.bottoms, 'bottoms');
+        populateEvaluationColumn(accessoriesContainer, evaluationItems.accessories, 'accessories');
+    }
+
+    // Function to populate a single evaluation column
+    function populateEvaluationColumn(container, items, category) {
+        container.innerHTML = '';
+
+        const itemsGrid = document.createElement('div');
+        itemsGrid.className = 'evaluation-items-grid';
+
+        items.forEach((item, index) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'evaluation-item';
+            itemDiv.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="evaluation-item-image" onerror="this.src='images/placeholder.jpg'">
+                <div class="evaluation-item-name">${item.name}</div>
+                <div class="good-bad-selection">
+                    <label class="good-bad-option good-option">
+                        <input type="radio" name="${category}_${item.id}_eval" value="good" onchange="toggleReasonSection(this, '${category}_${item.id}')">
+                        <span>GOOD</span>
+                    </label>
+                    <label class="good-bad-option bad-option">
+                        <input type="radio" name="${category}_${item.id}_eval" value="bad" onchange="toggleReasonSection(this, '${category}_${item.id}')">
+                        <span>BAD</span>
+                    </label>
+                </div>
+                <div class="good-bad-reasons" id="reasons_${category}_${item.id}" style="display: none;">
+                    <p class="reason-label">理由（複数選択可）:</p>
+                    <div class="reason-options">
+                        <label class="reason-checkbox">
+                            <input type="checkbox" name="${category}_${item.id}_reasons" value="design">
+                            <span>デザイン</span>
+                        </label>
+                        <label class="reason-checkbox">
+                            <input type="checkbox" name="${category}_${item.id}_reasons" value="color">
+                            <span>色味</span>
+                        </label>
+                        <label class="reason-checkbox">
+                            <input type="checkbox" name="${category}_${item.id}_reasons" value="silhouette">
+                            <span>シルエット</span>
+                        </label>
+                        <label class="reason-checkbox">
+                            <input type="checkbox" name="${category}_${item.id}_reasons" value="material">
+                            <span>素材感</span>
+                        </label>
+                        <label class="reason-checkbox">
+                            <input type="checkbox" name="${category}_${item.id}_reasons" value="price">
+                            <span>価格帯</span>
+                        </label>
+                        <label class="reason-checkbox">
+                            <input type="checkbox" name="${category}_${item.id}_reasons" value="brand">
+                            <span>ブランドイメージ</span>
+                        </label>
+                        <label class="reason-checkbox">
+                            <input type="checkbox" name="${category}_${item.id}_reasons" value="other">
+                            <span>その他</span>
+                        </label>
+                        <input type="text" name="${category}_${item.id}_reasons_other" class="reason-other-input" placeholder="具体的に：" style="display: none;">
+                    </div>
+                </div>
+            `;
+            itemsGrid.appendChild(itemDiv);
+        });
+
+        container.appendChild(itemsGrid);
+
+        // Add event listeners for "その他" checkboxes
+        const otherReasonCheckboxes = container.querySelectorAll('input[value="other"]');
+        otherReasonCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const reasonSection = this.closest('.good-bad-reasons');
+                const otherInput = reasonSection.querySelector('.reason-other-input');
+                if (otherInput) {
+                    otherInput.style.display = this.checked ? 'block' : 'none';
+                    if (!this.checked) {
+                        otherInput.value = '';
+                    }
+                }
+            });
+        });
+    }
+
+    // Function to clear the evaluation columns
+    function clearEvaluationColumns() {
+        const topsContainer = document.getElementById('topsEvaluationContainer');
+        const bottomsContainer = document.getElementById('bottomsEvaluationContainer');
+        const accessoriesContainer = document.getElementById('accessoriesEvaluationContainer');
+
+        if (topsContainer) {
+            topsContainer.innerHTML = '<div class="item-evaluation-placeholder"><p style="text-align: center; color: #999; padding: 20px;">3-1でスタイルを選択してください</p></div>';
+        }
+        if (bottomsContainer) {
+            bottomsContainer.innerHTML = '<div class="item-evaluation-placeholder"><p style="text-align: center; color: #999; padding: 20px;">3-1でスタイルを選択してください</p></div>';
+        }
+        if (accessoriesContainer) {
+            accessoriesContainer.innerHTML = '<div class="item-evaluation-placeholder"><p style="text-align: center; color: #999; padding: 20px;">3-1でスタイルを選択してください</p></div>';
+        }
+    }
 }
 
 // Function to toggle reason section display when GOOD or BAD is selected
 function toggleReasonSection(radioElement, itemId) {
     const reasonSection = document.getElementById(`reasons_${itemId}`);
+    const goodReasons = document.getElementById(`good_reasons_${itemId}`);
+    const badReasons = document.getElementById(`bad_reasons_${itemId}`);
+
     if (reasonSection) {
         // Show the reason section when either GOOD or BAD is selected
         reasonSection.style.display = 'block';
+
+        // Show appropriate reason options based on selection
+        if (goodReasons && badReasons) {
+            if (radioElement.value === 'good') {
+                goodReasons.style.display = 'block';
+                badReasons.style.display = 'none';
+            } else if (radioElement.value === 'bad') {
+                goodReasons.style.display = 'none';
+                badReasons.style.display = 'block';
+            }
+        }
     }
 }
 
@@ -1314,6 +1553,277 @@ function initializeWeekdayCardOptions() {
 }
 
 // Form initialization
+// Image mapping for male/female versions - moved to global scope
+const imageMapping = {
+    // Lifestyle images
+    'lifestyle-office-external.jpg': {
+        male: 'lifestyle-office-external.jpg',
+        female: 'lifestyle-office-external-female.jpg'
+    },
+    'lifestyle-office-internal.jpg': {
+        male: 'lifestyle-office-internal.jpg',
+        female: 'lifestyle-office-internal.jpg'
+    },
+    'lifestyle-office-desk.jpg': {
+        male: 'lifestyle-office-desk.jpg',
+        female: 'lifestyle-office-desk-female.jpg'
+    },
+    'lifestyle-remote.jpg': {
+        male: 'lifestyle-remote.jpg',
+        female: 'lifestyle-remote-female.jpg'
+    },
+    'lifestyle-hybrid.jpg': {
+        male: 'lifestyle-hybrid.jpg',
+        female: 'lifestyle-hybrid-female.jpg'
+    },
+    'lifestyle-home.jpg': {
+        male: 'lifestyle-home.jpg',
+        female: 'lifestyle-home-female.jpg'
+    },
+
+    // Weekend activities
+    'weekend-family.jpg': {
+        male: 'weekend-family.jpg',
+        female: 'weekend-family-female.jpg'
+    },
+    'weekend-friends.jpg': {
+        male: 'weekend-friends.jpg',
+        female: 'weekend-friends-female.jpg'
+    },
+    'weekend-date.jpg': {
+        male: 'weekend-date.jpg',
+        female: 'weekend-date-female.jpg'
+    },
+    'weekend-solo.jpg': {
+        male: 'weekend-solo.jpg',
+        female: 'weekend-solo-female.jpg'
+    },
+    'weekend-sports.jpg': {
+        male: 'weekend-sports.jpg',
+        female: 'weekend-sports-female.jpg'
+    },
+    'weekend-drive.jpg': {
+        male: 'weekend-drive.jpg',
+        female: 'weekend-drive-female.jpg'
+    },
+    'weekend-outdoor.jpg': {
+        male: 'weekend-outdoor.jpg',
+        female: 'weekend-outdoor-female.jpg'
+    },
+    'weekend-event.jpg': {
+        male: 'weekend-event.jpg',
+        female: 'weekend-event-female.jpg'
+    },
+    'weekend-business-dining.jpg': {
+        male: 'weekend-business-dining.jpg',
+        female: 'weekend-business-dining-female.jpg'
+    },
+    'weekend-executive.jpg': {
+        male: 'weekend-executive.jpg',
+        female: 'weekend-executive-female.jpg'
+    },
+
+    // Scene images
+    'scene-internal-meeting.jpg': {
+        male: 'scene-internal-meeting.jpg',
+        female: 'scene-internal-meeting-female.jpg'
+    },
+    'scene-external-meeting.jpg': {
+        male: 'scene-external-meeting.jpg',
+        female: 'scene-external-meeting-female.jpg'
+    },
+    'scene-seminar.jpg': {
+        male: 'scene-seminar.jpg',
+        female: 'scene-seminar-female.jpg'
+    },
+    'scene-business-dining.jpg': {
+        male: 'scene-business-dining.jpg',
+        female: 'scene-business-dining.jpg'
+    },
+    'scene-site-visit.jpg': {
+        male: 'scene-site-visit.jpg',
+        female: 'scene-site-visit.jpg'
+    },
+    'scene-casual-dining.jpg': {
+        male: 'scene-casual-dining.jpg',
+        female: 'scene-casual-dining.jpg'
+    },
+    'scene-party.jpg': {
+        male: 'scene-party.jpg',
+        female: 'scene-party.jpg'
+    },
+    'scene-shopping.jpg': {
+        male: 'scene-shopping.jpg',
+        female: 'scene-shopping.jpg'
+    },
+    'scene-fitness.jpg': {
+        male: 'scene-fitness.jpg',
+        female: 'scene-fitness.jpg'
+    },
+    'scene-golf.jpg': {
+        male: 'scene-golf.jpg',
+        female: 'scene-golf.jpg'
+    },
+    'scene-travel.jpg': {
+        male: 'scene-travel.jpg',
+        female: 'scene-travel.jpg'
+    },
+    'scene-culture.jpg': {
+        male: 'scene-culture.jpg',
+        female: 'scene-culture-female.jpg'
+    },
+
+    // Style images
+    'style-mode.jpg': {
+        male: 'style-mode.jpg',
+        female: 'style-mode-female.jpg'
+    },
+    'style-classic.jpg': {
+        male: 'style-classic.jpg',
+        female: 'style-classic-female.jpg'
+    },
+    'style-minimal.jpg': {
+        male: 'style-minimal.jpg',
+        female: 'style-minimal-female.jpg'
+    },
+    'style-elegant.jpg': {
+        male: 'style-elegant.jpg',
+        female: 'style-elegant-female.jpg'
+    },
+    'style-casual-chic.jpg': {
+        male: 'style-casual-chic.jpg',
+        female: 'style-casual-chic-female.jpg'
+    },
+    'style-relax.jpg': {
+        male: 'style-relax.jpg',
+        female: 'style-relax-female.jpg'
+    },
+    'style-american-casual.jpg': {
+        male: 'style-american-casual.jpg',
+        female: 'style-american-casual-female.jpg'
+    },
+    'style-street.jpg': {
+        male: 'style-street.jpg',
+        female: 'style-street-female.jpg'
+    },
+    'style-conservative.jpg': {
+        male: 'style-conservative.jpg',
+        female: 'style-conservative-female.jpg'
+    },
+
+    // Dress code images
+    'dress-code-suit-required.jpg': {
+        male: 'dress-code-suit-required.jpg',
+        female: 'dress-code-suit-required-female.jpg'
+    },
+    'dress-code-business-casual.jpg': {
+        male: 'dress-code-business-casual.jpg',
+        female: 'dress-code-business-casual-female.jpg'
+    },
+    'dress-code-smart-casual.jpg': {
+        male: 'dress-code-smart-casual.jpg',
+        female: 'dress-code-smart-casual-female.jpg'
+    },
+    'dress-code-casual.jpg': {
+        male: 'dress-code-casual.jpg',
+        female: 'dress-code-casual-female.jpg'
+    },
+    'dress-code-uniform.jpg': {
+        male: 'dress-code-uniform.jpg',
+        female: 'dress-code-uniform-female.jpg'
+    },
+    'dress-code-no-restriction.jpg': {
+        male: 'dress-code-no-restriction.jpg',
+        female: 'dress-code-no-restriction-female.jpg'
+    },
+
+    // Item images
+    'item-shirt1.jpg': {
+        male: 'item-shirt1.jpg',
+        female: 'item-blouse1.jpg'
+    },
+    'item-shirt2.jpg': {
+        male: 'item-shirt2.jpg',
+        female: 'item-blouse2.jpg'
+    },
+    'item-jacket1.jpg': {
+        male: 'item-jacket1.jpg',
+        female: 'item-jacket1-female.jpg'
+    },
+    'item-jacket2.jpg': {
+        male: 'item-jacket2.jpg',
+        female: 'item-jacket2-female.jpg'
+    },
+    'item-pants1.jpg': {
+        male: 'item-pants1.jpg',
+        female: 'item-skirt1.jpg'
+    },
+    'item-pants2.jpg': {
+        male: 'item-pants2.jpg',
+        female: 'item-skirt2.jpg'
+    },
+    'item-shoes1.jpg': {
+        male: 'item-shoes1.jpg',
+        female: 'item-shoes1-female.jpg'
+    },
+    'item-shoes2.jpg': {
+        male: 'item-shoes2.jpg',
+        female: 'item-shoes2-female.jpg'
+    },
+    'item-bag1.jpg': {
+        male: 'item-bag1.jpg',
+        female: 'item-bag1-female.jpg'
+    },
+    'item-bag2.jpg': {
+        male: 'item-bag2.jpg',
+        female: 'item-bag2-female.jpg'
+    },
+
+    // Avoid items
+    'avoid-tight.jpg': {
+        male: 'avoid-tight.jpg',
+        female: 'avoid-tight-female.jpg'
+    },
+    'avoid-oversized.jpg': {
+        male: 'avoid-oversized.jpg',
+        female: 'avoid-oversized-female.jpg'
+    },
+    'avoid-logo.jpg': {
+        male: 'avoid-logo.jpg',
+        female: 'avoid-logo-female.jpg'
+    },
+    'avoid-bright-color.jpg': {
+        male: 'avoid-bright-color.jpg',
+        female: 'avoid-bright-color-female.jpg'
+    },
+    'avoid-synthetic.jpg': {
+        male: 'avoid-synthetic.jpg',
+        female: 'avoid-synthetic-female.jpg'
+    },
+    'avoid-bold-print.jpg': {
+        male: 'avoid-bold-print.jpg',
+        female: 'avoid-bold-print-female.jpg'
+    },
+
+    // Investment items
+    'investment-outer.jpg': {
+        male: 'investment-outer.jpg',
+        female: 'investment-outer-female.jpg'
+    },
+    'investment-bottoms.jpg': {
+        male: 'investment-bottoms.jpg',
+        female: 'investment-bottoms-female.jpg'
+    },
+    'investment-shoes.jpg': {
+        male: 'investment-shoes.jpg',
+        female: 'investment-shoes-female.jpg'
+    },
+    'investment-bag.jpg': {
+        male: 'investment-bag.jpg',
+        female: 'investment-bag-female.jpg'
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize photo upload functionality
     initializePhotoUpload();
@@ -1328,7 +1838,14 @@ document.addEventListener('DOMContentLoaded', function() {
     updateWeeklyDates();
 
     // Initialize pattern selection functionality
+    console.log('Initializing pattern selection...');
     initializePatternSelection();
+
+    // Force re-initialization after a short delay to ensure DOM is ready
+    setTimeout(() => {
+        console.log('Re-initializing pattern selection...');
+        initializePatternSelection();
+    }, 500);
 
     // Initialize weekday card sub-options
     initializeWeekdayCardOptions();
@@ -1510,6 +2027,24 @@ document.addEventListener('DOMContentLoaded', function() {
     if (phoneInput) {
         phoneInput.addEventListener('input', function() {
             formatPhoneNumber(this);
+        });
+    }
+
+    // Setup basic knowledge details toggle
+    const basicKnowledgeCheck = document.getElementById('basic-knowledge-check');
+    const basicKnowledgeDetails = document.getElementById('basic-knowledge-details');
+
+    if (basicKnowledgeCheck && basicKnowledgeDetails) {
+        basicKnowledgeCheck.addEventListener('change', function() {
+            if (this.checked) {
+                basicKnowledgeDetails.style.display = 'block';
+                // Smooth scroll to show the new section
+                setTimeout(() => {
+                    basicKnowledgeDetails.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            } else {
+                basicKnowledgeDetails.style.display = 'none';
+            }
         });
     }
 
@@ -1747,48 +2282,109 @@ document.addEventListener('DOMContentLoaded', function() {
     // Style variations data
     const styleVariations = {
         mode: [
-            { id: 'mode-level1', name: 'レベル1', image: 'images/style-mode-level1.jpg' },
-            { id: 'mode-level2', name: 'レベル2', image: 'images/style-mode-level2.jpg' },
-            { id: 'mode-level3', name: 'レベル3', image: 'images/style-mode-level3.jpg' },
-            { id: 'mode-level4', name: 'レベル4', image: 'images/style-mode-level4.jpg' },
-            { id: 'mode-level5', name: 'レベル5', image: 'images/style-mode-level5.jpg' }
+            { id: 'mode-level1', name: '1', image: 'images/style-mode-level1.jpg' },
+            { id: 'mode-level2', name: '2', image: 'images/style-mode-level2.jpg' },
+            { id: 'mode-level3', name: '3', image: 'images/style-mode-level3.jpg' },
+            { id: 'mode-level4', name: '4', image: 'images/style-mode-level4.jpg' },
+            { id: 'mode-level5', name: '5', image: 'images/style-mode-level5.jpg' }
         ],
-        attractive-classic: [
-            { id: 'classic-1', name: 'レベル1', image: 'images/style-classic-1.jpg' },
-            { id: 'classic-2', name: 'レベル2', image: 'images/style-classic-2.jpg' },
-            { id: 'classic-3', name: 'レベル3', image: 'images/style-classic-3.jpg' },
-            { id: 'classic-4', name: 'レベル4', image: 'images/style-classic-4.jpg' },
-            { id: 'classic-5', name: 'レベル5', image: 'images/style-classic-5.jpg' }
+        classic: [
+            { id: 'classic-1', name: '1', image: 'images/style-classic-1.jpg' },
+            { id: 'classic-2', name: '2', image: 'images/style-classic-2.jpg' },
+            { id: 'classic-3', name: '3', image: 'images/style-classic-3.jpg' },
+            { id: 'classic-4', name: '4', image: 'images/style-classic-4.jpg' },
+            { id: 'classic-5', name: '5', image: 'images/style-classic-5.jpg' }
         ],
         minimal: [
-            { id: 'minimal-1', name: 'レベル1', image: 'images/style-minimal-1.jpg' },
-            { id: 'minimal-2', name: 'レベル2', image: 'images/style-minimal-2.jpg' },
-            { id: 'minimal-3', name: 'レベル3', image: 'images/style-minimal-3.jpg' },
-            { id: 'minimal-4', name: 'レベル4', image: 'images/style-minimal-4.jpg' },
-            { id: 'minimal-5', name: 'レベル5', image: 'images/style-minimal-5.jpg' }
+            { id: 'minimal-1', name: '1', image: 'images/style-minimal-1.jpg' },
+            { id: 'minimal-2', name: '2', image: 'images/style-minimal-2.jpg' },
+            { id: 'minimal-3', name: '3', image: 'images/style-minimal-3.jpg' },
+            { id: 'minimal-4', name: '4', image: 'images/style-minimal-4.jpg' },
+            { id: 'minimal-5', name: '5', image: 'images/style-minimal-5.jpg' }
+        ],
+        elegant: [
+            { id: 'elegant-1', name: '1', image: 'images/style-elegant-1.jpg' },
+            { id: 'elegant-2', name: '2', image: 'images/style-elegant-2.jpg' },
+            { id: 'elegant-3', name: '3', image: 'images/style-elegant-3.jpg' },
+            { id: 'elegant-4', name: '4', image: 'images/style-elegant-4.jpg' },
+            { id: 'elegant-5', name: '5', image: 'images/style-elegant-5.jpg' }
+        ],
+        'casual-chic': [
+            { id: 'casual-chic-1', name: '1', image: 'images/style-casual-chic-1.jpg' },
+            { id: 'casual-chic-2', name: '2', image: 'images/style-casual-chic-2.jpg' },
+            { id: 'casual-chic-3', name: '3', image: 'images/style-casual-chic-3.jpg' },
+            { id: 'casual-chic-4', name: '4', image: 'images/style-casual-chic-4.jpg' },
+            { id: 'casual-chic-5', name: '5', image: 'images/style-casual-chic-5.jpg' }
+        ],
+        relax: [
+            { id: 'relax-1', name: '1', image: 'images/style-relax-1.jpg' },
+            { id: 'relax-2', name: '2', image: 'images/style-relax-2.jpg' },
+            { id: 'relax-3', name: '3', image: 'images/style-relax-3.jpg' },
+            { id: 'relax-4', name: '4', image: 'images/style-relax-4.jpg' },
+            { id: 'relax-5', name: '5', image: 'images/style-relax-5.jpg' }
         ],
         street: [
-            { id: 'elegant-1', name: 'レベル1', image: 'images/style-elegant-1.jpg' },
-            { id: 'elegant-2', name: 'レベル2', image: 'images/style-elegant-2.jpg' },
-            { id: 'elegant-3', name: 'レベル3', image: 'images/style-elegant-3.jpg' },
-            { id: 'elegant-4', name: 'レベル4', image: 'images/style-elegant-4.jpg' },
-            { id: 'elegant-5', name: 'レベル5', image: 'images/style-elegant-5.jpg' }
+            { id: 'street-1', name: '1', image: 'images/style-street-1.jpg' },
+            { id: 'street-2', name: '2', image: 'images/style-street-2.jpg' },
+            { id: 'street-3', name: '3', image: 'images/style-street-3.jpg' },
+            { id: 'street-4', name: '4', image: 'images/style-street-4.jpg' },
+            { id: 'street-5', name: '5', image: 'images/style-street-5.jpg' }
         ],
-        searf: [
-            { id: 'searf-1', name: 'レベル1', image: 'images/style-searf-1.jpg' },
-            { id: 'searf-2', name: 'レベル2', image: 'images/style-searf-2.jpg' },
-            { id: 'searf-3', name: 'レベル3', image: 'images/style-searf-3.jpg' },
-            { id: 'searf-4', name: 'レベル4', image: 'images/style-searf-4.jpg' },
-            { id: 'searf-5', name: 'レベル5', image: 'images/style-searf-5.jpg' }
+        conservative: [
+            { id: 'conservative-1', name: '1', image: 'images/style-conservative-1.jpg' },
+            { id: 'conservative-2', name: '2', image: 'images/style-conservative-2.jpg' },
+            { id: 'conservative-3', name: '3', image: 'images/style-conservative-3.jpg' },
+            { id: 'conservative-4', name: '4', image: 'images/style-conservative-4.jpg' },
+            { id: 'conservative-5', name: '5', image: 'images/style-conservative-5.jpg' }
         ],
         'american-casual': [
-            { id: 'amecas-1', name: 'レベル1', image: 'images/style-amecas-1.jpg' },
-            { id: 'amecas-2', name: 'レベル2', image: 'images/style-amecas-2.jpg' },
-            { id: 'amecas-3', name: 'レベル3', image: 'images/style-amecas-3.jpg' },
-            { id: 'amecas-4', name: 'レベル4', image: 'images/style-amecas-4.jpg' },
-            { id: 'amecas-5', name: 'レベル5', image: 'images/style-amecas-5.jpg' }
+            { id: 'amecas-1', name: '1', image: 'images/style-amecas-1.jpg' },
+            { id: 'amecas-2', name: '2', image: 'images/style-amecas-2.jpg' },
+            { id: 'amecas-3', name: '3', image: 'images/style-amecas-3.jpg' },
+            { id: 'amecas-4', name: '4', image: 'images/style-amecas-4.jpg' },
+            { id: 'amecas-5', name: '5', image: 'images/style-amecas-5.jpg' }
         ]
     };
+
+    // Function to generate reason checkboxes for pattern evaluation
+    function generatePatternReasons(style, index) {
+        const goodReasons = [
+            'シルエットが好み',
+            '色使いが良い',
+            '素材感が魅力的',
+            'デザインが洗練されている',
+            '着回しやすそう'
+        ];
+
+        const badReasons = [
+            'シルエットが合わない',
+            '色使いが好みでない',
+            '素材感が安っぽい',
+            'デザインが派手すぎる',
+            '着こなしが難しそう'
+        ];
+
+        return `
+            <div class="good-reasons" id="good_reasons_pattern_${style}_${index}" style="display: none;">
+                <p class="reason-label">GOODの理由（複数選択可）</p>
+                ${goodReasons.map((reason, reasonIndex) => `
+                    <label class="reason-checkbox">
+                        <input type="checkbox" name="pattern_${style}_${index}_good_reason" value="${reason}">
+                        <span>${reason}</span>
+                    </label>
+                `).join('')}
+            </div>
+            <div class="bad-reasons" id="bad_reasons_pattern_${style}_${index}" style="display: none;">
+                <p class="reason-label">BADの理由（複数選択可）</p>
+                ${badReasons.map((reason, reasonIndex) => `
+                    <label class="reason-checkbox">
+                        <input type="checkbox" name="pattern_${style}_${index}_bad_reason" value="${reason}">
+                        <span>${reason}</span>
+                    </label>
+                `).join('')}
+            </div>
+        `;
+    }
 
     // New function to show pattern selections for multiple styles
     function showPatternSelections(selectedStyles) {
@@ -1817,60 +2413,30 @@ document.addEventListener('DOMContentLoaded', function() {
             const styleSection = document.createElement('div');
             styleSection.className = 'style-pattern-section';
             styleSection.innerHTML = `
-                <h4 class="pattern-style-title">${getStyleDisplayName(style)} - パターン選択</h4>
-                <div class="pattern-grid" id="pattern-grid-${style}">
+                <h4 class="pattern-style-title">${getStyleDisplayName(style)} - 5つのパターンからお好みのものを選択してください</h4>
+                <div class="pattern-variations-grid">
                     ${variations.map((variation, index) => `
-                        <div class="pattern-card-wrapper">
-                            <div class="pattern-card">
-                                <input type="radio" name="pattern-${style}" value="${variation.id}" id="${variation.id}" data-style="${style}" data-pattern-index="${index}">
-                                <label for="${variation.id}" class="pattern-label">
-                                    <img src="${variation.image}" alt="${variation.name}" class="pattern-image">
-                                    <span class="pattern-number">${index + 1}</span>
-                                    <span class="pattern-name">${variation.name}</span>
+                        <div class="pattern-variation-card">
+                            <img src="${variation.image}" alt="${variation.name}" onerror="this.src='images/placeholder.jpg'" class="pattern-variation-image">
+                            <div class="pattern-variation-name">${variation.name}</div>
+                            <div class="good-bad-selection">
+                                <label class="good-bad-option good-option">
+                                    <input type="radio" name="pattern_${style}_${index}_eval" value="good" onchange="toggleReasonSection(this, 'pattern_${style}_${index}')">
+                                    <span>GOOD</span>
+                                </label>
+                                <label class="good-bad-option bad-option">
+                                    <input type="radio" name="pattern_${style}_${index}_eval" value="bad" onchange="toggleReasonSection(this, 'pattern_${style}_${index}')">
+                                    <span>BAD</span>
                                 </label>
                             </div>
-                            <div class="pattern-item-evaluation" id="items-${variation.id}" style="display: none;">
-                                <div class="item-good-bad-section">
-                                    <label class="good-bad-label">GOOD アイテム</label>
-                                    <div class="good-items">
-                                        <div class="item-selection-grid">
-                                            ${generateItemOptions('good', variation.id, ['トップス1', 'トップス2', 'トップス3'])}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-good-bad-section">
-                                    <label class="good-bad-label">BAD アイテム</label>
-                                    <div class="bad-items">
-                                        <div class="item-selection-grid">
-                                            ${generateItemOptions('bad', variation.id, ['ボトムス1', 'ボトムス2', 'ボトムス3'])}
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="good-bad-reasons" id="reasons_pattern_${style}_${index}" style="display: none;">
+                                ${generatePatternReasons(style, index)}
                             </div>
                         </div>
                     `).join('')}
                 </div>
             `;
             patternSelectionsContainer.appendChild(styleSection);
-
-            // Add event listeners for pattern selection
-            const patternRadios = styleSection.querySelectorAll(`input[name="pattern-${style}"]`);
-            patternRadios.forEach(radio => {
-                radio.addEventListener('change', function() {
-                    // Hide all item evaluations for this style
-                    styleSection.querySelectorAll('.pattern-item-evaluation').forEach(itemEval => {
-                        itemEval.style.display = 'none';
-                    });
-
-                    // Show item evaluation for selected pattern
-                    if (this.checked) {
-                        const itemEval = document.getElementById(`items-${this.value}`);
-                        if (itemEval) {
-                            itemEval.style.display = 'block';
-                        }
-                    }
-                });
-            });
         });
 
         // Show the pattern sections
@@ -2209,6 +2775,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // New function to handle multiple style selections
     function updateMultipleStyleEvaluations() {
+        const itemEvaluationContainer = document.getElementById('itemEvaluationContainer');
+
+        if (!itemEvaluationContainer) {
+            console.warn('itemEvaluationContainer not found');
+            return;
+        }
+
         const selectedStyles = Array.from(attractiveStyleCheckboxes)
             .filter(cb => cb.checked && cb.value !== 'other')
             .map(cb => cb.value);
@@ -2706,6 +3279,58 @@ function initializeBrandSelection() {
         }
     }
 
+    // Brand logo mapping
+    const brandLogoMap = {
+        'HERMES': { img: 'brand-hermes.jpg', initial: 'H' },
+        'LOUIS VUITTON': { img: 'brand-lv.jpg', initial: 'LV' },
+        'CHANEL': { img: 'brand-chanel.jpg', initial: 'C' },
+        'DIOR': { img: 'brand-dior.jpg', initial: 'D' },
+        'SAINT LAURENT': { img: 'brand-sl.jpg', initial: 'SL' },
+        'FENDI': { img: 'brand-fendi.jpg', initial: 'F' },
+        'VALENTINO': { img: 'brand-valentino.jpg', initial: 'V' },
+        'CELINE': { img: 'brand-celine.jpg', initial: 'C' },
+        'LOEWE': { img: 'brand-loewe.jpg', initial: 'L' },
+        'PRADA': { img: 'brand-prada.jpg', initial: 'P' },
+        'JIL SANDER': { img: 'brand-jilsander.jpg', initial: 'JS' },
+        'BOTTEGA VENETA': { img: 'brand-bottega.jpg', initial: 'BV' },
+        'GUCCI': { img: 'brand-gucci.jpg', initial: 'G' },
+        'BALENCIAGA': { img: 'brand-balenciaga.jpg', initial: 'B' },
+        'VERSACE': { img: 'brand-versace.jpg', initial: 'V' },
+        'COMME DES GARCONS': { img: 'brand-cdg.jpg', initial: 'CDG' },
+        'YOHJI YAMAMOTO': { img: 'brand-yohji.jpg', initial: 'YY' },
+        'MAISON MARGIELA': { img: 'brand-margiela.jpg', initial: 'MM' },
+        'RICK OWENS': { img: 'brand-rickowens.jpg', initial: 'RO' },
+        'MONCLER': { img: 'brand-moncler.jpg', initial: 'M' },
+        'CANADA GOOSE': { img: 'brand-canadagoose.jpg', initial: 'CG' },
+        'LORO PIANA': { img: 'brand-loropiana.jpg', initial: 'LP' },
+        'BRUNELLO CUCINELLI': { img: 'brand-brunello.jpg', initial: 'BC' },
+        'OFF-WHITE': { img: 'brand-offwhite.jpg', initial: 'OW' },
+        'SUPREME': { img: 'brand-supreme.jpg', initial: 'S' },
+        'PALM ANGELS': { img: 'brand-palmangels.jpg', initial: 'PA' },
+        'AMIRI': { img: 'brand-amiri.jpg', initial: 'A' },
+        'UNITED ARROWS': { img: 'brand-unitedarrows.jpg', initial: 'UA' },
+        'BEAMS': { img: 'brand-beams.jpg', initial: 'B' },
+        'SHIPS': { img: 'brand-ships.jpg', initial: 'S' },
+        'TOMORROWLAND': { img: 'brand-tomorrowland.jpg', initial: 'TL' },
+        'NANO・UNIVERSE': { img: 'brand-nanouniverse.jpg', initial: 'NU' },
+        'STUDIOUS': { img: 'brand-studious.jpg', initial: 'ST' },
+        'AGNES B.': { img: 'brand-agnesb.jpg', initial: 'ab' },
+        'LACOSTE': { img: 'brand-lacoste.jpg', initial: 'L' },
+        'FRED PERRY': { img: 'brand-fredperry.jpg', initial: 'FP' },
+        'ZARA': { img: 'brand-zara.jpg', initial: 'Z' },
+        'H&M': { img: 'brand-hm.jpg', initial: 'H&M' },
+        'UNIQLO': { img: 'brand-uniqlo.jpg', initial: 'U' },
+        'GU': { img: 'brand-gu.jpg', initial: 'GU' },
+        'GAP': { img: 'brand-gap.jpg', initial: 'GAP' },
+        'THE NORTH FACE': { img: 'brand-northface.jpg', initial: 'TNF' },
+        'PATAGONIA': { img: 'brand-patagonia.jpg', initial: 'P' },
+        'ARC\'TERYX': { img: 'brand-arcteryx.jpg', initial: 'A' },
+        'SNOW PEAK': { img: 'brand-snowpeak.jpg', initial: 'SP' },
+        'NIKE': { img: 'brand-nike.jpg', initial: 'N' },
+        'ADIDAS': { img: 'brand-adidas.jpg', initial: 'ad' },
+        'PUMA': { img: 'brand-puma.jpg', initial: 'PM' }
+    };
+
     // Update selected brands display
     function updateSelectedBrandsDisplay() {
         if (!selectedBrandsList) return;
@@ -2716,8 +3341,20 @@ function initializeBrandSelection() {
             selectedBrandsList.innerHTML = selectedBrands.map(brand => {
                 // エスケープして安全にHTMLに埋め込む
                 const escapedBrand = brand.replace(/'/g, '\\\'').replace(/"/g, '&quot;');
+                const brandInfo = brandLogoMap[brand.toUpperCase()] || { initial: brand.charAt(0) };
+
+                const logoHtml = brandInfo.img ?
+                    `<span class="brand-logo">
+                        <img src="images/${brandInfo.img}" alt="${brand}" onerror="this.style.display='none'">
+                        <span class="brand-initial">${brandInfo.initial}</span>
+                    </span>` :
+                    `<span class="brand-logo">
+                        <span class="brand-initial">${brandInfo.initial}</span>
+                    </span>`;
+
                 return `
                     <div class="selected-brand-chip">
+                        ${logoHtml}
                         <span>${brand}</span>
                         <span class="remove-btn" data-brand="${escapedBrand}" aria-label="削除">×</span>
                     </div>
@@ -2801,13 +3438,33 @@ function initializeBrandSelection() {
 
     // Brand tag click handlers
     brandTags.forEach(tag => {
-        tag.addEventListener('click', function() {
-            const brandName = this.dataset.brand;
-            if (this.classList.contains('selected')) {
-                removeBrand(brandName);
-            } else {
+        // Get checkbox inside the brand tag
+        const checkbox = tag.querySelector('input[type="checkbox"]');
+        if (!checkbox) return;
+
+        // Use checkbox value as brand name (uppercase)
+        const brandName = checkbox.value.toUpperCase();
+
+        // Add data-brand attribute for consistency
+        tag.dataset.brand = brandName;
+
+        // Handle checkbox change
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
                 addBrand(brandName);
+                tag.classList.add('selected');
+            } else {
+                removeBrand(brandName);
+                tag.classList.remove('selected');
             }
+        });
+
+        // Also handle label click (prevent double toggle)
+        tag.addEventListener('click', function(e) {
+            if (e.target === checkbox) return; // Let checkbox handle its own click
+            e.preventDefault();
+            checkbox.checked = !checkbox.checked;
+            checkbox.dispatchEvent(new Event('change'));
         });
     });
 
@@ -3198,10 +3855,12 @@ function setupConditionalSections() {
 
     partnerServiceRadios.forEach(radio => {
         radio.addEventListener('change', function() {
-            if (this.value === 'yes') {
-                partnerFittingTime.style.display = 'block';
-            } else {
-                partnerFittingTime.style.display = 'none';
+            if (partnerFittingTime) {
+                if (this.value === 'yes') {
+                    partnerFittingTime.style.display = 'block';
+                } else {
+                    partnerFittingTime.style.display = 'none';
+                }
             }
         });
     });
@@ -3212,10 +3871,12 @@ function setupConditionalSections() {
 
     presentServiceRadios.forEach(radio => {
         radio.addEventListener('change', function() {
-            if (this.value === 'yes') {
-                presentFrequency.style.display = 'block';
-            } else {
-                presentFrequency.style.display = 'none';
+            if (presentFrequency) {
+                if (this.value === 'yes') {
+                    presentFrequency.style.display = 'block';
+                } else {
+                    presentFrequency.style.display = 'none';
+                }
             }
         });
     });
@@ -3707,3 +4368,161 @@ function initializePostalCode() {
         });
     }
 }
+
+// Initialize fashion literacy conditional display
+function initializeFashionLiteracy() {
+    const literacyCheckboxes = document.querySelectorAll('input[name="fashionLiteracy"]');
+    const courseDetails = document.getElementById('fashionCourseDetails');
+    const otherTextInput = document.querySelector('input[name="fashionLiteracyOther"]');
+
+    if (!literacyCheckboxes.length || !courseDetails) return;
+
+    // Top 5 values that should show the course details
+    const topFiveValues = ['vaguely-interested', 'conversational', 'personal-curiosity', 'basic-knowledge', 'brands'];
+
+    function checkFashionLiteracySelection() {
+        let shouldShowCourse = false;
+        let shouldShowOther = false;
+
+        literacyCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                if (topFiveValues.includes(checkbox.value)) {
+                    shouldShowCourse = true;
+                }
+                if (checkbox.value === 'other') {
+                    shouldShowOther = true;
+                }
+            }
+        });
+
+        courseDetails.style.display = shouldShowCourse ? 'block' : 'none';
+        if (otherTextInput) {
+            otherTextInput.style.display = shouldShowOther ? 'block' : 'none';
+        }
+    }
+
+    // Add event listeners to all fashion literacy checkboxes
+    literacyCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', checkFashionLiteracySelection);
+    });
+
+    // Initial check
+    checkFashionLiteracySelection();
+}
+
+// Initialize corporate info toggle
+function initializeCorporateToggle() {
+    const corporateToggle = document.getElementById('isCorporate');
+    const corporateContent = document.getElementById('corporateInfoContent');
+
+    if (corporateToggle && corporateContent) {
+        corporateToggle.addEventListener('change', function() {
+            if (this.checked) {
+                corporateContent.style.display = 'block';
+                // Smooth transition
+                corporateContent.style.opacity = '0';
+                setTimeout(() => {
+                    corporateContent.style.transition = 'opacity 0.3s ease';
+                    corporateContent.style.opacity = '1';
+                }, 10);
+            } else {
+                corporateContent.style.transition = 'opacity 0.3s ease';
+                corporateContent.style.opacity = '0';
+                setTimeout(() => {
+                    corporateContent.style.display = 'none';
+                    // Clear corporate fields when unchecked
+                    const corporateInputs = corporateContent.querySelectorAll('input[type="text"], input[type="radio"], input[type="checkbox"]');
+                    corporateInputs.forEach(input => {
+                        if (input.type === 'text') {
+                            input.value = '';
+                        } else {
+                            input.checked = false;
+                        }
+                    });
+                }, 300);
+            }
+        });
+    }
+}
+
+// Initialize fashion stance toggle
+function initializeFashionStanceToggle() {
+    const fashionStanceToggle = document.getElementById('hasFashionStance');
+    const fashionStanceContent = document.getElementById('fashionStanceContent');
+
+    if (fashionStanceToggle && fashionStanceContent) {
+        fashionStanceToggle.addEventListener('change', function() {
+            if (this.checked) {
+                fashionStanceContent.style.display = 'block';
+                // Smooth transition
+                fashionStanceContent.style.opacity = '0';
+                setTimeout(() => {
+                    fashionStanceContent.style.transition = 'opacity 0.3s ease';
+                    fashionStanceContent.style.opacity = '1';
+                }, 10);
+            } else {
+                fashionStanceContent.style.transition = 'opacity 0.3s ease';
+                fashionStanceContent.style.opacity = '0';
+                setTimeout(() => {
+                    fashionStanceContent.style.display = 'none';
+                    // Clear fashion stance selection when unchecked
+                    const stanceRadios = fashionStanceContent.querySelectorAll('input[type="radio"]');
+                    stanceRadios.forEach(radio => {
+                        radio.checked = false;
+                    });
+                }, 300);
+            }
+        });
+
+        // Remove required attribute from fashion stance radios since it's now optional
+        const stanceRadios = fashionStanceContent.querySelectorAll('input[type="radio"][required]');
+        stanceRadios.forEach(radio => {
+            radio.removeAttribute('required');
+        });
+    }
+}
+
+// Initialize proposal frequency toggle
+function initializeProposalFrequencyToggle() {
+    const proposalFrequencyToggle = document.getElementById('hasProposalFrequency');
+    const proposalFrequencyContent = document.getElementById('proposalFrequencyContent');
+
+    if (proposalFrequencyToggle && proposalFrequencyContent) {
+        proposalFrequencyToggle.addEventListener('change', function() {
+            if (this.checked) {
+                proposalFrequencyContent.style.display = 'block';
+                // Smooth transition
+                proposalFrequencyContent.style.opacity = '0';
+                setTimeout(() => {
+                    proposalFrequencyContent.style.transition = 'opacity 0.3s ease';
+                    proposalFrequencyContent.style.opacity = '1';
+                }, 10);
+            } else {
+                proposalFrequencyContent.style.transition = 'opacity 0.3s ease';
+                proposalFrequencyContent.style.opacity = '0';
+                setTimeout(() => {
+                    proposalFrequencyContent.style.display = 'none';
+                    // Clear proposal frequency selection when unchecked
+                    const frequencyRadios = proposalFrequencyContent.querySelectorAll('input[type="radio"]');
+                    frequencyRadios.forEach(radio => {
+                        radio.checked = false;
+                    });
+                }, 300);
+            }
+        });
+
+        // Remove required attribute from proposal frequency radios since it's now optional
+        const frequencyRadios = proposalFrequencyContent.querySelectorAll('input[type="radio"][required]');
+        frequencyRadios.forEach(radio => {
+            radio.removeAttribute('required');
+        });
+    }
+}
+
+// Add to initialization
+document.addEventListener('DOMContentLoaded', function() {
+    initializeFashionLiteracy();
+    initializeCorporateToggle();
+    initializeFashionStanceToggle();
+    initializeProposalFrequencyToggle();
+});

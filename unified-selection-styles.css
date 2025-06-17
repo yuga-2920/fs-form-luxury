@@ -1,0 +1,136 @@
+/* Unified Selection Styles - Yellow borders and consistent hover animations */
+
+/* Override all selection borders with gold/yellow */
+.checkbox-option input:checked ~ *,
+.radio-option input:checked ~ *,
+.checkbox-option.selected,
+.radio-option.selected,
+.brand-tag.selected,
+.style-option.selected,
+.travel-destination-label input:checked ~ *,
+.lifestyle-option input:checked ~ *,
+.scene-option input:checked ~ *,
+.clothing-item-checkbox input:checked ~ *,
+.budget-range-card input:checked ~ *,
+.budget-range-card.selected,
+.item-option.selected,
+input[type="checkbox"]:checked + label,
+input[type="radio"]:checked + label {
+    border-color: var(--accent-gold) !important;
+}
+
+/* Unified hover effect */
+.checkbox-option:hover,
+.radio-option:hover,
+.brand-tag:hover,
+.style-option:hover,
+.travel-destination-label:hover,
+.lifestyle-option:hover,
+.scene-option:hover,
+.clothing-item-checkbox:hover,
+.budget-range-card:hover,
+.item-option:hover,
+.common-card:hover {
+    border-color: var(--accent-gold) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+
+/* Consistent transition for all interactive elements */
+.checkbox-option,
+.radio-option,
+.brand-tag,
+.style-option,
+.travel-destination-label,
+.lifestyle-option,
+.scene-option,
+.clothing-item-checkbox,
+.budget-range-card,
+.item-option,
+.common-card {
+    transition: all 0.3s ease !important;
+}
+
+/* Selected state background tint */
+.checkbox-option input:checked ~ *,
+.radio-option input:checked ~ *,
+.checkbox-option.selected,
+.radio-option.selected,
+.brand-tag.selected,
+.style-option.selected,
+.travel-destination-label input:checked ~ *,
+.lifestyle-option input:checked ~ *,
+.scene-option input:checked ~ *,
+.clothing-item-checkbox input:checked ~ *,
+.budget-range-card input:checked ~ *,
+.budget-range-card.selected,
+.item-option.selected {
+    background-color: rgba(212, 175, 55, 0.05) !important;
+}
+
+/* Checkbox and radio button custom styling */
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--accent-gold);
+}
+
+/* Custom checkbox appearance */
+input[type="checkbox"]:checked::before {
+    background-color: var(--accent-gold);
+}
+
+/* Form inputs on focus */
+.form-input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--accent-gold) !important;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+/* Button hover states */
+.btn-primary:hover,
+.submit-button:hover,
+button[type="submit"]:hover {
+    background-color: var(--accent-gold) !important;
+    border-color: var(--accent-gold) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* Image hover effects */
+.style-image:hover,
+.item-image:hover,
+.brand-logo:hover,
+.travel-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+
+/* Unified gold accent color variable */
+:root {
+    --accent-gold: #d4af37;
+    --accent-gold-light: rgba(212, 175, 55, 0.1);
+    --accent-gold-shadow: rgba(212, 175, 55, 0.2);
+}
+
+/* Override any conflicting styles */
+.checkbox-option:hover,
+.radio-option:hover,
+.checkbox-option input:checked ~ *,
+.radio-option input:checked ~ * {
+    border-color: var(--accent-gold) !important;
+}
+
+/* Style option cards selected state */
+.style-option-card input:checked ~ .style-option-content,
+.style-variation-option input:checked ~ * {
+    border-color: var(--accent-gold) !important;
+    background-color: var(--accent-gold-light) !important;
+}
+
+/* Travel and lifestyle cards */
+.travel-card-content:hover,
+.lifestyle-card:hover,
+.scene-card:hover {
+    border-color: var(--accent-gold) !important;
+}

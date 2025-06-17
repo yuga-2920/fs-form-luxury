@@ -1,0 +1,298 @@
+/* Single Style Pattern Display with 3×5 Grid */
+
+/* Style switcher tabs */
+.style-switcher-container {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.style-switcher-container h4 {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    font-weight: 400;
+}
+
+.style-switcher-tabs {
+    display: inline-flex;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px;
+    border-radius: var(--radius-lg);
+}
+
+.style-tab {
+    padding: 12px 24px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.style-tab:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.style-tab.active {
+    background: var(--accent-gold);
+    color: var(--background-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* Single style pattern section */
+.single-style-pattern-section {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    margin-bottom: 32px;
+}
+
+.pattern-section-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.pattern-section-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.pattern-section-description {
+    font-size: 16px;
+    color: var(--text-secondary);
+}
+
+/* Enhanced 3x5 grid */
+.single-style-pattern-section .style-patterns-grid-3x5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Larger pattern cards for single style display */
+.single-style-pattern-section .style-pattern-card {
+    min-height: 260px;
+    background: var(--surface-color);
+    border: 3px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.single-style-pattern-section .style-pattern-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: var(--accent-gold);
+    box-shadow: 0 12px 32px rgba(212, 175, 55, 0.25);
+}
+
+/* Larger images for better visibility */
+.single-style-pattern-section .pattern-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.single-style-pattern-section .pattern-content {
+    padding: 16px;
+}
+
+.single-style-pattern-section .pattern-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Grid position for single style */
+.single-style-pattern-section .pattern-grid-position {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--accent-gold);
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* Selected state enhancement */
+.single-style-pattern-section .style-pattern-card input[type="checkbox"]:checked ~ .pattern-content {
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.08);
+}
+
+.single-style-pattern-section .style-pattern-card input[type="checkbox"]:checked ~ .pattern-content::after {
+    content: '✓';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background: var(--accent-gold);
+    color: var(--background-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+}
+
+/* Enhanced summary bar */
+.selected-patterns-summary {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface-elevated);
+    border: 2px solid var(--accent-gold);
+    border-radius: var(--radius-lg);
+    padding: 20px 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.selected-patterns-summary.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.summary-content {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.selected-count {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.selected-count strong {
+    color: var(--accent-gold);
+    font-size: 20px;
+}
+
+.current-style {
+    font-size: 16px;
+    color: var(--text-secondary);
+}
+
+.current-style strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.btn-clear-patterns {
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--accent-gold);
+    border: 2px solid var(--accent-gold);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-clear-patterns:hover {
+    background: var(--accent-gold);
+    color: var(--background-color);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+    .single-style-pattern-section .style-patterns-grid-3x5 {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .single-style-pattern-section .style-patterns-grid-3x5 {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .single-style-pattern-section .style-patterns-grid-3x5 {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+    }
+    
+    .style-switcher-tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .style-tab {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .single-style-pattern-section {
+        padding: 20px;
+    }
+    
+    .single-style-pattern-section .style-patterns-grid-3x5 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .pattern-section-title {
+        font-size: 22px;
+    }
+    
+    .selected-patterns-summary {
+        padding: 16px 24px;
+        width: calc(100% - 40px);
+    }
+    
+    .summary-content {
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+    }
+}
+
+/* Animation for tab switching */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.single-style-pattern-section {
+    animation: fadeInScale 0.4s ease;
+}

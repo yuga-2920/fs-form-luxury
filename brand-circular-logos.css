@@ -1,0 +1,146 @@
+/* Brand Circular Logo Display */
+
+/* Override for brand logo containers to make them circular */
+.brand-logo-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--surface-elevated);
+    border: 3px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    position: relative;
+}
+
+.brand-logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Fallback for missing images - show brand initials */
+.brand-logo-container::after {
+    content: attr(data-brand-initial);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--text-muted);
+    font-family: 'Montserrat', sans-serif;
+    z-index: -1;
+}
+
+.brand-logo-container img[style*="display: none"] + ::after {
+    z-index: 1;
+}
+
+/* Enhanced brand selection item for circular logos */
+.brand-selection-item {
+    padding: 24px 16px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Brand name styling */
+.brand-selection-item .brand-name {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+}
+
+/* Selected state enhancement */
+.brand-selection-item.selected {
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.brand-selection-item.selected .brand-logo-container {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Grid adjustment for better circular logo display */
+.brand-selection-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+/* Category headers with enhanced styling */
+.brand-category-header {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 0;
+    margin: 32px 0 20px;
+    border-bottom: 2px solid var(--accent-gold);
+}
+
+/* Hover effects */
+.brand-selection-item:hover .brand-logo-container {
+    transform: scale(1.05);
+    border-color: var(--accent-gold);
+}
+
+.brand-selection-item:hover .brand-logo-container img {
+    transform: scale(1.1);
+}
+
+/* Transition for smooth animations */
+.brand-logo-container,
+.brand-logo-container img {
+    transition: all 0.3s ease;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .brand-selection-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 16px;
+    }
+    
+    .brand-logo-container {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .brand-logo-container::after {
+        font-size: 28px;
+    }
+    
+    .brand-selection-item {
+        min-height: 240px;
+        padding: 20px 12px;
+    }
+    
+    .brand-category-header {
+        font-size: 16px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    .brand-selection-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .brand-logo-container {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .brand-logo-container::after {
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,379 @@
+/* Single Style Pattern Display with Fixed 3×5 Grid */
+
+/* Style switcher tabs */
+.style-switcher-container {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.style-switcher-container h4 {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    font-weight: 400;
+}
+
+.style-switcher-tabs {
+    display: inline-flex;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px;
+    border-radius: var(--radius-lg);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.style-tab {
+    padding: 12px 24px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.style-tab:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.style-tab.active {
+    background: var(--accent-gold);
+    color: var(--background-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* Single style pattern section */
+.single-style-pattern-section {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    margin-bottom: 32px;
+    overflow-x: auto;
+}
+
+.pattern-section-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.pattern-section-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.pattern-section-description {
+    font-size: 16px;
+    color: var(--text-secondary);
+}
+
+/* Fixed 3x5 grid - always maintains 3 rows and 5 columns */
+.single-style-pattern-section .style-patterns-grid-3x5 {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(160px, 1fr));
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-width: 900px; /* Ensures minimum width for 5 columns */
+}
+
+/* Pattern cards with fixed aspect ratio */
+.single-style-pattern-section .style-pattern-card {
+    min-height: 240px;
+    background: var(--surface-color);
+    border: 3px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.single-style-pattern-section .style-pattern-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: var(--accent-gold);
+    box-shadow: 0 12px 32px rgba(212, 175, 55, 0.25);
+}
+
+/* Pattern checkbox */
+.single-style-pattern-section .style-pattern-card input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* Pattern content */
+.single-style-pattern-section .pattern-content {
+    padding: 12px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Pattern images */
+.single-style-pattern-section .pattern-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.single-style-pattern-section .pattern-name {
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+/* Grid position indicator */
+.single-style-pattern-section .pattern-grid-position {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--accent-gold);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    z-index: 1;
+}
+
+/* Selected state */
+.single-style-pattern-section .style-pattern-card input[type="checkbox"]:checked ~ .pattern-content {
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.08);
+}
+
+.single-style-pattern-section .style-pattern-card input[type="checkbox"]:checked ~ .pattern-content::after {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    background: var(--accent-gold);
+    color: var(--background-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+    z-index: 1;
+}
+
+/* Enhanced summary bar */
+.selected-patterns-summary {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface-elevated);
+    border: 2px solid var(--accent-gold);
+    border-radius: var(--radius-lg);
+    padding: 20px 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.selected-patterns-summary.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.summary-content {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.selected-count {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.selected-count strong {
+    color: var(--accent-gold);
+    font-size: 20px;
+}
+
+.current-style {
+    font-size: 16px;
+    color: var(--text-secondary);
+}
+
+.current-style strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.btn-clear-patterns {
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--accent-gold);
+    border: 2px solid var(--accent-gold);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-clear-patterns:hover {
+    background: var(--accent-gold);
+    color: var(--background-color);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments - maintains 3x5 grid */
+@media (max-width: 1200px) {
+    .single-style-pattern-section {
+        padding: 24px;
+    }
+    
+    .single-style-pattern-section .style-patterns-grid-3x5 {
+        gap: 16px;
+        grid-template-columns: repeat(5, minmax(140px, 1fr));
+        min-width: 800px;
+    }
+    
+    .single-style-pattern-section .style-pattern-card {
+        min-height: 220px;
+    }
+}
+
+@media (max-width: 992px) {
+    .single-style-pattern-section {
+        padding: 20px;
+    }
+    
+    .single-style-pattern-section .style-patterns-grid-3x5 {
+        gap: 12px;
+        grid-template-columns: repeat(5, minmax(120px, 1fr));
+        min-width: 700px;
+    }
+    
+    .single-style-pattern-section .style-pattern-card {
+        min-height: 200px;
+    }
+    
+    .single-style-pattern-section .pattern-content {
+        padding: 10px;
+    }
+    
+    .single-style-pattern-section .pattern-name {
+        font-size: 12px;
+    }
+    
+    .style-tab {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .single-style-pattern-section {
+        padding: 16px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Still maintains 3x5 grid on mobile with horizontal scroll */
+    .single-style-pattern-section .style-patterns-grid-3x5 {
+        gap: 10px;
+        grid-template-columns: repeat(5, 140px);
+        grid-template-rows: repeat(3, 180px);
+        min-width: 760px;
+    }
+    
+    .single-style-pattern-section .style-pattern-card {
+        min-height: 0;
+        height: 100%;
+    }
+    
+    .single-style-pattern-section .pattern-content {
+        padding: 8px;
+    }
+    
+    .single-style-pattern-section .pattern-image {
+        margin-bottom: 6px;
+    }
+    
+    .single-style-pattern-section .pattern-name {
+        font-size: 11px;
+    }
+    
+    .pattern-section-title {
+        font-size: 22px;
+    }
+    
+    .selected-patterns-summary {
+        padding: 16px 24px;
+        width: calc(100% - 40px);
+    }
+    
+    .summary-content {
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+    }
+    
+    /* Scroll indicator */
+    .single-style-pattern-section::after {
+        content: '→ スクロール可能';
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.8);
+        color: var(--accent-gold);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        pointer-events: none;
+    }
+}
+
+/* Animation for tab switching */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.single-style-pattern-section {
+    animation: fadeInScale 0.4s ease;
+}
+
+/* Ensure exactly 15 items are displayed */
+.single-style-pattern-section .style-pattern-card:nth-child(n+16) {
+    display: none;
+}
