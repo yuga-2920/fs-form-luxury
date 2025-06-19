@@ -1,0 +1,283 @@
+/* Rich Pattern Evaluation Styles */
+
+/* Enhanced evaluation section */
+.evaluation-section {
+    margin-top: 12px;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.pattern-item:hover .evaluation-section {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+/* Good/Bad selection container */
+.good-bad-selection {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    position: relative;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+/* Evaluation option styling */
+.eval-option {
+    position: relative;
+    flex: 1;
+    transition: all 0.3s ease;
+}
+
+.eval-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.eval-option span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Good option styling */
+.eval-option.good span {
+    color: #2e7d32;
+    border: none;
+}
+
+.eval-option.good span:hover {
+    background: #f1f8f4;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(46, 125, 50, 0.1);
+}
+
+.eval-option.good input:checked ~ span {
+    background: #2e7d32;
+    color: white;
+    box-shadow: 0 2px 8px rgba(46, 125, 50, 0.2);
+}
+
+/* Bad option styling */
+.eval-option.bad span {
+    color: #c62828;
+    border: none;
+}
+
+.eval-option.bad span:hover {
+    background: #fef5f5;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(198, 40, 40, 0.1);
+}
+
+.eval-option.bad input:checked ~ span {
+    background: #c62828;
+    color: white;
+    box-shadow: 0 2px 8px rgba(198, 40, 40, 0.2);
+}
+
+/* Icons for Good/Bad */
+.eval-option span::before {
+    content: '';
+    font-size: 16px;
+    margin-right: 6px;
+    transition: all 0.3s ease;
+}
+
+/* Selected state animations */
+.eval-option input:checked ~ span::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    animation: ripple 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    from {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    to {
+        width: 200%;
+        height: 200%;
+        opacity: 0;
+    }
+}
+
+/* Enhanced rating section */
+.rating-section {
+    margin-top: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.rating-section.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Rating buttons with enhanced styling */
+.rating-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    padding: 12px;
+    background: linear-gradient(135deg, #fafbfc 0%, #ffffff 100%);
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.rating-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #f5f5f5;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.rating-btn:hover {
+    transform: translateY(-2px) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Good rating buttons */
+.eval-option.good input:checked ~ .rating-section .rating-btn {
+    color: #2e7d32;
+    border: none;
+}
+
+.eval-option.good input:checked ~ .rating-section .rating-btn:hover {
+    background: #f1f8f4;
+}
+
+.eval-option.good input:checked ~ .rating-section .rating-btn.active {
+    background: #2e7d32;
+    color: white;
+    box-shadow: 0 2px 8px rgba(46, 125, 50, 0.2);
+}
+
+/* Bad rating buttons */
+.eval-option.bad input:checked ~ .rating-section .rating-btn {
+    color: #c62828;
+    border: none;
+}
+
+.eval-option.bad input:checked ~ .rating-section .rating-btn:hover {
+    background: #fef5f5;
+}
+
+.eval-option.bad input:checked ~ .rating-section .rating-btn.active {
+    background: #c62828;
+    color: white;
+    box-shadow: 0 2px 8px rgba(198, 40, 40, 0.2);
+}
+
+/* Pattern item selected state */
+.pattern-item.has-evaluation {
+    position: relative;
+}
+
+.pattern-item.has-evaluation::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 12px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pattern-item.has-evaluation.good-selected::before {
+    background: #2e7d32;
+    opacity: 0.05;
+}
+
+.pattern-item.has-evaluation.bad-selected::before {
+    background: #c62828;
+    opacity: 0.05;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .evaluation-section {
+        padding: 6px;
+    }
+
+    .eval-option span {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .eval-option span::before {
+        font-size: 14px;
+        margin-right: 4px;
+    }
+
+    .rating-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .evaluation-section {
+        padding: 4px;
+        margin-top: 8px;
+    }
+
+    .good-bad-selection {
+        gap: 6px;
+        padding: 3px;
+    }
+
+    .eval-option span {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .eval-option span::before {
+        display: none; /* Hide emoji on small screens */
+    }
+
+    .rating-buttons {
+        gap: 6px;
+        padding: 8px;
+    }
+
+    .rating-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+}

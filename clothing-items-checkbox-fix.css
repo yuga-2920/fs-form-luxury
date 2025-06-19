@@ -1,0 +1,86 @@
+/* Fix for duplicate checkbox display in clothing items */
+
+/* First, remove any inherited checkbox styles */
+.clothing-items-enhanced-grid .checkbox-option {
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Hide the browser's default checkbox completely */
+.clothing-item-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Style the custom checkbox */
+.clothing-item-checkbox {
+    position: relative;
+}
+
+/* Add custom checkbox indicator */
+.clothing-item-checkbox .item-content-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+/* Checked state */
+.clothing-item-checkbox input:checked ~ .item-content-enhanced::before {
+    background: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
+/* Checkmark */
+.clothing-item-checkbox input:checked ~ .item-content-enhanced::after {
+    content: '✓';
+    position: absolute;
+    top: 22px;
+    right: 24px;
+    color: var(--background-color);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Hover effect */
+.clothing-item-checkbox:hover .item-content-enhanced::before {
+    border-color: var(--accent-gold);
+    transform: scale(1.1);
+}
+
+/* Ensure the entire card is clickable */
+.clothing-item-checkbox {
+    cursor: pointer;
+}
+
+/* Remove any additional checkbox styling from parent theme */
+.clothing-items-enhanced-grid .checkbox-option::before,
+.clothing-items-enhanced-grid .checkbox-option::after {
+    display: none !important;
+}
+
+/* Ensure proper layout */
+.clothing-item-checkbox .item-content-enhanced {
+    position: relative;
+}
+
+/* Alternative solution if checkboxes still appear */
+.clothing-items-enhanced-grid input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: none !important;
+}

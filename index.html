@@ -16,17 +16,46 @@
     <link rel="stylesheet" href="style-patterns-3x5.css">
     <link rel="stylesheet" href="style-patterns-3x5-enhanced.css">
     <link rel="stylesheet" href="style-patterns-single-fixed.css">
+    <link rel="stylesheet" href="style-patterns-categorized.css">
+    <link rel="stylesheet" href="style-patterns-3x5-toggle.css">
+    <link rel="stylesheet" href="style-patterns-3x5-toggle-fixed.css">
+    <link rel="stylesheet" href="style-patterns-5x3.css">
+    <link rel="stylesheet" href="style-patterns-gender-integrated.css">
     <link rel="stylesheet" href="brand-circular-logos.css">
+    <link rel="stylesheet" href="clothing-items-2col.css">
+    <link rel="stylesheet" href="clothing-items-checkbox-fix.css">
+    <link rel="stylesheet" href="clothing-items-simple.css">
+    <link rel="stylesheet" href="fashion-literacy-styles.css">
+    <link rel="stylesheet" href="responsive-compact.css">
+    <link rel="stylesheet" href="postal-error-fix.css">
+    <link rel="stylesheet" href="other-option-styles.css">
+    <link rel="stylesheet" href="pattern-evaluation-rich.css">
+    <!-- <link rel="stylesheet" href="style-patterns-inline.css"> -->
+    <script src="image-mapping-config.js"></script>
     <script src="form-validation.js"></script>
     <script src="form-state-manager.js"></script>
     <script src="form-progress.js"></script>
     <script src="brand-selection.js"></script>
     <script src="brand-selection-fix.js"></script>
     <script src="postal-autofill.js"></script>
-    <script src="style-patterns-single-v3.js"></script>
-    <script src="style-patterns-3x5-enforcer.js"></script>
-    <script src="style-patterns-debug.js"></script>
-    <script src="fashion-literacy-conditional.js"></script>
+    <script src="postal-validation-fix.js"></script>
+    <!-- Replaced with 3x5 toggle version -->
+    <!-- <script src="style-patterns-single-v3.js"></script> -->
+    <!-- <script src="style-patterns-optimized.js"></script> -->
+    <!-- <script src="style-patterns-categorized.js"></script> -->
+    <!-- <script src="style-patterns-gender-based.js"></script> -->
+    <script src="style-patterns-gender-integrated.js"></script>
+    <!-- <script src="style-patterns-inline.js"></script> -->
+    <script src="style-patterns-5x3-transformer.js"></script>
+    <script src="attractive-styles-dynamic.js"></script>
+    <!-- <script src="fashion-literacy-radio-conditional.js"></script> -->
+    <!-- <script src="fashion-literacy-conditional-simple.js"></script> -->
+    <!-- <script src="fashion-literacy-conditional-fixed.js"></script> -->
+    <!-- <script src="fashion-literacy-conditional-v2.js"></script> -->
+    <!-- <script src="fashion-literacy-working.js"></script> -->
+    <script src="fashion-literacy-final.js"></script>
+    <script src="other-option-handler.js"></script>
+    <script src="pattern-evaluation-enhanced.js"></script>
 </head>
 <body>
     <div class="complete-form-container">
@@ -98,7 +127,9 @@
                 }
 
                 // Check initial state
-                if (femaleRadio && femaleRadio.checked) {
+                if (maleRadio && maleRadio.checked) {
+                    switchGender('male');
+                } else if (femaleRadio && femaleRadio.checked) {
                     switchGender('female');
                 }
             });
@@ -262,7 +293,7 @@
                                             </label>
                                             <label class="day-radio-option">
                                                 <input type="radio" name="monday_schedule" value="no-boundary">
-                                                <span class="day-option-label">境目がない</span>
+                                                <span class="day-option-label">境目なし</span>
                                             </label>
                                         </div>
                                     </td>
@@ -278,7 +309,7 @@
                                             </label>
                                             <label class="day-radio-option">
                                                 <input type="radio" name="tuesday_schedule" value="no-boundary">
-                                                <span class="day-option-label">境目がない</span>
+                                                <span class="day-option-label">境目なし</span>
                                             </label>
                                         </div>
                                     </td>
@@ -294,7 +325,7 @@
                                             </label>
                                             <label class="day-radio-option">
                                                 <input type="radio" name="wednesday_schedule" value="no-boundary">
-                                                <span class="day-option-label">境目がない</span>
+                                                <span class="day-option-label">境目なし</span>
                                             </label>
                                         </div>
                                     </td>
@@ -310,7 +341,7 @@
                                             </label>
                                             <label class="day-radio-option">
                                                 <input type="radio" name="thursday_schedule" value="no-boundary">
-                                                <span class="day-option-label">境目がない</span>
+                                                <span class="day-option-label">境目なし</span>
                                             </label>
                                         </div>
                                     </td>
@@ -326,7 +357,7 @@
                                             </label>
                                             <label class="day-radio-option">
                                                 <input type="radio" name="friday_schedule" value="no-boundary">
-                                                <span class="day-option-label">境目がない</span>
+                                                <span class="day-option-label">境目なし</span>
                                             </label>
                                         </div>
                                     </td>
@@ -342,7 +373,7 @@
                                             </label>
                                             <label class="day-radio-option">
                                                 <input type="radio" name="saturday_schedule" value="no-boundary">
-                                                <span class="day-option-label">境目がない</span>
+                                                <span class="day-option-label">境目なし</span>
                                             </label>
                                         </div>
                                     </td>
@@ -358,7 +389,7 @@
                                             </label>
                                             <label class="day-radio-option">
                                                 <input type="radio" name="sunday_schedule" value="no-boundary">
-                                                <span class="day-option-label">境目がない</span>
+                                                <span class="day-option-label">境目なし</span>
                                             </label>
                                         </div>
                                     </td>
@@ -378,7 +409,7 @@
                                     <span class="ratio-value" id="restRatio">0日</span>
                                 </div>
                                 <div class="ratio-item no-boundary-ratio">
-                                    <span class="ratio-label">境目がない</span>
+                                    <span class="ratio-label">境目なし</span>
                                     <span class="ratio-value" id="noBoundaryRatio">0日</span>
                                 </div>
                             </div>
@@ -585,7 +616,7 @@
                             <div class="weekday-card">
                                 <input type="checkbox" name="weekdayLifestyle" value="other" id="weekday-other">
                                 <label for="weekday-other" class="checkbox-option">
-                                    <!-- <img src="images/lifestyle-other.jpg" alt="lifestyle-other.jpg"> -->
+                                    <img src="images/lifestyle-other.jpg" alt="lifestyle-other.jpg">
                                     <span>その他</span>
                                 </label>
                                 <div class="sub-options" id="other-weekday-details" style="display: none;">
@@ -735,15 +766,15 @@
                             <div class="weekday-card">
                               <input type="checkbox" name="holidayLifestyle" value="business-dining" id="holiday-business-dining">
                               <label for="holiday-business-dining" class="checkbox-option">
-                                    <img src="images/lifestyle-business-dining.jpg" alt="lifestyle-business-dining.jpg">
-                                    <span>会食</span>
-                                </label>
+                                <img src="images/lifestyle-executive.jpg" alt="lifestyle-executive.jpg">
+                                <span>会食</span>
+                              </label>
                             </div>
 
                             <div class="weekday-card">
                               <input type="checkbox" name="holidayLifestyle" value="executive-meeting" id="holiday-executive-meeting">
                               <label for="holiday-executive-meeting" class="checkbox-option">
-                                    <img src="images/lifestyle-executive.jpg" alt="lifestyle-executive.jpg">
+                                <img src="images/lifestyle-business-dining.jpg" alt="lifestyle-business-dining.jpg">
                                     <span>経営者交流会</span>
                                 </label>
                             </div>
@@ -751,6 +782,7 @@
                             <div class="weekday-card">
                               <input type="checkbox" name="holidayLifestyle" value="holiday-other" id="holiday-other">
                               <label for="holiday-other" class="checkbox-option text-only">
+                                <img src="images/travel-other.jpg" alt="travel-other.jpg" class="travel-image">
                                     <span>その他</span>
                                 </label>
                                 <div class="sub-options" id="holiday-other-details" style="display: none;">
@@ -762,7 +794,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>どんなシーンが多いか <span class="hint">該当するもの全てご選択ください</span></label>
+                    <label>どのようなシーンが多いか <span class="hint">該当するもの全てご選択ください</span></label>
 
                     <!-- ビジネスシーン -->
                     <div class="scene-category">
@@ -979,7 +1011,7 @@
                             <input type="radio" name="dressRegulation" value="no-restriction" id="regulation-none" required>
                             <label for="regulation-none">
                                 <div class="regulation-image">
-                                    <img src="images/dress-code-flexible.jpg" alt="dress-code-flexible.jpg">
+                                    <img src="images/lifestyle-other.jpg" alt="lifestyle-other.jpg">
                                 </div>
                                 <div class="regulation-content">
                                     <h4 class="regulation-title">特に指定なし</h4>
@@ -1009,8 +1041,8 @@
                     <p class="form-description">お好みのスタイルを最大3つまで選択してください。選択したスタイルごとに15個のパターンが3行×5列で表示されます。</p>
                     <div class="style-preference-grid">
                         <div class="style-preference-card">
-                            <input type="checkbox" name="attractiveStyle" value="classic" id="attractive-classic-suit">
-                            <label for="attractive-classic-suit">
+                            <input type="checkbox" name="attractiveStyle" value="suit" id="attractive-suit">
+                            <label for="attractive-suit">
                                 <img src="images/style-suit-level1.jpg" alt="スーツ/トラッド" class="style-pattern-image">
                                 <span>スーツ/トラッド</span>
                             </label>
@@ -1032,60 +1064,37 @@
                         <div class="style-preference-card">
                             <input type="checkbox" name="attractiveStyle" value="minimal" id="attractive-minimal">
                             <label for="attractive-minimal">
-                                <img src="images/style-minimal.jpg" alt="ミニマム/シンプル" class="style-pattern-image">
+                                <img src="images/style-minimal-1.jpg" alt="ミニマム/シンプル" class="style-pattern-image">
                                 <span>ミニマム/シンプル</span>
-                            </label>
-                        </div>
-                        <div class="style-preference-card">
-                            <input type="checkbox" name="attractiveStyle" value="elegant" id="attractive-elegant">
-                            <label for="attractive-elegant">
-                                <img src="images/style-elegant.jpg" alt="エレガント" class="style-pattern-image">
-                                <span>エレガント</span>
                             </label>
                         </div>
                         <div class="style-preference-card">
                             <input type="checkbox" name="attractiveStyle" value="street" id="attractive-street">
                             <label for="attractive-street">
-                                <img src="images/style-street.jpg" alt="ストリート/スポーティー" class="style-pattern-image">
+                                <img src="images/pattern-street1.jpg" alt="ストリート/スポーティー" class="style-pattern-image">
                                 <span>ストリート/スポーティー</span>
                             </label>
                         </div>
                         <div class="style-preference-card">
                             <input type="checkbox" name="attractiveStyle" value="relax" id="attractive-relax">
                             <label for="attractive-relax">
-                                <img src="images/style-relax.jpg" alt="サーフ" class="style-pattern-image">
+                                <img src="images/style-searf-1.jpg" alt="サーフ" class="style-pattern-image">
                                 <span>サーフ</span>
                             </label>
                         </div>
                         <div class="style-preference-card">
                             <input type="checkbox" name="attractiveStyle" value="american-casual" id="attractive-amecas">
                             <label for="attractive-amecas">
-                                <img src="images/style-american-casual.jpg" alt="アメカジ" class="style-pattern-image">
+                                <img src="images/style-amecas-1.jpg" alt="アメカジ" class="style-pattern-image">
                                 <span>アメカジ</span>
                             </label>
                         </div>
-                        <!-- <div class="style-preference-card">
-                            <input type="checkbox" name="attractiveStyle" value="street" id="attractive-street">
-                            <label for="attractive-street">
-                                <img src="images/style-mode.jpg" alt="style-mode.jpg">
-                                <span>ストリート</span>
-                            </label>
-                        </div> -->
-                        <!-- <div class="style-preference-card">
-                            <input type="checkbox" name="attractiveStyle" value="conservative" id="attractive-conservative">
-                            <label for="attractive-conservative">
-                                <img src="images/style-mode.jpg" alt="style-mode.jpg">
-                                <span>コンサバティブ</span>
-                            </label>
-                        </div> -->
                     </div>
 
-                    <!-- Pattern Selection Section - shown after style selection -->
-                    <div id="patternSelections" class="pattern-selections" style="display: none; margin-top: 30px;">
-                        <h3 style="margin-bottom: 15px; color: #333;">スタイルパターンの選択</h3>
-                        <p class="form-description">選択された各スタイルについて、15個のパターン（3行×5列）からお好みのものを選択してください。</p>
+                    <!-- Pattern Selection Section -->
+                    <div id="patternSelections" class="pattern-selections">
                         <div id="patternSelectionsContainer">
-                            <!-- Pattern selections for each selected style will be dynamically added here -->
+                            <!-- Pattern selections will be shown here -->
                         </div>
                     </div>
                 </div>
@@ -1309,16 +1318,6 @@
                 <div class="form-group brand-selection-enhanced">
                     <div class="brand-selection-header">
                         <label>ブランドの好み</label>
-                        <div class="brand-selection-legend">
-                            <div class="legend-item">
-                                <span class="legend-circle like">○</span>
-                                <span>好き</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-circle dislike">×</span>
-                                <span>苦手</span>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="brand-selection-grid">
@@ -1648,28 +1647,61 @@
                             </div>
                             <input type="hidden" name="brandPreference_MONCLER" value="">
                         </div>
-                        <!-- Stone Island -->
-                        <div class="brand-selection-item" data-brand="STONE_ISLAND">
-                            <div class="brand-logo-container" data-brand-initial="SI">
-                                <img src="images/brand-stoneisland.jpg" alt="Stone Island" onerror="this.style.display='none'">
+                        <!-- Canada Goose -->
+                        <div class="brand-selection-item" data-brand="CANADA_GOOSE">
+                            <div class="brand-logo-container" data-brand-initial="CG">
+                                <img src="images/brand-canadagoose.jpg" alt="Canada Goose" onerror="this.style.display='none'">
                             </div>
-                            <div class="brand-name">Stone Island</div>
+                            <div class="brand-name">Canada Goose</div>
                             <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="STONE_ISLAND" data-preference="like">
+                                <button type="button" class="brand-select-btn like" data-brand="CANADA_GOOSE" data-preference="like">
                                     <span class="btn-icon">○</span>
                                 </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="STONE_ISLAND" data-preference="dislike">
+                                <button type="button" class="brand-select-btn dislike" data-brand="CANADA_GOOSE" data-preference="dislike">
                                     <span class="btn-icon">×</span>
                                 </button>
                             </div>
-                            <input type="hidden" name="brandPreference_STONE_ISLAND" value="">
+                            <input type="hidden" name="brandPreference_CANADA_GOOSE" value="">
                         </div>
-                        <!-- Off-White -->
+                        <!-- Loro Piana -->
+                        <div class="brand-selection-item" data-brand="LORO_PIANA">
+                            <div class="brand-logo-container" data-brand-initial="LP">
+                                <img src="images/brand-loropiana.jpg" alt="Loro Piana" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Loro Piana</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="LORO_PIANA" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="LORO_PIANA" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_LORO_PIANA" value="">
+                        </div>
+                        <!-- Brunello Cucinelli -->
+                        <div class="brand-selection-item" data-brand="BRUNELLO_CUCINELLI">
+                            <div class="brand-logo-container" data-brand-initial="BC">
+                                <img src="images/brand-brunello.jpg" alt="Brunello Cucinelli" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Brunello Cucinelli</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="BRUNELLO_CUCINELLI" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="BRUNELLO_CUCINELLI" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_BRUNELLO_CUCINELLI" value="">
+                        </div>
+                        <div class="brand-category-header">ラグジュアリーブランド（ストリート・ハイプ）</div>
+                        <!-- Off-White™ -->
                         <div class="brand-selection-item" data-brand="OFF_WHITE">
                             <div class="brand-logo-container" data-brand-initial="OW">
-                                <img src="images/brand-offwhite.jpg" alt="Off-White" onerror="this.style.display='none'">
+                                <img src="images/brand-offwhite.jpg" alt="Off-White™" onerror="this.style.display='none'">
                             </div>
-                            <div class="brand-name">Off-White</div>
+                            <div class="brand-name">Off-White™</div>
                             <div class="brand-selection-buttons">
                                 <button type="button" class="brand-select-btn like" data-brand="OFF_WHITE" data-preference="like">
                                     <span class="btn-icon">○</span>
@@ -1679,233 +1711,6 @@
                                 </button>
                             </div>
                             <input type="hidden" name="brandPreference_OFF_WHITE" value="">
-                        </div>
-                        <div class="brand-category-header">プレミアムブランド（クラシック & ビジネス）</div>
-                        <!-- Burberry -->
-                        <div class="brand-selection-item" data-brand="BURBERRY">
-                            <div class="brand-logo-container" data-brand-initial="B">
-                                <img src="images/brand-burberry.jpg" alt="Burberry" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Burberry</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="BURBERRY" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="BURBERRY" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_BURBERRY" value="">
-                        </div>
-                        <!-- Max Mara -->
-                        <div class="brand-selection-item" data-brand="MAX_MARA">
-                            <div class="brand-logo-container" data-brand-initial="MM">
-                                <img src="images/brand-maxmara.jpg" alt="Max Mara" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Max Mara</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="MAX_MARA" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="MAX_MARA" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_MAX_MARA" value="">
-                        </div>
-                        <!-- Ralph Lauren -->
-                        <div class="brand-selection-item" data-brand="RALPH_LAUREN">
-                            <div class="brand-logo-container" data-brand-initial="RL">
-                                <img src="images/brand-ralphlauren.jpg" alt="Ralph Lauren" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Ralph Lauren</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="RALPH_LAUREN" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="RALPH_LAUREN" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_RALPH_LAUREN" value="">
-                        </div>
-                        <!-- Thom Browne -->
-                        <div class="brand-selection-item" data-brand="THOM_BROWNE">
-                            <div class="brand-logo-container" data-brand-initial="TB">
-                                <img src="images/brand-thombrowne.jpg" alt="Thom Browne" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Thom Browne</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="THOM_BROWNE" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="THOM_BROWNE" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_THOM_BROWNE" value="">
-                        </div>
-                        <div class="brand-category-header">プレミアムブランド（カジュアル & トレンド）</div>
-                        <!-- Alexander Wang -->
-                        <div class="brand-selection-item" data-brand="ALEXANDER_WANG">
-                            <div class="brand-logo-container" data-brand-initial="AW">
-                                <img src="images/brand-alexanderwang.jpg" alt="Alexander Wang" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Alexander Wang</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="ALEXANDER_WANG" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="ALEXANDER_WANG" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_ALEXANDER_WANG" value="">
-                        </div>
-                        <!-- MSGM -->
-                        <div class="brand-selection-item" data-brand="MSGM">
-                            <div class="brand-logo-container" data-brand-initial="M">
-                                <img src="images/brand-msgm.jpg" alt="MSGM" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">MSGM</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="MSGM" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="MSGM" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_MSGM" value="">
-                        </div>
-                        <!-- Kenzo -->
-                        <div class="brand-selection-item" data-brand="KENZO">
-                            <div class="brand-logo-container" data-brand-initial="K">
-                                <img src="images/brand-kenzo.jpg" alt="Kenzo" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Kenzo</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="KENZO" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="KENZO" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_KENZO" value="">
-                        </div>
-                        <!-- Isabel Marant -->
-                        <div class="brand-selection-item" data-brand="ISABEL_MARANT">
-                            <div class="brand-logo-container" data-brand-initial="IM">
-                                <img src="images/brand-isabelmarant.jpg" alt="Isabel Marant" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Isabel Marant</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="ISABEL_MARANT" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="ISABEL_MARANT" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_ISABEL_MARANT" value="">
-                        </div>
-                        <!-- Ganni -->
-                        <div class="brand-selection-item" data-brand="GANNI">
-                            <div class="brand-logo-container" data-brand-initial="G">
-                                <img src="images/brand-ganni.jpg" alt="Ganni" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Ganni</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="GANNI" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="GANNI" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_GANNI" value="">
-                        </div>
-                        <div class="brand-category-header">プレミアムブランド（ミニマル）</div>
-                        <!-- COS -->
-                        <div class="brand-selection-item" data-brand="COS">
-                            <div class="brand-logo-container" data-brand-initial="C">
-                                <img src="images/brand-cos.jpg" alt="COS" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">COS</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="COS" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="COS" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_COS" value="">
-                        </div>
-                        <!-- Theory -->
-                        <div class="brand-selection-item" data-brand="THEORY">
-                            <div class="brand-logo-container" data-brand-initial="T">
-                                <img src="images/brand-theory.jpg" alt="Theory" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Theory</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="THEORY" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="THEORY" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_THEORY" value="">
-                        </div>
-                        <!-- Everlane -->
-                        <div class="brand-selection-item" data-brand="EVERLANE">
-                            <div class="brand-logo-container" data-brand-initial="E">
-                                <img src="images/brand-everlane.jpg" alt="Everlane" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Everlane</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="EVERLANE" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="EVERLANE" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_EVERLANE" value="">
-                        </div>
-                        <!-- Arket -->
-                        <div class="brand-selection-item" data-brand="ARKET">
-                            <div class="brand-logo-container" data-brand-initial="A">
-                                <img src="images/brand-arket.jpg" alt="Arket" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Arket</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="ARKET" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="ARKET" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_ARKET" value="">
-                        </div>
-                        <!-- Stussy -->
-                        <div class="brand-selection-item" data-brand="STUSSY">
-                            <div class="brand-logo-container" data-brand-initial="S">
-                                <img src="images/brand-stussy.jpg" alt="Stussy" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Stussy</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="STUSSY" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="STUSSY" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_STUSSY" value="">
                         </div>
                         <!-- Supreme -->
                         <div class="brand-selection-item" data-brand="SUPREME">
@@ -1923,61 +1728,45 @@
                             </div>
                             <input type="hidden" name="brandPreference_SUPREME" value="">
                         </div>
-                        <!-- A.P.C. -->
-                        <div class="brand-selection-item" data-brand="APC">
-                            <div class="brand-logo-container" data-brand-initial="APC">
-                                <img src="images/brand-apc.jpg" alt="A.P.C." onerror="this.style.display='none'">
+                        <!-- Palm Angels -->
+                        <div class="brand-selection-item" data-brand="PALM_ANGELS">
+                            <div class="brand-logo-container" data-brand-initial="PA">
+                                <img src="images/brand-palmangels.jpg" alt="Palm Angels" onerror="this.style.display='none'">
                             </div>
-                            <div class="brand-name">A.P.C.</div>
+                            <div class="brand-name">Palm Angels</div>
                             <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="APC" data-preference="like">
+                                <button type="button" class="brand-select-btn like" data-brand="PALM_ANGELS" data-preference="like">
                                     <span class="btn-icon">○</span>
                                 </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="APC" data-preference="dislike">
+                                <button type="button" class="brand-select-btn dislike" data-brand="PALM_ANGELS" data-preference="dislike">
                                     <span class="btn-icon">×</span>
                                 </button>
                             </div>
-                            <input type="hidden" name="brandPreference_APC" value="">
+                            <input type="hidden" name="brandPreference_PALM_ANGELS" value="">
                         </div>
-
-                        <!-- Undercover -->
-                        <div class="brand-selection-item" data-brand="UNDERCOVER">
-                            <div class="brand-logo-container" data-brand-initial="U">
-                                <img src="images/brand-undercover.jpg" alt="Undercover" onerror="this.style.display='none'">
+                        <!-- AMIRI -->
+                        <div class="brand-selection-item" data-brand="AMIRI">
+                            <div class="brand-logo-container" data-brand-initial="A">
+                                <img src="images/brand-amiri.jpg" alt="AMIRI" onerror="this.style.display='none'">
                             </div>
-                            <div class="brand-name">Undercover</div>
+                            <div class="brand-name">AMIRI</div>
                             <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="UNDERCOVER" data-preference="like">
+                                <button type="button" class="brand-select-btn like" data-brand="AMIRI" data-preference="like">
                                     <span class="btn-icon">○</span>
                                 </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="UNDERCOVER" data-preference="dislike">
+                                <button type="button" class="brand-select-btn dislike" data-brand="AMIRI" data-preference="dislike">
                                     <span class="btn-icon">×</span>
                                 </button>
                             </div>
-                            <input type="hidden" name="brandPreference_UNDERCOVER" value="">
+                            <input type="hidden" name="brandPreference_AMIRI" value="">
                         </div>
-                        <!-- Toga -->
-                        <div class="brand-selection-item" data-brand="TOGA">
-                            <div class="brand-logo-container" data-brand-initial="T">
-                                <img src="images/brand-toga.jpg" alt="Toga" onerror="this.style.display='none'">
-                            </div>
-                            <div class="brand-name">Toga</div>
-                            <div class="brand-selection-buttons">
-                                <button type="button" class="brand-select-btn like" data-brand="TOGA" data-preference="like">
-                                    <span class="btn-icon">○</span>
-                                </button>
-                                <button type="button" class="brand-select-btn dislike" data-brand="TOGA" data-preference="dislike">
-                                    <span class="btn-icon">×</span>
-                                </button>
-                            </div>
-                            <input type="hidden" name="brandPreference_TOGA" value="">
-                        </div>
-                        <!-- United Arrows -->
+                        <div class="brand-category-header">ミドルブランド（セレクトショップ系）</div>
+                        <!-- UNITED ARROWS -->
                         <div class="brand-selection-item" data-brand="UNITED_ARROWS">
                             <div class="brand-logo-container" data-brand-initial="UA">
-                                <img src="images/brand-unitedarrows.jpg" alt="United Arrows" onerror="this.style.display='none'">
+                                <img src="images/brand-unitedarrows.jpg" alt="UNITED ARROWS" onerror="this.style.display='none'">
                             </div>
-                            <div class="brand-name">United Arrows</div>
+                            <div class="brand-name">UNITED ARROWS</div>
                             <div class="brand-selection-buttons">
                                 <button type="button" class="brand-select-btn like" data-brand="UNITED_ARROWS" data-preference="like">
                                     <span class="btn-icon">○</span>
@@ -1988,428 +1777,329 @@
                             </div>
                             <input type="hidden" name="brandPreference_UNITED_ARROWS" value="">
                         </div>
+                        <!-- BEAMS -->
+                        <div class="brand-selection-item" data-brand="BEAMS">
+                            <div class="brand-logo-container" data-brand-initial="B">
+                                <img src="images/brand-beams.jpg" alt="BEAMS" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">BEAMS</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="BEAMS" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="BEAMS" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_BEAMS" value="">
+                        </div>
+                        <!-- SHIPS -->
+                        <div class="brand-selection-item" data-brand="SHIPS">
+                            <div class="brand-logo-container" data-brand-initial="S">
+                                <img src="images/brand-ships.jpg" alt="SHIPS" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">SHIPS</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="SHIPS" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="SHIPS" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_SHIPS" value="">
+                        </div>
+                        <!-- TOMORROWLAND -->
+                        <div class="brand-selection-item" data-brand="TOMORROWLAND">
+                            <div class="brand-logo-container" data-brand-initial="TL">
+                                <img src="images/brand-tomorrowland.jpg" alt="TOMORROWLAND" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">TOMORROWLAND</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="TOMORROWLAND" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="TOMORROWLAND" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_TOMORROWLAND" value="">
+                        </div>
+                        <!-- nano・universe -->
+                        <div class="brand-selection-item" data-brand="NANO_UNIVERSE">
+                            <div class="brand-logo-container" data-brand-initial="NU">
+                                <img src="images/brand-nanouniverse.jpg" alt="nano・universe" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">nano・universe</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="NANO_UNIVERSE" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="NANO_UNIVERSE" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_NANO_UNIVERSE" value="">
+                        </div>
+                        <!-- STUDIOUS -->
+                        <div class="brand-selection-item" data-brand="STUDIOUS">
+                            <div class="brand-logo-container" data-brand-initial="S">
+                                <img src="images/brand-studious.jpg" alt="STUDIOUS" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">STUDIOUS</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="STUDIOUS" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="STUDIOUS" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_STUDIOUS" value="">
+                        </div>
+                        <div class="brand-category-header">ミドルブランド（フレンチ・ブリティッシュカジュアル系）</div>
+                        <!-- agnes b. -->
+                        <div class="brand-selection-item" data-brand="AGNES_B">
+                            <div class="brand-logo-container" data-brand-initial="AB">
+                                <img src="images/brand-agnesb.jpg" alt="agnes b." onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">agnes b.</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="AGNES_B" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="AGNES_B" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_AGNES_B" value="">
+                        </div>
+                        <!-- LACOSTE -->
+                        <div class="brand-selection-item" data-brand="LACOSTE">
+                            <div class="brand-logo-container" data-brand-initial="L">
+                                <img src="images/brand-lacoste.jpg" alt="LACOSTE" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">LACOSTE</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="LACOSTE" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="LACOSTE" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_LACOSTE" value="">
+                        </div>
+                        <!-- FRED PERRY -->
+                        <div class="brand-selection-item" data-brand="FRED_PERRY">
+                            <div class="brand-logo-container" data-brand-initial="FP">
+                                <img src="images/brand-fredperry.jpg" alt="FRED PERRY" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">FRED PERRY</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="FRED_PERRY" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="FRED_PERRY" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_FRED_PERRY" value="">
+                        </div>
+                        <div class="brand-category-header">アウトドア・スポーツファッション</div>
+                        <!-- THE NORTH FACE -->
+                        <div class="brand-selection-item" data-brand="THE_NORTH_FACE">
+                            <div class="brand-logo-container" data-brand-initial="TNF">
+                                <img src="images/brand-northface.jpg" alt="THE NORTH FACE" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">THE NORTH FACE</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="THE_NORTH_FACE" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="THE_NORTH_FACE" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_THE_NORTH_FACE" value="">
+                        </div>
+                        <!-- patagonia -->
+                        <div class="brand-selection-item" data-brand="PATAGONIA">
+                            <div class="brand-logo-container" data-brand-initial="P">
+                                <img src="images/brand-patagonia.jpg" alt="patagonia" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">patagonia</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="PATAGONIA" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="PATAGONIA" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_PATAGONIA" value="">
+                        </div>
+                        <!-- ARC'TERYX -->
+                        <div class="brand-selection-item" data-brand="ARCTERYX">
+                            <div class="brand-logo-container" data-brand-initial="AT">
+                                <img src="images/brand-arcteryx.jpg" alt="ARC'TERYX" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">ARC'TERYX</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="ARCTERYX" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="ARCTERYX" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_ARCTERYX" value="">
+                        </div>
+                        <!-- Snow Peak -->
+                        <div class="brand-selection-item" data-brand="SNOW_PEAK">
+                            <div class="brand-logo-container" data-brand-initial="SP">
+                                <img src="images/brand-snowpeak.jpg" alt="Snow Peak" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Snow Peak</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="SNOW_PEAK" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="SNOW_PEAK" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_SNOW_PEAK" value="">
+                        </div>
+                        <!-- adidas（アディダス）/ Nike（ナイキ）/ PUMA（プーマ）（ファッションラインやコラボ） -->
+                        <div class="brand-selection-item" data-brand="ADIDAS">
+                            <div class="brand-logo-container" data-brand-initial="A">
+                                <img src="images/brand-adidas.jpg" alt="adidas" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">adidas</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="ADIDAS" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="ADIDAS" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_ADIDAS" value="">
+                        </div>
+                        <div class="brand-selection-item" data-brand="NIKE">
+                            <div class="brand-logo-container" data-brand-initial="N">
+                                <img src="images/brand-nike.jpg" alt="Nike" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">Nike</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="NIKE" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="NIKE" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_NIKE" value="">
+                        </div>
+                        <div class="brand-selection-item" data-brand="PUMA">
+                            <div class="brand-logo-container" data-brand-initial="P">
+                                <img src="images/brand-puma.jpg" alt="PUMA" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">PUMA</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="PUMA" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="PUMA" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_PUMA" value="">
+                        </div>
+                        <div class="brand-category-header">アフォーダブルブランド・ファストファッション</div>
+                        <!-- ZARA -->
+                        <div class="brand-selection-item" data-brand="ZARA">
+                            <div class="brand-logo-container" data-brand-initial="Z">
+                                <img src="images/brand-zara.jpg" alt="ZARA" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">ZARA</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="ZARA" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="ZARA" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_ZARA" value="">
+                        </div>
+                        <!-- UNIQLO -->
+                        <div class="brand-selection-item" data-brand="UNIQLO">
+                            <div class="brand-logo-container" data-brand-initial="U">
+                                <img src="images/brand-uniqlo.jpg" alt="UNIQLO" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">UNIQLO</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="UNIQLO" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="UNIQLO" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_UNIQLO" value="">
+                        </div>
+                        <!-- H&M -->
+                        <div class="brand-selection-item" data-brand="HM">
+                            <div class="brand-logo-container" data-brand-initial="HM">
+                                <img src="images/brand-hm.jpg" alt="H&M" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">H&M</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="HM" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="HM" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_HM" value="">
+                        </div>
+                        <!-- GU -->
+                        <div class="brand-selection-item" data-brand="GU">
+                            <div class="brand-logo-container" data-brand-initial="GU">
+                                <img src="images/brand-gu.jpg" alt="GU" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">GU</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="GU" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="GU" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_GU" value="">
+                        </div>
+                        <!-- GAP -->
+                        <div class="brand-selection-item" data-brand="GAP">
+                            <div class="brand-logo-container" data-brand-initial="GAP">
+                                <img src="images/brand-gap.jpg" alt="GAP" onerror="this.style.display='none'">
+                            </div>
+                            <div class="brand-name">GAP</div>
+                            <div class="brand-selection-buttons">
+                                <button type="button" class="brand-select-btn like" data-brand="GAP" data-preference="like">
+                                    <span class="btn-icon">○</span>
+                                </button>
+                                <button type="button" class="brand-select-btn dislike" data-brand="GAP" data-preference="dislike">
+                                    <span class="btn-icon">×</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="brandPreference_GAP" value="">
+                        </div>
                     </div>
                 </div>
-
-                    <div class="brand-section">
-                        <div class="brand-category">ラグジュアリーブランド（クラシック & エレガント）</div>
-                        <div class="brand-grid">
-                            <label class="brand-tag checkbox-option" data-brand="DIOR">
-                                <input type="checkbox" name="favoriteBrands" value="Dior">
-                                <span class="brand-logo">
-                                    <img src="images/brand-dior.jpg" alt="Dior" onerror="this.style.display='none'">
-                                    <span class="brand-initial">D</span>
-                                </span>
-                                Dior (ディオール)
-                            </label>
-                            <label class="brand-tag checkbox-option" data-brand="SAINT LAURENT">
-                                <input type="checkbox" name="favoriteBrands" value="Saint Laurent">
-                                <span class="brand-logo">
-                                    <img src="images/brand-sl.jpg" alt="Saint Laurent" onerror="this.style.display='none'">
-                                    <span class="brand-initial">SL</span>
-                                </span>
-                                Saint Laurent (サンローラン)
-                            </label>
-                            <label class="brand-tag checkbox-option" data-brand="FENDI">
-                                <input type="checkbox" name="favoriteBrands" value="Fendi">
-                                <span class="brand-logo">
-                                    <img src="images/brand-fendi.jpg" alt="Fendi" onerror="this.style.display='none'">
-                                    <span class="brand-initial">F</span>
-                                </span>
-                                Fendi (フェンディ)
-                            </label>
-                            <label class="brand-tag checkbox-option" data-brand="VALENTINO">
-                                <input type="checkbox" name="favoriteBrands" value="Valentino">
-                                <span class="brand-logo">
-                                    <img src="images/brand-valentino.jpg" alt="Valentino" onerror="this.style.display='none'">
-                                    <span class="brand-initial">V</span>
-                                </span>
-                                Valentino (ヴァレンティノ)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="brand-section">
-                        <div class="brand-category">ラグジュアリーブランド（ミニマル & モダン）</div>
-                        <div class="brand-grid">
-                            <label class="brand-tag checkbox-option" data-brand="CELINE">
-                                <input type="checkbox" name="favoriteBrands" value="Celine">
-                                <span class="brand-logo">
-                                    <img src="images/brand-celine.jpg" alt="Celine" onerror="this.style.display='none'">
-                                    <span class="brand-initial">C</span>
-                                </span>
-                                Celine (セリーヌ)
-                            </label>
-                            <label class="brand-tag checkbox-option" data-brand="LOEWE">
-                                <input type="checkbox" name="favoriteBrands" value="Loewe">
-                                <span class="brand-logo">
-                                    <img src="images/brand-loewe.jpg" alt="Loewe" onerror="this.style.display='none'">
-                                    <span class="brand-initial">L</span>
-                                </span>
-                                Loewe (ロエベ)
-                            </label>
-                            <label class="brand-tag checkbox-option" data-brand="PRADA">
-                                <input type="checkbox" name="favoriteBrands" value="Prada">
-                                <span class="brand-logo">
-                                    <img src="images/brand-prada.jpg" alt="Prada" onerror="this.style.display='none'">
-                                    <span class="brand-initial">P</span>
-                                </span>
-                                Prada (プラダ)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Jil Sander">
-                                <span class="brand-logo">
-                                    <img src="images/brand-jilsander.jpg" alt="Jil Sander" onerror="this.style.display='none'">
-                                    <span class="brand-initial">JS</span>
-                                </span>
-                                Jil Sander (ジル サンダー)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Bottega Veneta">
-                                <span class="brand-logo">
-                                    <img src="images/brand-bottega.jpg" alt="Bottega Veneta" onerror="this.style.display='none'">
-                                    <span class="brand-initial">BV</span>
-                                </span>
-                                Bottega Veneta (ボッテガ・ヴェネタ)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="brand-section">
-                        <div class="brand-category">ラグジュアリーブランド (個性/華やか)</div>
-                        <div class="brand-grid">
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Gucci">
-                                <span class="brand-logo">
-                                    <img src="images/brand-gucci.jpg" alt="Gucci" onerror="this.style.display='none'">
-                                    <span class="brand-initial">G</span>
-                                </span>
-                                Gucci (グッチ)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Balenciaga">
-                                <span class="brand-logo">
-                                    <img src="images/brand-balenciaga.jpg" alt="Balenciaga" onerror="this.style.display='none'">
-                                    <span class="brand-initial">B</span>
-                                </span>
-                                Balenciaga (バレンシアガ)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Versace">
-                                <span class="brand-logo">
-                                    <img src="images/brand-versace.jpg" alt="Versace" onerror="this.style.display='none'">
-                                    <span class="brand-initial">V</span>
-                                </span>
-                                Versace (ヴェルサーチェ)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="brand-section">
-                        <div class="brand-category">ラグジュアリーブランド (個性/アバンギャルド)</div>
-                        <div class="brand-grid">
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Comme des Garcons">
-                                <span class="brand-logo">
-                                    <img src="images/brand-cdg.jpg" alt="Comme des Garcons" onerror="this.style.display='none'">
-                                    <span class="brand-initial">CDG</span>
-                                </span>
-                                Comme des Garçons (コム デ ギャルソン)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Yohji Yamamoto">
-                                <span class="brand-logo">
-                                    <img src="images/brand-yohji.jpg" alt="Yohji Yamamoto" onerror="this.style.display='none'">
-                                    <span class="brand-initial">YY</span>
-                                </span>
-                                Yohji Yamamoto (ヨウジヤマモト)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Maison Margiela">
-                                <span class="brand-logo">
-                                    <img src="images/brand-margiela.jpg" alt="Maison Margiela" onerror="this.style.display='none'">
-                                    <span class="brand-initial">MM</span>
-                                </span>
-                                Maison Margiela (メゾン マルジェラ)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Rick Owens">
-                                <span class="brand-logo">
-                                    <img src="images/brand-rickowens.jpg" alt="Rick Owens" onerror="this.style.display='none'">
-                                    <span class="brand-initial">RO</span>
-                                </span>
-                                Rick Owens (リック・オウエンス)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="brand-section">
-                        <div class="brand-category">ラグジュアリーブランド（スポーツ & カジュアル ラグジュアリー）</div>
-                        <div class="brand-grid">
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Moncler">
-                                <span class="brand-logo">
-                                    <img src="images/brand-moncler.jpg" alt="Moncler" onerror="this.style.display='none'">
-                                    <span class="brand-initial">M</span>
-                                </span>
-                                Moncler (モンクレール)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Canada Goose">
-                                <span class="brand-logo">
-                                    <img src="images/brand-canadagoose.jpg" alt="Canada Goose" onerror="this.style.display='none'">
-                                    <span class="brand-initial">CG</span>
-                                </span>
-                                Canada Goose (カナダグース)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Loro Piana">
-                                <span class="brand-logo">
-                                    <img src="images/brand-loropiana.jpg" alt="Loro Piana" onerror="this.style.display='none'">
-                                    <span class="brand-initial">LP</span>
-                                </span>
-                                Loro Piana (ロロ・ピアーナ)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Brunello Cucinelli">
-                                <span class="brand-logo">
-                                    <img src="images/brand-brunello.jpg" alt="Brunello Cucinelli" onerror="this.style.display='none'">
-                                    <span class="brand-initial">BC</span>
-                                </span>
-                                Brunello Cucinelli (ブルネロ クチネリ)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="brand-section">
-                        <div class="brand-category">ラグジュアリーブランド（ストリート・ハイプ）</div>
-                        <div class="brand-grid">
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Off-White">
-                                <span class="brand-logo">
-                                    <img src="images/brand-offwhite.jpg" alt="Off-White" onerror="this.style.display='none'">
-                                    <span class="brand-initial">OW</span>
-                                </span>
-                                Off-White™ (オフ-ホワイト)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="supreme">
-                                <span class="brand-logo">
-                                    <img src="images/brand-supreme.jpg" alt="supreme" onerror="this.style.display='none'">
-                                    <span class="brand-initial">S</span>
-                                </span>
-                                supreme（シュプリーム）
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Palm Angels">
-                                <span class="brand-logo">
-                                    <img src="images/brand-palmangels.jpg" alt="Palm Angels" onerror="this.style.display='none'">
-                                    <span class="brand-initial">PA</span>
-                                </span>
-                                Palm Angels (パーム・エンジェルス)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="AMIRI">
-                                <span class="brand-logo">
-                                    <img src="images/brand-amiri.jpg" alt="AMIRI" onerror="this.style.display='none'">
-                                    <span class="brand-initial">A</span>
-                                </span>
-                                AMIRI (アミリ)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="brand-section">
-                        <div class="brand-category">ミドルブランド（セレクトショップ系）</div>
-                        <div class="brand-grid">
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="UNITED ARROWS">
-                                <span class="brand-logo">
-                                    <img src="images/brand-unitedarrows.jpg" alt="UNITED ARROWS" onerror="this.style.display='none'">
-                                    <span class="brand-initial">UA</span>
-                                </span>
-                                UNITED ARROWS (ユナイテッドアローズ)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="BEAMS">
-                                <span class="brand-logo">
-                                    <img src="images/brand-beams.jpg" alt="BEAMS" onerror="this.style.display='none'">
-                                    <span class="brand-initial">B</span>
-                                </span>
-                                BEAMS (ビームス)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="SHIPS">
-                                <span class="brand-logo">
-                                    <img src="images/brand-ships.jpg" alt="SHIPS" onerror="this.style.display='none'">
-                                    <span class="brand-initial">S</span>
-                                </span>
-                                SHIPS (シップス)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="TOMORROWLAND">
-                                <span class="brand-logo">
-                                    <img src="images/brand-tomorrowland.jpg" alt="TOMORROWLAND" onerror="this.style.display='none'">
-                                    <span class="brand-initial">TL</span>
-                                </span>
-                                TOMORROWLAND (トゥモローランド)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="nano・universe">
-                                <span class="brand-logo">
-                                    <img src="images/brand-nanouniverse.jpg" alt="nano・universe" onerror="this.style.display='none'">
-                                    <span class="brand-initial">NU</span>
-                                </span>
-                                nano・universe (ナノ・ユニバース)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="STUDIOUS">
-                                <span class="brand-logo">
-                                    <img src="images/brand-studious.jpg" alt="STUDIOUS" onerror="this.style.display='none'">
-                                    <span class="brand-initial">ST</span>
-                                </span>
-                                STUDIOUS (ステュディオス)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="brand-section">
-                        <div class="brand-category">ミドルブランド（フレンチ・ブリティッシュカジュアル系）</div>
-                        <div class="brand-grid">
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="agnes b.">
-                                <span class="brand-logo">
-                                    <img src="images/brand-agnesb.jpg" alt="agnes b." onerror="this.style.display='none'">
-                                    <span class="brand-initial">ab</span>
-                                </span>
-                                agnes b. (アニエスベー)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="LACOSTE">
-                                <span class="brand-logo">
-                                    <img src="images/brand-lacoste.jpg" alt="LACOSTE" onerror="this.style.display='none'">
-                                    <span class="brand-initial">L</span>
-                                </span>
-                                LACOSTE (ラコステ)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="FRED PERRY">
-                                <span class="brand-logo">
-                                    <img src="images/brand-fredperry.jpg" alt="FRED PERRY" onerror="this.style.display='none'">
-                                    <span class="brand-initial">FP</span>
-                                </span>
-                                FRED PERRY (フレッドペリー)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="brand-section">
-                        <div class="brand-category">アウトドア・スポーツファッション</div>
-                        <div class="brand-grid">
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="THE NORTH FACE">
-                                <span class="brand-logo">
-                                    <img src="images/brand-northface.jpg" alt="THE NORTH FACE" onerror="this.style.display='none'">
-                                    <span class="brand-initial">TNF</span>
-                                </span>
-                                THE NORTH FACE (ザ・ノース・フェイス)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="patagonia">
-                                <span class="brand-logo">
-                                    <img src="images/brand-patagonia.jpg" alt="patagonia" onerror="this.style.display='none'">
-                                    <span class="brand-initial">P</span>
-                                </span>
-                                patagonia (パタゴニア)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="ARC'TERYX">
-                                <span class="brand-logo">
-                                    <img src="images/brand-arcteryx.jpg" alt="ARC'TERYX" onerror="this.style.display='none'">
-                                    <span class="brand-initial">A</span>
-                                </span>
-                                ARC'TERYX (アークテリクス)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Snow Peak">
-                                <span class="brand-logo">
-                                    <img src="images/brand-snowpeak.jpg" alt="Snow Peak" onerror="this.style.display='none'">
-                                    <span class="brand-initial">SP</span>
-                                </span>
-                                Snow Peak (スノーピーク)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="adidas">
-                                <span class="brand-logo">
-                                    <img src="images/brand-adidas.jpg" alt="adidas" onerror="this.style.display='none'">
-                                    <span class="brand-initial">A</span>
-                                </span>
-                                adidas (アディダス)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="Nike">
-                                <span class="brand-logo">
-                                    <img src="images/brand-nike.jpg" alt="Nike" onerror="this.style.display='none'">
-                                    <span class="brand-initial">N</span>
-                                </span>
-                                Nike (ナイキ)
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="PUMA">
-                                <span class="brand-logo">
-                                    <img src="images/brand-puma.jpg" alt="PUMA" onerror="this.style.display='none'">
-                                    <span class="brand-initial">P</span>
-                                </span>
-                                PUMA (プーマ)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="brand-section">
-                        <div class="brand-category">アフォーダブルブランド・ファストファッション</div>
-                        <div class="brand-grid">
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="ZARA">
-                                <span class="brand-logo">
-                                    <img src="images/brand-zara.jpg" alt="ZARA" onerror="this.style.display='none'">
-                                    <span class="brand-initial">Z</span>
-                                </span>
-                                ZARA
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="UNIQLO">
-                                <span class="brand-logo">
-                                    <img src="images/brand-uniqlo.jpg" alt="UNIQLO" onerror="this.style.display='none'">
-                                    <span class="brand-initial">U</span>
-                                </span>
-                                UNIQLO
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="H&M">
-                                <span class="brand-logo">
-                                    <img src="images/brand-hm.jpg" alt="H&M" onerror="this.style.display='none'">
-                                    <span class="brand-initial">H&M</span>
-                                </span>
-                                H&M
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="GU">
-                                <span class="brand-logo">
-                                    <img src="images/brand-gu.jpg" alt="GU" onerror="this.style.display='none'">
-                                    <span class="brand-initial">GU</span>
-                                </span>
-                                GU
-                            </label>
-                            <label class="brand-tag checkbox-option">
-                                <input type="checkbox" name="favoriteBrands" value="GAP">
-                                <span class="brand-logo">
-                                    <img src="images/brand-gap.jpg" alt="GAP" onerror="this.style.display='none'">
-                                    <span class="brand-initial">GAP</span>
-                                </span>
-                                GAP
-                            </label>
-                        </div>
-                    </div>
 
                 <!-- ブランドに関する追加コメント -->
                 <div class="form-group">
@@ -2613,12 +2303,48 @@
                     <label>よく着用するアイテム <span class="hint">該当するもの全てご選択し、予算感もお選びください</span></label>
                     <div class="clothing-items-enhanced-grid">
 
-                        <!-- Tシャツ -->
+                        <!-- シャツ -->
+                        <div class="clothing-item-enhanced">
+                            <label class="checkbox-option clothing-item-checkbox">
+                                <input type="checkbox" name="clothingItems" value="shirt" class="item-checkbox-main">
+                                <div class="item-content-enhanced">
+                                    <img src="images/shirt1.jpg" alt="シャツ" class="item-image">
+                                    <span class="item-name">シャツ</span>
+                                </div>
+                            </label>
+                            <div class="item-budget-selector" style="display: none;" data-item="shirt">
+                                <p class="budget-label">予算感を選択してください</p>
+                                <div class="budget-options-inline">
+                                    <label class="budget-option-inline">
+                                        <input type="checkbox" name="shirtBudget" value="under30k">
+                                        <span>〜3万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="checkbox" name="shirtBudget" value="30k-50k">
+                                        <span>3〜5万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="checkbox" name="shirtBudget" value="50k-80k">
+                                        <span>5〜10万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="checkbox" name="shirtBudget" value="over80k">
+                                        <span>10万円〜20万円</span>
+                                    </label>
+                                    <label class="budget-option-inline">
+                                        <input type="checkbox" name="shirtBudget" value="other">
+                                        <span>その他</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                                                <!-- Tシャツ -->
                         <div class="clothing-item-enhanced">
                             <label class="checkbox-option clothing-item-checkbox">
                                 <input type="checkbox" name="clothingItems" value="tshirt" class="item-checkbox-main">
                                 <div class="item-content-enhanced">
-                                    <!-- <img src="images/item-shirt2.jpg" alt="Tシャツ" class="item-image"> -->
+                                    <img src="images/item-tshirt.jpg" alt="Tシャツ" class="item-image">
                                     <span class="item-name">Tシャツ</span>
                                 </div>
                             </label>
@@ -2647,43 +2373,7 @@
                                     </label>
                                     <label class="budget-option-inline">
                                         <input type="checkbox" name="tshirtBudget" value="other">
-                                        <span>特に上限指定なし</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- シャツ -->
-                        <div class="clothing-item-enhanced">
-                            <label class="checkbox-option clothing-item-checkbox">
-                                <input type="checkbox" name="clothingItems" value="shirt" class="item-checkbox-main">
-                                <div class="item-content-enhanced">
-                                    <!-- <img src="images/item-shirt1.jpg" alt="シャツ" class="item-image"> -->
-                                    <span class="item-name">シャツ</span>
-                                </div>
-                            </label>
-                            <div class="item-budget-selector" style="display: none;" data-item="shirt">
-                                <p class="budget-label">予算感を選択してください</p>
-                                <div class="budget-options-inline">
-                                    <label class="budget-option-inline">
-                                        <input type="checkbox" name="shirtBudget" value="under30k">
-                                        <span>〜3万円</span>
-                                    </label>
-                                    <label class="budget-option-inline">
-                                        <input type="checkbox" name="shirtBudget" value="30k-50k">
-                                        <span>3〜5万円</span>
-                                    </label>
-                                    <label class="budget-option-inline">
-                                        <input type="checkbox" name="shirtBudget" value="50k-80k">
-                                        <span>5〜10万円</span>
-                                    </label>
-                                    <label class="budget-option-inline">
-                                        <input type="checkbox" name="shirtBudget" value="over80k">
-                                        <span>10万円〜20万円</span>
-                                    </label>
-                                    <label class="budget-option-inline">
-                                        <input type="checkbox" name="shirtBudget" value="other">
-                                        <span>特に上限指定なし</span>
+                                        <span>その他</span>
                                     </label>
                                 </div>
                             </div>
@@ -2694,7 +2384,7 @@
                             <label class="checkbox-option clothing-item-checkbox">
                                 <input type="checkbox" name="clothingItems" value="knit" class="item-checkbox-main">
                                 <div class="item-content-enhanced">
-                                    <!-- <img src="images/item-knit.jpg" alt="ニット" class="item-image"> -->
+                                    <img src="images/item-knit.jpg" alt="ニット" class="item-image">
                                     <span class="item-name">ニット</span>
                                 </div>
                             </label>
@@ -2722,8 +2412,8 @@
                                         <span>30万円〜</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="shirtBudget" value="other">
-                                        <span>特に上限指定なし</span>
+                                        <input type="checkbox" name="knitBudget" value="other">
+                                        <span>その他</span>
                                     </label>
                                 </div>
                             </div>
@@ -2734,7 +2424,7 @@
                             <label class="checkbox-option clothing-item-checkbox">
                                 <input type="checkbox" name="clothingItems" value="jacket" class="item-checkbox-main">
                                 <div class="item-content-enhanced">
-                                    <!-- <img src="images/item-jacket1.jpg" alt="ジャケット" class="item-image"> -->
+                                    <img src="images/item-jacket1.jpg" alt="ジャケット" class="item-image">
                                     <span class="item-name">ジャケット</span>
                                 </div>
                             </label>
@@ -2761,9 +2451,9 @@
                                         <input type="checkbox" name="jacketBudget" value="over350k">
                                         <span>50万円〜</span>
                                     </label>
-                                                                        <label class="budget-option-inline">
-                                        <input type="checkbox" name="pantsBudget" value="other">
-                                        <span>特に上限指定なし</span>
+                                    <label class="budget-option-inline">
+                                        <input type="checkbox" name="jacketBudget" value="other">
+                                        <span>その他</span>
                                     </label>
                                 </div>
                             </div>
@@ -2774,7 +2464,7 @@
                             <label class="checkbox-option clothing-item-checkbox">
                                 <input type="checkbox" name="clothingItems" value="pants" class="item-checkbox-main">
                                 <div class="item-content-enhanced">
-                                    <!-- <img src="images/item-pants1.jpg" alt="パンツ" class="item-image"> -->
+                                    <img src="images/item-pants1.jpg" alt="パンツ" class="item-image">
                                     <span class="item-name">パンツ</span>
                                 </div>
                             </label>
@@ -2802,8 +2492,8 @@
                                         <span>20万円〜</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="shoesBudget" value="other">
-                                        <span>特に上限指定なし</span>
+                                        <input type="checkbox" name="pantsBudget" value="other">
+                                        <span>その他</span>
                                     </label>
                                 </div>
                             </div>
@@ -2814,7 +2504,7 @@
                             <label class="checkbox-option clothing-item-checkbox">
                                 <input type="checkbox" name="clothingItems" value="shoes" class="item-checkbox-main">
                                 <div class="item-content-enhanced">
-                                    <!-- <img src="images/item-shoes1.jpg" alt="シューズ" class="item-image"> -->
+                                    <img src="images/item-shoes1.jpg" alt="シューズ" class="item-image">
                                     <span class="item-name">シューズ</span>
                                 </div>
                             </label>
@@ -2842,8 +2532,8 @@
                                         <span>30万円〜</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="shirtBudget" value="other">
-                                        <span>特に上限指定なし</span>
+                                        <input type="checkbox" name="shoesBudget" value="other">
+                                        <span>その他</span>
                                     </label>
                                 </div>
                             </div>
@@ -2854,7 +2544,7 @@
                             <label class="checkbox-option clothing-item-checkbox">
                                 <input type="checkbox" name="clothingItems" value="bag" class="item-checkbox-main">
                                 <div class="item-content-enhanced">
-                                    <!-- <img src="images/item-bag1.jpg" alt="バッグ" class="item-image"> -->
+                                    <img src="images/item-bag1.jpg" alt="バッグ" class="item-image">
                                     <span class="item-name">バッグ</span>
                                 </div>
                             </label>
@@ -2883,7 +2573,7 @@
                                     </label>
                                     <label class="budget-option-inline">
                                         <input type="checkbox" name="bagBudget" value="other">
-                                        <span>特に上限指定なし</span>
+                                        <span>その他</span>
                                     </label>
                                 </div>
                             </div>
@@ -2894,7 +2584,7 @@
                             <label class="checkbox-option clothing-item-checkbox">
                                 <input type="checkbox" name="clothingItems" value="watch" class="item-checkbox-main">
                                 <div class="item-content-enhanced">
-                                    <!-- <img src="images/item-watch.jpg" alt="時計" class="item-image"> -->
+                                    <img src="images/item-watch.jpg" alt="時計" class="item-image">
                                     <span class="item-name">時計</span>
                                 </div>
                             </label>
@@ -2929,9 +2619,9 @@
                                         <input type="checkbox" name="watchBudget" value="over500k">
                                         <span>1000万円〜5000万円</span>
                                     </label>
-                                                                        <label class="budget-option-inline">
-                                        <input type="checkbox" name="shirtBudget" value="other">
-                                        <span>特に上限指定なし</span>
+                                    <label class="budget-option-inline">
+                                        <input type="checkbox" name="watchBudget" value="other">
+                                        <span>その他</span>
                                     </label>
                                 </div>
                             </div>
@@ -2939,38 +2629,38 @@
                         <!-- アクセサリー -->
                         <div class="clothing-item-enhanced">
                             <label class="checkbox-option clothing-item-checkbox">
-                                <input type="checkbox" name="clothingItems" value="watch" class="item-checkbox-main">
+                                <input type="checkbox" name="clothingItems" value="accessories" class="item-checkbox-main">
                                 <div class="item-content-enhanced">
-                                    <!-- <img src="images/item-accessories.jpg" alt="アクセサリー" class="item-image"> -->
+                                    <img src="images/item-accessories.jpg" alt="アクセサリー" class="item-image">
                                     <span class="item-name">アクセサリー</span>
                                 </div>
                             </label>
-                            <div class="item-budget-selector" style="display: none;" data-item="watch">
+                            <div class="item-budget-selector" style="display: none;" data-item="accessories">
                                 <p class="budget-label">予算感を選択してください</p>
                                 <div class="budget-options-inline">
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="under100k">
+                                        <input type="checkbox" name="accessoriesBudget" value="under100k">
                                         <span>〜5万円</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="under100k">
+                                        <input type="checkbox" name="accessoriesBudget" value="under100k">
                                         <span>5万円〜10万円</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="100k-300k">
+                                        <input type="checkbox" name="accessoriesBudget" value="100k-300k">
                                         <span>10〜30万円</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="300k-500k">
+                                        <input type="checkbox" name="accessoriesBudget" value="300k-500k">
                                         <span>30〜50万円</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="over500k">
+                                        <input type="checkbox" name="accessoriesBudget" value="over500k">
                                         <span>50万円〜</span>
                                     </label>
-                                                                        <label class="budget-option-inline">
-                                        <input type="checkbox" name="shirtBudget" value="other">
-                                        <span>特に上限指定なし</span>
+                                    <label class="budget-option-inline">
+                                        <input type="checkbox" name="accessoriesBudget" value="other">
+                                        <span>その他</span>
                                     </label>
                                 </div>
                             </div>
@@ -2978,34 +2668,34 @@
                         <!-- 帽子 -->
                         <div class="clothing-item-enhanced">
                             <label class="checkbox-option clothing-item-checkbox">
-                                <input type="checkbox" name="clothingItems" value="watch" class="item-checkbox-main">
+                                <input type="checkbox" name="clothingItems" value="hat" class="item-checkbox-main">
                                 <div class="item-content-enhanced">
-                                    <!-- <img src="images/item-hat.jpg" alt="帽子" class="item-image"> -->
+                                    <img src="images/hat.jpg" alt="帽子" class="item-image">
                                     <span class="item-name">帽子</span>
                                 </div>
                             </label>
-                            <div class="item-budget-selector" style="display: none;" data-item="watch">
+                            <div class="item-budget-selector" style="display: none;" data-item="hat">
                                 <p class="budget-label">予算感を選択してください</p>
                                 <div class="budget-options-inline">
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="under100k">
+                                        <input type="checkbox" name="hatBudget" value="under100k">
                                         <span>〜3万円</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="under100k">
+                                        <input type="checkbox" name="hatBudget" value="under100k">
                                         <span>3万円〜5万円</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="100k-300k">
+                                        <input type="checkbox" name="hatBudget" value="100k-300k">
                                         <span>5〜10万円</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="100k-300k">
+                                        <input type="checkbox" name="hatBudget" value="100k-300k">
                                         <span>10〜30万円</span>
                                     </label>
-                                                                        <label class="budget-option-inline">
-                                        <input type="checkbox" name="shirtBudget" value="other">
-                                        <span>特に上限指定なし</span>
+                                    <label class="budget-option-inline">
+                                        <input type="checkbox" name="hatBudget" value="other">
+                                        <span>その他</span>
                                     </label>
                                 </div>
                             </div>
@@ -3013,34 +2703,34 @@
                         <!-- メガネ・サングラス -->
                         <div class="clothing-item-enhanced">
                             <label class="checkbox-option clothing-item-checkbox">
-                                <input type="checkbox" name="clothingItems" value="watch" class="item-checkbox-main">
+                                <input type="checkbox" name="clothingItems" value="glasses" class="item-checkbox-main">
                                 <div class="item-content-enhanced">
-                                    <!-- <img src="images/item-glasses.jpg" alt="メガネ・サングラス" class="item-image"> -->
+                                    <img src="images/item-glasses.jpg" alt="メガネ・サングラス" class="item-image">
                                     <span class="item-name">メガネ・サングラス</span>
                                 </div>
                             </label>
-                            <div class="item-budget-selector" style="display: none;" data-item="watch">
+                            <div class="item-budget-selector" style="display: none;" data-item="glasses">
                                 <p class="budget-label">予算感を選択してください</p>
                                 <div class="budget-options-inline">
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="under100k">
+                                        <input type="checkbox" name="glassesBudget" value="under100k">
                                         <span>〜3万円</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="under100k">
+                                        <input type="checkbox" name="glassesBudget" value="under100k">
                                         <span>3万円〜5万円</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="100k-300k">
+                                        <input type="checkbox" name="glassesBudget" value="100k-300k">
                                         <span>5〜10万円</span>
                                     </label>
                                     <label class="budget-option-inline">
-                                        <input type="checkbox" name="watchBudget" value="100k-300k">
+                                        <input type="checkbox" name="glassesBudget" value="100k-300k">
                                         <span>10〜30万円</span>
                                     </label>
-                                                                        <label class="budget-option-inline">
-                                        <input type="checkbox" name="shirtBudget" value="other">
-                                        <span>特に上限指定なし</span>
+                                    <label class="budget-option-inline">
+                                        <input type="checkbox" name="glassesBudget" value="other">
+                                        <span>その他</span>
                                     </label>
                                 </div>
                             </div>
@@ -3205,7 +2895,7 @@
                                 <label class="checkbox-option travel-destination-label">
                                     <input type="checkbox" name="overseasTravel" value="spain" id="overseas-spain">
                                     <div class="travel-card-content">
-                                        <img src="images/travel-overseas-western.jpg" alt="スペイン" class="travel-image">
+                                        <img src="images/travel-dest-spain.jpg" alt="スペイン" class="travel-image">
                                         <h5 class="travel-name">スペイン</h5>
                                     </div>
                                 </label>
@@ -3229,7 +2919,7 @@
                                 <label class="checkbox-option travel-destination-label">
                                     <input type="checkbox" name="overseasTravel" value="germany" id="overseas-germany">
                                     <div class="travel-card-content">
-                                        <img src="images/travel-overseas-western.jpg" alt="ドイツ" class="travel-image">
+                                        <img src="images/travel-dest-germany.jpg" alt="ドイツ" class="travel-image">
                                         <h5 class="travel-name">ドイツ</h5>
                                     </div>
                                 </label>
@@ -3253,7 +2943,7 @@
                                 <label class="checkbox-option travel-destination-label">
                                     <input type="checkbox" name="overseasTravel" value="france" id="overseas-france">
                                     <div class="travel-card-content">
-                                        <img src="images/travel-overseas-western.jpg" alt="フランス" class="travel-image">
+                                        <img src="images/travel-dest-france.jpg" alt="フランス" class="travel-image">
                                         <h5 class="travel-name">フランス</h5>
                                     </div>
                                 </label>
@@ -3277,7 +2967,7 @@
                                 <label class="checkbox-option travel-destination-label">
                                     <input type="checkbox" name="overseasTravel" value="italy" id="overseas-italy">
                                     <div class="travel-card-content">
-                                        <img src="images/travel-overseas-western.jpg" alt="イタリア" class="travel-image">
+                                        <img src="images/travel-dest-italy.jpg" alt="イタリア" class="travel-image">
                                         <h5 class="travel-name">イタリア</h5>
                                     </div>
                                 </label>
@@ -3301,7 +2991,7 @@
                                 <label class="checkbox-option travel-destination-label">
                                     <input type="checkbox" name="overseasTravel" value="dubai" id="overseas-dubai">
                                     <div class="travel-card-content">
-                                        <img src="images/travel-overseas-asia.jpg" alt="ドバイ" class="travel-image">
+                                        <img src="images/travel-dest-dubai.jpg" alt="ドバイ" class="travel-image">
                                         <h5 class="travel-name">ドバイ</h5>
                                     </div>
                                 </label>
@@ -3325,7 +3015,7 @@
                                 <label class="checkbox-option travel-destination-label">
                                     <input type="checkbox" name="overseasTravel" value="thailand" id="overseas-thailand">
                                     <div class="travel-card-content">
-                                        <img src="images/travel-overseas-asia.jpg" alt="タイ" class="travel-image">
+                                        <img src="images/travel-dest-thailand.jpg" alt="タイ" class="travel-image">
                                         <h5 class="travel-name">タイ</h5>
                                     </div>
                                 </label>
@@ -3349,7 +3039,7 @@
                                 <label class="checkbox-option travel-destination-label">
                                     <input type="checkbox" name="overseasTravel" value="korea" id="overseas-korea">
                                     <div class="travel-card-content">
-                                        <img src="images/travel-overseas-asia.jpg" alt="韓国" class="travel-image">
+                                        <img src="images/travel-dest-korea.jpg" alt="韓国" class="travel-image">
                                         <h5 class="travel-name">韓国</h5>
                                     </div>
                                 </label>
@@ -3373,7 +3063,7 @@
                                 <label class="checkbox-option travel-destination-label">
                                     <input type="checkbox" name="overseasTravel" value="malaysia" id="overseas-malaysia">
                                     <div class="travel-card-content">
-                                        <img src="images/travel-overseas-asia.jpg" alt="マレーシア" class="travel-image">
+                                        <img src="images/travel-dest-malaysia.jpg" alt="マレーシア" class="travel-image">
                                         <h5 class="travel-name">マレーシア</h5>
                                     </div>
                                 </label>
@@ -3397,7 +3087,7 @@
                                 <label class="checkbox-option travel-destination-label">
                                     <input type="checkbox" name="overseasTravel" value="other-asia" id="overseas-other-asia">
                                     <div class="travel-card-content">
-                                        <img src="images/travel-overseas-asia.jpg" alt="他アジア" class="travel-image">
+                                        <img src="images/travel-dest-other-asia.jpg" alt="他アジア" class="travel-image">
                                         <h5 class="travel-name">他アジア</h5>
                                     </div>
                                 </label>
@@ -3513,7 +3203,7 @@
                                 <label class="checkbox-option travel-destination-label">
                                     <input type="checkbox" name="overseasTravel" value="other" id="overseas-other">
                                     <div class="travel-card-content">
-                                        <img src="images/travel-overseas-other.jpg" alt="travel-overseas-other.jpg" class="travel-image">
+                                        <img src="images/travel-other.jpg" alt="travel-other.jpg" class="travel-image">
                                         <h5 class="travel-name">その他</h5>
                                     </div>
                                 </label>
@@ -3984,74 +3674,48 @@
                             <span>人には話さないが好奇心で自分が詳しくなりたい</span>
                         </label>
                         <label class="checkbox-option text-only">
-                            <input type="checkbox" name="fashionLiteracy" value="basic-knowledge" id="basic-knowledge-check">
+                            <input type="checkbox" name="fashionLiteracy" value="basic-knowledge">
                             <span>最低限は知っておきたい</span>
                         </label>
-                        <label class="checkbox-option text-only">
+                        <label class="checkbox-option text-only fashion-literacy-conditional">
                             <input type="checkbox" name="fashionLiteracy" value="brands">
                             <span>ブランドについて知りたい</span>
                         </label>
-                        <label class="checkbox-option text-only">
+                        <label class="checkbox-option text-only fashion-literacy-conditional">
                             <input type="checkbox" name="fashionLiteracy" value="items">
                             <span>アイテムについて知りたい</span>
                         </label>
-                        <label class="checkbox-option text-only">
+                        <label class="checkbox-option text-only fashion-literacy-conditional">
                             <input type="checkbox" name="fashionLiteracy" value="designers">
                             <span>デザイナーについて知りたい</span>
                         </label>
-                        <label class="checkbox-option text-only">
+                        <label class="checkbox-option text-only fashion-literacy-conditional">
                             <input type="checkbox" name="fashionLiteracy" value="trends">
                             <span>業界のトレンドについて知りたい</span>
                         </label>
-                        <label class="checkbox-option text-only">
+                        <label class="checkbox-option text-only fashion-literacy-conditional">
                             <input type="checkbox" name="fashionLiteracy" value="color-matching">
                             <span>自分に似合う色の見つけ方を知りたい</span>
                         </label>
-                        <label class="checkbox-option text-only">
+                        <label class="checkbox-option text-only fashion-literacy-conditional">
                             <input type="checkbox" name="fashionLiteracy" value="coordination">
                             <span>コーディネートの組み方を知りたい</span>
                         </label>
-                        <label class="checkbox-option text-only">
+                        <label class="checkbox-option text-only fashion-literacy-conditional">
                             <input type="checkbox" name="fashionLiteracy" value="materials">
                             <span>素材の特性について知りたい</span>
                         </label>
-                        <label class="checkbox-option text-only">
+                        <label class="checkbox-option text-only fashion-literacy-conditional">
                             <input type="checkbox" name="fashionLiteracy" value="history">
                             <span>ファッションの歴史について知りたい</span>
                         </label>
-                        <label class="checkbox-option text-only">
+                        <label class="checkbox-option text-only fashion-literacy-conditional">
                             <input type="checkbox" name="fashionLiteracy" value="other">
                             <span>その他</span>
                         </label>
                     </div>
                     <input type="text" name="fashionLiteracyOther" placeholder="具体的にご記入ください" class="form-input sub-input" style="display: none;">
 
-                    <!-- 最低限は知っておきたい選択時の詳細項目 -->
-                    <div class="basic-knowledge-details" id="basic-knowledge-details" style="display: none;">
-                        <label class="sub-label">どのような基本知識を身につけたいですか？</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-option text-only">
-                                <input type="checkbox" name="basicKnowledgeType" value="color-coordination">
-                                <span>色の組み合わせ方</span>
-                            </label>
-                            <label class="checkbox-option text-only">
-                                <input type="checkbox" name="basicKnowledgeType" value="size-selection">
-                                <span>正しいサイズの選び方</span>
-                            </label>
-                            <label class="checkbox-option text-only">
-                                <input type="checkbox" name="basicKnowledgeType" value="material-knowledge">
-                                <span>素材の特徴と手入れ方法</span>
-                            </label>
-                            <label class="checkbox-option text-only">
-                                <input type="checkbox" name="basicKnowledgeType" value="tpo-basics">
-                                <span>TPOに合わせた着こなし</span>
-                            </label>
-                            <label class="checkbox-option text-only">
-                                <input type="checkbox" name="basicKnowledgeType" value="trend-basics">
-                                <span>基本的なトレンドの把握</span>
-                            </label>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="form-group">

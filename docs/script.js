@@ -156,6 +156,7 @@ function updateStyleImages(gender) {
     } else {
         // Reset to male styles
         const maleStyles = {
+            'suit': { name: 'スーツ/トラッド', image: 'images/style-male-suit-1.jpg' },
             'mode': { name: 'モード', image: 'images/style-mode.jpg' },
             'classic': { name: 'クラシック', image: 'images/style-classic.jpg' },
             'casual-chic': { name: 'カジュアルシック', image: 'images/style-casual-chic.jpg' },
@@ -3323,8 +3324,8 @@ function initializeBrandSelection() {
                 // エスケープして安全にHTMLに埋め込む
                 const escapedBrand = brand.replace(/'/g, '\\\'').replace(/"/g, '&quot;');
                 const brandInfo = brandLogoMap[brand.toUpperCase()] || { initial: brand.charAt(0) };
-                
-                const logoHtml = brandInfo.img ? 
+
+                const logoHtml = brandInfo.img ?
                     `<span class="brand-logo">
                         <img src="images/${brandInfo.img}" alt="${brand}" onerror="this.style.display='none'">
                         <span class="brand-initial">${brandInfo.initial}</span>
@@ -3332,7 +3333,7 @@ function initializeBrandSelection() {
                     `<span class="brand-logo">
                         <span class="brand-initial">${brandInfo.initial}</span>
                     </span>`;
-                
+
                 return `
                     <div class="selected-brand-chip">
                         ${logoHtml}
@@ -3422,13 +3423,13 @@ function initializeBrandSelection() {
         // Get checkbox inside the brand tag
         const checkbox = tag.querySelector('input[type="checkbox"]');
         if (!checkbox) return;
-        
+
         // Use checkbox value as brand name (uppercase)
         const brandName = checkbox.value.toUpperCase();
-        
+
         // Add data-brand attribute for consistency
         tag.dataset.brand = brandName;
-        
+
         // Handle checkbox change
         checkbox.addEventListener('change', function() {
             if (this.checked) {
@@ -3439,7 +3440,7 @@ function initializeBrandSelection() {
                 tag.classList.remove('selected');
             }
         });
-        
+
         // Also handle label click (prevent double toggle)
         tag.addEventListener('click', function(e) {
             if (e.target === checkbox) return; // Let checkbox handle its own click

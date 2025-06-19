@@ -1327,7 +1327,6 @@ body.female-form .day-option-card input[type="radio"]:checked + label {
 
 .form-group label {
     display: block;
-    margin-bottom: 16px;
     font-weight: 400;
     color: var(--text-primary);
     font-size: 1.1rem;
@@ -2272,7 +2271,6 @@ body.female-form .street-group label {
 
 .checkbox-option span {
     display: block;
-    padding: 16px;
     font-size: 1rem;
     font-weight: 400;
     color: var(--text-secondary);
@@ -3383,7 +3381,7 @@ body.female-form .street-group label {
 
 .regulation-image img {
     width: 100%;
-    height: 180px;
+    height: 200px;
     object-fit: cover;
     background: var(--surface-dark);
     transition: transform 0.3s ease;
@@ -3394,7 +3392,7 @@ body.female-form .street-group label {
 }
 
 .regulation-content {
-    padding: 20px;
+    padding: 10px;
 }
 
 .regulation-title {
@@ -3410,7 +3408,6 @@ body.female-form .street-group label {
     font-size: 0.95rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 16px;
     display: block;
 }
 
@@ -3533,7 +3530,7 @@ body.female-form .street-group label {
 /* Enhanced Clothing Items Grid */
 .clothing-items-enhanced-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 20px 0;
 }
@@ -3589,7 +3586,6 @@ body.female-form .street-group label {
 .item-content-enhanced {
     display: flex;
     align-items: center;
-    gap: 16px;
 }
 
 .item-image-placeholder {
@@ -3626,6 +3622,8 @@ body.female-form .street-group label {
     color: var(--text-secondary);
     font-weight: 400;
     transition: all 0.15s ease;
+    display: block;
+    text-align: left;
 }
 
 .item-checkbox-main {
@@ -3673,6 +3671,33 @@ body.female-form .street-group label {
 .female-form .clothing-item-enhanced:has(.item-checkbox-main:checked) .clothing-item-checkbox::after {
     background: var(--accent-gold);
     border-color: var(--accent-gold);
+}
+
+/* Responsive design for clothing items grid */
+@media (max-width: 768px) {
+    .clothing-items-enhanced-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .clothing-items-enhanced-grid {
+        gap: 16px;
+        padding: 16px 0;
+    }
+
+    .item-content-enhanced {
+        gap: 12px;
+    }
+
+    .item-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .item-name {
+        font-size: 1rem;
+    }
 }
 
 /* Budget Selector Inline */
@@ -3829,7 +3854,7 @@ body.female-form .street-group label {
 /* Style Preference Grid */
 .style-preference-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 16px;
 }
 
@@ -3847,7 +3872,6 @@ body.female-form .street-group label {
     background: var(--surface-elevated);
     border: 2px solid var(--border-light);
     border-radius: 12px;
-    padding: 16px;
     text-align: center;
     cursor: pointer;
     transition: all 0.15s ease;
@@ -3867,10 +3891,9 @@ body.female-form .street-group label {
 
 .style-preference-card img {
     width: 100%;
-    height: 120px;
+    height: 200px;
     object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 12px;
+    border-radius: 8px 8px 0 0;
 }
 
 .style-preference-card span {
@@ -3878,6 +3901,7 @@ body.female-form .street-group label {
     color: var(--text-secondary);
     display: block;
     font-size: 0.9rem;
+    margin-bottom: 15px;
 }
 
 .style-preference-card input:checked + label span {
@@ -4085,7 +4109,7 @@ body.female-form .street-group label {
 
 .avoid-item-label img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
     background: var(--surface-dark);
 }
@@ -4787,7 +4811,7 @@ body.female-form .street-group label {
 .weekend-card img,
 .weekday-card img {
     width: 100%;
-    height: 180px;
+    height: 200px;
     object-fit: cover;
     background: var(--surface-dark);
 }
@@ -4920,7 +4944,6 @@ body.female-form .street-group label {
     height: 260px;
     object-fit: cover;
     border-radius: 16px;
-    margin-bottom: 28px;
     background: var(--surface-dark);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
@@ -4929,7 +4952,6 @@ body.female-form .street-group label {
     font-size: 1.4rem;
     font-weight: 300;
     color: var(--text-primary);
-    margin-bottom: 28px;
     text-align: center;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -5216,7 +5238,7 @@ body.female-form .street-group label {
 
 .service-image {
     width: 100%;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
     background: var(--surface-dark);
     display: flex;
@@ -5870,7 +5892,7 @@ body.female-form .street-group label {
     gap: 12px;
     padding: 24px 20px;
     background: var(--surface-elevated);
-    border: 2px solid var(--border-light);
+    /* border: 2px solid var(--border-light); */
     border-radius: 16px;
     transition: all 0.15s ease;
     text-align: center;
@@ -5909,14 +5931,6 @@ body.female-form .street-group label {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
     margin-top: 24px;
-}
-
-.travel-destination-card {
-    background: var(--surface-elevated);
-    border: 2px solid var(--border-light);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: all 0.15s ease;
 }
 
 .travel-destination-card:hover {
@@ -5969,12 +5983,11 @@ body.female-form .street-group label {
 
 .travel-destination-card:has(input:checked) {
     border-color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.02);
+    /* background: rgba(255, 255, 255, 0.02); */
 }
 
 .clothing-specifications {
     padding: 20px;
-    background: rgba(0, 0, 0, 0.3);
     border-top: 1px solid var(--border-light);
     animation: slideDown 0.3s ease-out;
 }

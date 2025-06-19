@@ -1,0 +1,52 @@
+/* Simple fix for clothing items checkbox display */
+
+/* Override all checkbox styles in clothing items section */
+.clothing-items-enhanced-grid .checkbox-option {
+    all: unset !important;
+    display: block !important;
+    cursor: pointer !important;
+}
+
+/* Completely hide the checkbox input */
+.clothing-items-enhanced-grid input[type="checkbox"] {
+    display: none !important;
+}
+
+/* Remove any pseudo elements that might create checkboxes */
+.clothing-items-enhanced-grid .checkbox-option::before,
+.clothing-items-enhanced-grid .checkbox-option::after,
+.clothing-items-enhanced-grid .clothing-item-checkbox::before,
+.clothing-items-enhanced-grid .clothing-item-checkbox::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Ensure the item is styled properly */
+.clothing-item-enhanced {
+    position: relative;
+}
+
+/* Visual feedback for selected state */
+.clothing-item-enhanced:has(input:checked) {
+    border-color: var(--accent-gold) !important;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2) !important;
+}
+
+/* Add a check icon for selected state */
+.clothing-item-enhanced:has(input:checked)::after {
+    content: '✓';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    background: var(--accent-gold);
+    color: var(--background-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 10;
+}

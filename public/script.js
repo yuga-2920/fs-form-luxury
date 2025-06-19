@@ -82,6 +82,9 @@ function updateFormContent(gender) {
 
         // Update avoid items for female
         updateAvoidItems('female');
+        
+        // Update clothing items for female
+        updateClothingItems('female');
 
     } else if (gender === 'male') {
         // Reset to default male content
@@ -110,86 +113,96 @@ function updateFormContent(gender) {
 
         // Update avoid items for male
         updateAvoidItems('male');
+        
+        // Update clothing items for male
+        updateClothingItems('male');
+    }
+
+    // Trigger style pattern updates if integrated script is loaded
+    if (typeof window.updateGenderStylePatterns === 'function') {
+        window.updateGenderStylePatterns();
     }
 }
 
 // Function to update style preference images based on gender
 function updateStyleImages(gender) {
-    if (gender === 'female' && typeof femaleFormData !== 'undefined' && femaleFormData.attractiveStyles) {
-        // Map existing male styles to female styles
-        const styleMapping = {
-            'mode': 'feminine',
-            'classic': 'elegant',
-            'casual-chic': 'casual-chic',
-            'street': 'modern',
-            'conservative': 'classic',
-            'minimal': 'natural',
-            'relax': 'sophisticated',
-            'american-casual': 'trendy',
-            'elegant': 'artistic'
-        };
-
-        document.querySelectorAll('.style-preference-card').forEach(card => {
-            const input = card.querySelector('input[type="checkbox"]');
-            const img = card.querySelector('img');
-            const label = card.querySelector('label');
-
-            if (input && img) {
-                const currentValue = input.value;
-                const femaleStyle = styleMapping[currentValue];
-
-                if (femaleStyle && femaleFormData.attractiveStyles[femaleStyle]) {
-                    const femaleData = femaleFormData.attractiveStyles[femaleStyle];
-                    // Update image if it exists
-                    if (femaleData.image && checkImageExists(femaleData.image)) {
-                        img.src = femaleData.image;
-                        img.alt = femaleData.name;
-                    }
-                    // Update the text inside the label
-                    const textNode = Array.from(label.childNodes).find(node => node.nodeType === 3);
-                    if (textNode) {
-                        textNode.textContent = femaleData.name;
-                    }
-                }
-            }
-        });
-    } else {
-        // Reset to male styles
-        const maleStyles = {
-            'mode': { name: 'モード', image: 'images/style-mode.jpg' },
-            'classic': { name: 'クラシック', image: 'images/style-classic.jpg' },
-            'casual-chic': { name: 'カジュアルシック', image: 'images/style-casual-chic.jpg' },
-            'street': { name: 'ストリート', image: 'images/style-street.jpg' },
-            'conservative': { name: 'コンサバティブ', image: 'images/style-conservative.jpg' },
-            'minimal': { name: 'ミニマム/シンプル', image: 'images/style-minimal.jpg' },
-            'relax': { name: 'リラックス', image: 'images/style-relax.jpg' },
-            'american-casual': { name: 'アメリカンカジュアル', image: 'images/style-american-casual.jpg' },
-            'elegant': { name: 'エレガント', image: 'images/style-elegant.jpg' }
-        };
-
-        document.querySelectorAll('.style-preference-card').forEach(card => {
-            const input = card.querySelector('input[type="checkbox"]');
-            const img = card.querySelector('img');
-            const label = card.querySelector('label');
-
-            if (input && img && maleStyles[input.value]) {
-                const maleData = maleStyles[input.value];
-                img.src = maleData.image;
-                img.alt = maleData.name;
-                // Update the text inside the label
-                const textNode = Array.from(label.childNodes).find(node => node.nodeType === 3);
-                if (textNode) {
-                    textNode.textContent = maleData.name;
-                }
-            }
-        });
+    // Check if imageMapping is available
+    if (typeof imageMapping === 'undefined' || !imageMapping.attractiveStyles) {
+        console.warn('imageMapping not found');
+        return;
     }
+    
+    const genderStyles = imageMapping.attractiveStyles[gender] || imageMapping.attractiveStyles.male;
+    
+    document.querySelectorAll('.style-preference-card').forEach(card => {
+        const input = card.querySelector('input[type="checkbox"]');
+        const img = card.querySelector('img');
+        const span = card.querySelector('span');
+        
+        if (input && img && genderStyles[input.value]) {
+            const styleData = genderStyles[input.value];
+            img.src = styleData.image;
+            img.alt = styleData.name;
+            
+            if (span) {
+                span.textContent = styleData.name;
+            }
+        }
+    });
 }
 
 // Function to update avoid items based on gender
 function updateAvoidItems(gender) {
-    // This would update the avoid items section with gender-specific items
-    // For now, we'll keep the existing items but this can be expanded
+    // Check if imageMapping is available
+    if (typeof imageMapping === 'undefined' || !imageMapping.avoidItems) {
+        console.warn('imageMapping not found');
+        return;
+    }
+    
+    const genderAvoidItems = imageMapping.avoidItems[gender] || imageMapping.avoidItems.male;
+    
+    document.querySelectorAll('.avoid-item').forEach(item => {
+        const input = item.querySelector('input[type="checkbox"]');
+        const img = item.querySelector('img');
+        const span = item.querySelector('span');
+        
+        if (input && img && genderAvoidItems[input.value]) {
+            const itemData = genderAvoidItems[input.value];
+            img.src = itemData.image;
+            img.alt = itemData.name;
+            
+            if (span) {
+                span.textContent = itemData.name;
+            }
+        }
+    });
+}
+
+// Function to update clothing items based on gender
+function updateClothingItems(gender) {
+    // Check if imageMapping is available
+    if (typeof imageMapping === 'undefined' || !imageMapping.clothingItems) {
+        console.warn('imageMapping not found');
+        return;
+    }
+    
+    const genderClothingItems = imageMapping.clothingItems[gender] || imageMapping.clothingItems.male;
+    
+    document.querySelectorAll('.clothing-item-box').forEach(box => {
+        const input = box.querySelector('input[type="checkbox"]');
+        const img = box.querySelector('img');
+        const nameDiv = box.querySelector('.clothing-item-name');
+        
+        if (input && img && genderClothingItems[input.value]) {
+            const itemData = genderClothingItems[input.value];
+            img.src = itemData.image;
+            img.alt = itemData.name;
+            
+            if (nameDiv) {
+                nameDiv.textContent = itemData.name;
+            }
+        }
+    });
 }
 
 // Helper function to check if image exists
@@ -445,6 +458,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (checkedRadio) {
         switchGender(checkedRadio.value);
     }
+    
+    // Initialize images based on default gender (female)
+    setTimeout(() => {
+        updateStyleImages('female');
+        updateAvoidItems('female');
+        updateClothingItems('female');
+    }, 100);
 });
 
 // Gender-specific content mapping
@@ -567,6 +587,11 @@ function updateFormContent(gender) {
 
         // Update all images based on gender
         updateAllImages(gender);
+
+        // Update style patterns if function exists
+        if (typeof updateGenderStylePatterns === 'function') {
+            updateGenderStylePatterns();
+        }
 }
 
 // Function to update attractive styles based on gender
@@ -609,7 +634,8 @@ function updateAttractiveStyles(gender) {
         }
 
         // Re-initialize pattern selection after updating styles
-        initializePatternSelection();
+        // Disabled - using style-patterns-gender-integrated.js
+        // initializePatternSelection_DISABLED();
 }
 
 // Function to update avoid items based on gender
@@ -723,7 +749,10 @@ document.addEventListener('DOMContentLoaded', function() {
 // Pattern Selection Functionality
 let patternSelectionInitialized = false;
 
-function initializePatternSelection() {
+function initializePatternSelection_DISABLED() {
+    // DISABLED - using style-patterns-gender-integrated.js instead
+    return;
+    
     // Prevent duplicate initialization
     if (patternSelectionInitialized) {
         console.log('Pattern selection already initialized, skipping...');
@@ -788,16 +817,6 @@ function initializePatternSelection() {
                 { id: 'minimal-urban', name: '3', image: 'images/minimal3.jpg' },
                 { id: 'minimal-tech', name: '4', image: 'images/minimal4.jpg' },
                 { id: 'minimal-essential', name: '5', image: 'images/minimal5.jpg' }
-            ]
-        },
-        elegant: {
-            name: 'エレガント',
-            patterns: [
-                { id: 'elegant-modern', name: 'モダンエレガント', image: 'images/pattern-elegant-modern.jpg' },
-                { id: 'elegant-classic', name: 'クラシックエレガント', image: 'images/pattern-elegant-classic.jpg' },
-                { id: 'elegant-feminine', name: 'フェミニンエレガント', image: 'images/pattern-elegant-feminine.jpg' },
-                { id: 'elegant-minimal', name: 'ミニマルエレガント', image: 'images/pattern-elegant-minimal.jpg' },
-                { id: 'elegant-luxe', name: 'ラグジュアリーエレガント', image: 'images/pattern-elegant-luxe.jpg' }
             ]
         },
         'casual-chic': {
@@ -1553,7 +1572,9 @@ function initializeWeekdayCardOptions() {
 
 // Form initialization
 // Image mapping for male/female versions - moved to global scope
-const imageMapping = {
+// Only declare if not already declared by image-mapping-config.js
+if (typeof imageMapping === 'undefined') {
+    window.imageMapping = {
     // Lifestyle images
     'lifestyle-office-external.jpg': {
         male: 'lifestyle-office-external.jpg',
@@ -1637,35 +1658,35 @@ const imageMapping = {
     },
     'scene-business-dining.jpg': {
         male: 'scene-business-dining.jpg',
-        female: 'scene-business-dining-female.jpg'
+        female: 'scene-business-dining.jpg'
     },
     'scene-site-visit.jpg': {
         male: 'scene-site-visit.jpg',
-        female: 'scene-site-visit-female.jpg'
+        female: 'scene-site-visit.jpg'
     },
     'scene-casual-dining.jpg': {
         male: 'scene-casual-dining.jpg',
-        female: 'scene-casual-dining-female.jpg'
+        female: 'scene-casual-dining.jpg'
     },
     'scene-party.jpg': {
         male: 'scene-party.jpg',
-        female: 'scene-party-female.jpg'
+        female: 'scene-party.jpg'
     },
     'scene-shopping.jpg': {
         male: 'scene-shopping.jpg',
-        female: 'scene-shopping-female.jpg'
+        female: 'scene-shopping.jpg'
     },
     'scene-fitness.jpg': {
         male: 'scene-fitness.jpg',
-        female: 'scene-fitness-female.jpg'
+        female: 'scene-fitness.jpg'
     },
     'scene-golf.jpg': {
         male: 'scene-golf.jpg',
-        female: 'scene-golf-female.jpg'
+        female: 'scene-golf.jpg'
     },
     'scene-travel.jpg': {
         male: 'scene-travel.jpg',
-        female: 'scene-travel-female.jpg'
+        female: 'scene-travel.jpg'
     },
     'scene-culture.jpg': {
         male: 'scene-culture.jpg',
@@ -1785,7 +1806,7 @@ const imageMapping = {
     },
     'avoid-oversized.jpg': {
         male: 'avoid-oversized.jpg',
-        female: 'avoid-oversized-female.jpg'
+        female: 'avoid-oversized.jpg'
     },
     'avoid-logo.jpg': {
         male: 'avoid-logo.jpg',
@@ -1795,8 +1816,8 @@ const imageMapping = {
         male: 'avoid-bright-color.jpg',
         female: 'avoid-bright-color-female.jpg'
     },
-    'avoid-synthetic.jpg': {
-        male: 'avoid-synthetic.jpg',
+    'avoid-syntheticjlk.jpg': {
+        male: 'avoid-syntheticjlk.jpg',
         female: 'avoid-synthetic-female.jpg'
     },
     'avoid-bold-print.jpg': {
@@ -1822,6 +1843,7 @@ const imageMapping = {
         female: 'investment-bag-female.jpg'
     }
 };
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize photo upload functionality
@@ -1838,12 +1860,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize pattern selection functionality
     console.log('Initializing pattern selection...');
-    initializePatternSelection();
+    // Disabled - using style-patterns-gender-integrated.js
+    // initializePatternSelection_DISABLED();
 
     // Force re-initialization after a short delay to ensure DOM is ready
     setTimeout(() => {
         console.log('Re-initializing pattern selection...');
-        initializePatternSelection();
+        // Disabled - using style-patterns-gender-integrated.js
+        // initializePatternSelection_DISABLED();
     }, 500);
 
     // Initialize weekday card sub-options
@@ -2026,6 +2050,24 @@ document.addEventListener('DOMContentLoaded', function() {
     if (phoneInput) {
         phoneInput.addEventListener('input', function() {
             formatPhoneNumber(this);
+        });
+    }
+
+    // Setup basic knowledge details toggle
+    const basicKnowledgeCheck = document.getElementById('basic-knowledge-check');
+    const basicKnowledgeDetails = document.getElementById('basic-knowledge-details');
+
+    if (basicKnowledgeCheck && basicKnowledgeDetails) {
+        basicKnowledgeCheck.addEventListener('change', function() {
+            if (this.checked) {
+                basicKnowledgeDetails.style.display = 'block';
+                // Smooth scroll to show the new section
+                setTimeout(() => {
+                    basicKnowledgeDetails.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            } else {
+                basicKnowledgeDetails.style.display = 'none';
+            }
         });
     }
 
@@ -2367,8 +2409,11 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // New function to show pattern selections for multiple styles
-    function showPatternSelections(selectedStyles) {
+    // DISABLED - using style-patterns-gender-integrated.js instead
+    function showPatternSelections_DISABLED(selectedStyles) {
+        return; // Function disabled
+        
+    function showPatternSelections_ORIGINAL(selectedStyles) {
         console.log('showPatternSelections called with:', selectedStyles);
         const patternSectionsContainer = document.getElementById('patternSelections');
         const patternSelectionsContainer = document.getElementById('patternSelectionsContainer');
@@ -2742,7 +2787,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 .map(cb => cb.value);
 
             // Show pattern selections for all selected styles
-            showPatternSelections(selectedStyles);
+            // Disabled - using style-patterns-gender-integrated.js instead
+            // showPatternSelections(selectedStyles);
             updateMultipleStyleEvaluations();
 
             // Handle "other" option
@@ -2913,7 +2959,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             }
-            });
         });
     }
 
@@ -3323,8 +3368,8 @@ function initializeBrandSelection() {
                 // エスケープして安全にHTMLに埋め込む
                 const escapedBrand = brand.replace(/'/g, '\\\'').replace(/"/g, '&quot;');
                 const brandInfo = brandLogoMap[brand.toUpperCase()] || { initial: brand.charAt(0) };
-                
-                const logoHtml = brandInfo.img ? 
+
+                const logoHtml = brandInfo.img ?
                     `<span class="brand-logo">
                         <img src="images/${brandInfo.img}" alt="${brand}" onerror="this.style.display='none'">
                         <span class="brand-initial">${brandInfo.initial}</span>
@@ -3332,7 +3377,7 @@ function initializeBrandSelection() {
                     `<span class="brand-logo">
                         <span class="brand-initial">${brandInfo.initial}</span>
                     </span>`;
-                
+
                 return `
                     <div class="selected-brand-chip">
                         ${logoHtml}
@@ -3422,13 +3467,13 @@ function initializeBrandSelection() {
         // Get checkbox inside the brand tag
         const checkbox = tag.querySelector('input[type="checkbox"]');
         if (!checkbox) return;
-        
+
         // Use checkbox value as brand name (uppercase)
         const brandName = checkbox.value.toUpperCase();
-        
+
         // Add data-brand attribute for consistency
         tag.dataset.brand = brandName;
-        
+
         // Handle checkbox change
         checkbox.addEventListener('change', function() {
             if (this.checked) {
@@ -3439,7 +3484,7 @@ function initializeBrandSelection() {
                 tag.classList.remove('selected');
             }
         });
-        
+
         // Also handle label click (prevent double toggle)
         tag.addEventListener('click', function(e) {
             if (e.target === checkbox) return; // Let checkbox handle its own click
@@ -3836,10 +3881,12 @@ function setupConditionalSections() {
 
     partnerServiceRadios.forEach(radio => {
         radio.addEventListener('change', function() {
-            if (this.value === 'yes') {
-                partnerFittingTime.style.display = 'block';
-            } else {
-                partnerFittingTime.style.display = 'none';
+            if (partnerFittingTime) {
+                if (this.value === 'yes') {
+                    partnerFittingTime.style.display = 'block';
+                } else {
+                    partnerFittingTime.style.display = 'none';
+                }
             }
         });
     });
@@ -3850,10 +3897,12 @@ function setupConditionalSections() {
 
     presentServiceRadios.forEach(radio => {
         radio.addEventListener('change', function() {
-            if (this.value === 'yes') {
-                presentFrequency.style.display = 'block';
-            } else {
-                presentFrequency.style.display = 'none';
+            if (presentFrequency) {
+                if (this.value === 'yes') {
+                    presentFrequency.style.display = 'block';
+                } else {
+                    presentFrequency.style.display = 'none';
+                }
             }
         });
     });
@@ -4036,7 +4085,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializePostalCode();
     initializeTravelDestinations();
     initializeFacePhotoUpload();
-    // initializePatternSelection(); // Commented out - using existing implementation
+    // initializePatternSelection_DISABLED(); // Commented out - using existing implementation
 });
 
 // Corporate Information Toggle

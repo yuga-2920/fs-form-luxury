@@ -105,7 +105,7 @@
 }
 
 .item-budget-card {
-    background: linear-gradient(135deg, 
+    background: linear-gradient(135deg,
         rgba(10, 10, 10, 0.9) 0%,
         rgba(20, 20, 20, 0.95) 100%);
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -115,7 +115,7 @@
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(10px);
-    box-shadow: 
+    box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
@@ -134,7 +134,7 @@
 
 .item-budget-card:hover {
     transform: translateY(-4px);
-    box-shadow: 
+    box-shadow:
         0 12px 40px rgba(255, 255, 255, 0.2),
         0 4px 16px rgba(0, 0, 0, 0.3);
 }
@@ -176,7 +176,7 @@
 }
 
 .budget-range-option {
-    background: linear-gradient(135deg, 
+    background: linear-gradient(135deg,
         rgba(255, 255, 255, 0.03) 0%,
         rgba(255, 255, 255, 0.06) 100%);
     border: 2px solid rgba(255, 255, 255, 0.15);
@@ -202,12 +202,12 @@
 }
 
 .budget-range-option:hover {
-    background: linear-gradient(135deg, 
+    background: linear-gradient(135deg,
         rgba(255, 255, 255, 0.08) 0%,
         rgba(184, 134, 11, 0.12) 100%);
     border-color: rgba(255, 255, 255, 0.4);
     transform: translateY(-2px);
-    box-shadow: 
+    box-shadow:
         0 6px 20px rgba(255, 255, 255, 0.15),
         0 2px 8px rgba(0, 0, 0, 0.2);
 }
@@ -217,11 +217,11 @@
 }
 
 .budget-range-option.selected {
-    background: linear-gradient(135deg, 
+    background: linear-gradient(135deg,
         rgba(255, 255, 255, 0.15) 0%,
         rgba(184, 134, 11, 0.2) 100%);
     border-color: var(--accent-primary);
-    box-shadow: 
+    box-shadow:
         0 4px 16px rgba(255, 255, 255, 0.25),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
@@ -269,7 +269,7 @@
 }
 
 .budget-card {
-    background: linear-gradient(135deg, 
+    background: linear-gradient(135deg,
         var(--bg-secondary) 0%,
         var(--bg-tertiary) 100%);
     border: 3px solid rgba(255, 255, 255, 0.2);
@@ -289,8 +289,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, 
-        rgba(255, 255, 255, 0.15) 0%, 
+    background: radial-gradient(circle at center,
+        rgba(255, 255, 255, 0.15) 0%,
         transparent 70%);
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -299,7 +299,7 @@
 .budget-card:hover {
     transform: translateY(-8px) scale(1.02);
     border-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 
+    box-shadow:
         0 20px 40px rgba(255, 255, 255, 0.2),
         0 8px 24px rgba(0, 0, 0, 0.3);
 }
@@ -310,11 +310,11 @@
 
 .budget-card.active {
     border-color: var(--accent-primary);
-    background: linear-gradient(135deg, 
+    background: linear-gradient(135deg,
         rgba(255, 255, 255, 0.1) 0%,
         rgba(184, 134, 11, 0.15) 100%);
     transform: translateY(-4px);
-    box-shadow: 
+    box-shadow:
         0 16px 32px rgba(255, 255, 255, 0.3),
         0 8px 16px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -371,7 +371,7 @@
 
 /* Custom Budget Input */
 .custom-budget-input {
-    background: linear-gradient(135deg, 
+    background: linear-gradient(135deg,
         rgba(10, 10, 10, 0.4) 0%,
         rgba(20, 20, 20, 0.6) 100%);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -382,7 +382,7 @@
 }
 
 #customBudgetInput {
-    background: linear-gradient(135deg, 
+    background: linear-gradient(135deg,
         rgba(255, 255, 255, 0.05) 0%,
         rgba(255, 255, 255, 0.08) 100%);
     border: 2px solid rgba(255, 255, 255, 0.3);
@@ -394,7 +394,7 @@
 
 #customBudgetInput:focus {
     border-color: var(--accent-primary);
-    box-shadow: 
+    box-shadow:
         0 0 0 4px rgba(255, 255, 255, 0.1),
         0 0 30px rgba(255, 255, 255, 0.3);
 }
@@ -412,33 +412,33 @@
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .budget-range-options {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
     }
-    
+
     .price-main {
         font-size: 0.95rem;
     }
-    
+
     .price-sub {
         font-size: 0.7rem;
     }
-    
+
     .budget-cards-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
     }
-    
+
     .budget-card {
         padding: 24px 16px;
     }
-    
+
     .budget-amount {
         font-size: 1.5rem;
     }
-    
+
     .budget-icon {
         font-size: 2.5rem;
     }
@@ -449,11 +449,11 @@
         grid-template-columns: 1fr;
         gap: 12px;
     }
-    
+
     .budget-range-options {
         font-size: 0.85rem;
     }
-    
+
     .budget-range-option {
         padding: 12px 8px;
     }
@@ -561,7 +561,6 @@
     height: 80px;
     object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 8px;
 }
 
 /* Hover and selected states for images */

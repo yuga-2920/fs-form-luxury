@@ -1,0 +1,71 @@
+/* Fashion Literacy Conditional Display Styles */
+
+/* Ensure conditional items are hidden initially */
+.fashion-literacy-conditional {
+    /* Remove !important to allow JavaScript to override */
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(-10px);
+}
+
+/* When shown via JavaScript */
+.fashion-literacy-conditional[style*="display: flex"] {
+    transform: translateY(0) !important;
+}
+
+/* Visual distinction for conditional items */
+.fashion-literacy-conditional {
+    position: relative;
+    margin-left: 20px !important;
+    border-left: 3px solid #ff9800 !important;
+    padding-left: 15px !important;
+    background-color: rgba(255, 152, 0, 0.05) !important;
+}
+
+/* Add a label for conditional section */
+.fashion-literacy-conditional:first-of-type::before {
+    content: "詳細項目";
+    position: absolute;
+    top: -25px;
+    left: -20px;
+    font-size: 12px;
+    color: #ff9800;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Hover effect for conditional items */
+.fashion-literacy-conditional:hover {
+    background-color: rgba(255, 152, 0, 0.1) !important;
+    border-left-color: #f57c00 !important;
+}
+
+/* Ensure proper spacing */
+.checkbox-group {
+    position: relative;
+}
+
+/* Add visual separator before conditional items */
+.fashion-literacy-conditional:first-of-type {
+    margin-top: 25px !important;
+    padding-top: 25px !important;
+    border-top: 1px dashed rgba(255, 152, 0, 0.3);
+}
+
+/* Animation for showing items */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fashion-literacy-conditional[style*="display: flex"] {
+    animation: fadeInSlide 0.3s ease forwards;
+}

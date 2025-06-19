@@ -19,7 +19,7 @@ const formDisplayData = {
                 corporate: '法人情報'
             }
         },
-        
+
         // Style Options (3-1. 魅力を感じるスタイル)
         attractiveStyles: [
             { id: 'classic', name: 'クラシック', image: 'images/style-classic.jpg' },
@@ -32,7 +32,7 @@ const formDisplayData = {
             { id: 'relax', name: 'リラックス', image: 'images/style-relax.jpg' },
             { id: 'street', name: 'ストリート', image: 'images/style-street.jpg' }
         ],
-        
+
         // Avoid Items (3-2. 避けたいアイテム)
         avoidItems: [
             { id: 'logo', name: '大きなロゴ', image: 'images/avoid-logo.jpg' },
@@ -48,7 +48,7 @@ const formDisplayData = {
             { id: 'boxy-silhouette', name: 'ボクシーなシルエット', image: 'images/avoid-boxy-silhouette.jpg' },
             { id: 'sporty-casual', name: 'スポーティカジュアル', image: 'images/avoid-sporty-casual.jpg' }
         ],
-        
+
         // Item GOOD & BAD Evaluation Items (Pattern Selection)
         styleItems: {
             classic: {
@@ -96,7 +96,7 @@ const formDisplayData = {
             }
             // Add more styles as needed...
         },
-        
+
         // Weekend Activities (2-3. 休日の過ごし方)
         weekendActivities: [
             { id: 'sports', name: 'スポーツ', image: 'images/weekend-sports.jpg' },
@@ -111,8 +111,8 @@ const formDisplayData = {
             { id: 'business', name: 'ビジネス関連', image: 'images/weekend-business.jpg' },
             { id: 'drive', name: 'ドライブ', image: 'images/weekend-drive.jpg' }
         ],
-        
-        // Scene Options (2-2. どんなシーンが多いか)
+
+        // Scene Options (2-2. どのようなシーンが多いか)
         businessScenes: [
             { id: 'internal-meeting', name: '社内会議', image: 'images/scene-internal-meeting.jpg' },
             { id: 'external-meeting', name: '社外会議・商談', image: 'images/scene-external-meeting.jpg' },
@@ -121,7 +121,7 @@ const formDisplayData = {
             { id: 'exhibition', name: '展示会・イベント', image: 'images/scene-exhibition.jpg' },
             { id: 'site-visit', name: '現場訪問・視察', image: 'images/scene-site-visit.jpg' }
         ],
-        
+
         casualScenes: [
             { id: 'shopping', name: 'ショッピング', image: 'images/scene-shopping.jpg' },
             { id: 'casual-dining', name: 'カジュアルな外食', image: 'images/scene-casual-dining.jpg' },
@@ -130,7 +130,7 @@ const formDisplayData = {
             { id: 'culture', name: '美術館・映画館', image: 'images/scene-culture.jpg' },
             { id: 'sports-watching', name: 'スポーツ観戦', image: 'images/scene-sports-watching.jpg' }
         ],
-        
+
         formalScenes: [
             { id: 'formal-party', name: 'フォーマルパーティー', image: 'images/scene-formal.jpg' },
             { id: 'ceremony', name: '冠婚葬祭', image: 'images/scene-ceremony.jpg' },
@@ -139,7 +139,7 @@ const formDisplayData = {
             { id: 'golf', name: 'ゴルフ', image: 'images/scene-golf.jpg' },
             { id: 'school-event', name: '学校行事', image: 'images/scene-school-event.jpg' }
         ],
-        
+
         // Dress Code Options (2-1-C. ドレスコード)
         dressCodes: [
             { id: 'suit-required', name: 'スーツ必須', image: 'images/dress-code-suit-required.jpg' },
@@ -149,7 +149,7 @@ const formDisplayData = {
             { id: 'no-restriction', name: '規定なし', image: 'images/dress-code-no-restriction.jpg' },
             { id: 'uniform', name: '制服・作業着', image: 'images/dress-code-uniform.jpg' }
         ],
-        
+
         // Favorite Brands (5-1. 気に入っているブランド)
         favoriteBrands: [
             { id: 'lv', name: 'Louis Vuitton', image: 'images/brand-lv.jpg' },
@@ -163,7 +163,7 @@ const formDisplayData = {
             { id: 'sl', name: 'Saint Laurent', image: 'images/brand-sl.jpg' },
             { id: 'balenciaga', name: 'Balenciaga', image: 'images/brand-balenciaga.jpg' }
         ],
-        
+
         // Investment Items (4-4. 投資アイテム)
         investmentItems: [
             { id: 'outer', name: 'アウター', image: 'images/investment-outer.jpg' },
@@ -171,7 +171,7 @@ const formDisplayData = {
             { id: 'bag', name: 'バッグ', image: 'images/investment-bag.jpg' },
             { id: 'bottoms', name: 'ボトムス', image: 'images/investment-bottoms.jpg' }
         ],
-        
+
         // Travel Destinations (9-2. よく行かれる旅行先)
         travelDestinations: {
             domestic: [
@@ -188,7 +188,7 @@ const formDisplayData = {
                 { id: 'other', name: 'その他', image: 'images/travel-overseas-other.jpg' }
             ]
         },
-        
+
         // Service Options (Section 7)
         serviceOptions: [
             { id: 'app', name: 'アプリ利用', image: 'images/service-app.jpg' },
@@ -198,7 +198,7 @@ const formDisplayData = {
             { id: 'expectations', name: 'サービスへの期待', image: 'images/service-expectations.jpg' }
         ]
     },
-    
+
     // Ladies Form Data
     ladies: {
         // Basic Information Text
@@ -218,7 +218,7 @@ const formDisplayData = {
                 corporate: '法人情報'
             }
         },
-        
+
         // Style Options (3-1. 魅力を感じるスタイル)
         attractiveStyles: [
             { id: 'feminine', name: 'フェミニン', image: 'images/style-feminine.jpg' },
@@ -227,11 +227,11 @@ const formDisplayData = {
             { id: 'modern', name: 'モダン', image: 'images/style-modern.jpg' },
             { id: 'classic', name: 'クラシック', image: 'images/style-classic.jpg' },
             { id: 'natural', name: 'ナチュラル', image: 'images/style-natural.jpg' },
-            { id: 'sophisticated', name: 'ソフィスティケート', image: 'images/style-sophisticated.jpg' },
+            { id: 'sophisticated', name: 'ソフィスティケート', image: 'images/style-sophisticathked.jpg' },
             { id: 'trendy', name: 'トレンディ', image: 'images/style-trendy.jpg' },
             { id: 'artistic', name: 'アーティスティック', image: 'images/style-artistic.jpg' }
         ],
-        
+
         // Avoid Items (3-2. 避けたいアイテム)
         avoidItems: [
             { id: 'mini-length', name: 'ミニ丈', image: 'images/avoid-mini-length.jpg' },
@@ -247,8 +247,8 @@ const formDisplayData = {
             { id: 'oversized', name: 'オーバーサイズ', image: 'images/avoid-oversized.jpg' },
             { id: 'sporty-casual', name: 'スポーティカジュアル', image: 'images/avoid-sporty-casual.jpg' }
         ],
-        
-        // Item GOOD & BAD Evaluation Items (Pattern Selection) 
+
+        // Item GOOD & BAD Evaluation Items (Pattern Selection)
         styleItems: {
             feminine: {
                 tops: [
@@ -295,7 +295,7 @@ const formDisplayData = {
             }
             // Add more styles as needed...
         },
-        
+
         // Weekend Activities (2-3. 休日の過ごし方)
         weekendActivities: [
             { id: 'shopping', name: 'ショッピング', image: 'images/weekend-shopping.jpg' },
@@ -310,7 +310,7 @@ const formDisplayData = {
             { id: 'business-dining', name: 'ビジネス会食', image: 'images/weekend-business-dining.jpg' },
             { id: 'executive', name: '経営者の集まり', image: 'images/weekend-executive.jpg' }
         ],
-        
+
         // All other sections same as men's with adjusted text/images where needed
         // Scene Options, Dress Codes, Brands, Investment Items, Travel, Services etc.
         // Copy from men's data and adjust as needed...
