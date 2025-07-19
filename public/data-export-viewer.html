@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フォームデータビューア</title>
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .primary {
+            background: #007bff;
+            color: white;
+        }
+        .secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .danger {
+            background: #dc3545;
+            color: white;
+        }
+        .success {
+            background: #28a745;
+            color: white;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        .stats {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>保存されたフォームデータ</h1>
+        
+        <div class="stats" id="stats">
+            <p>総送信数: <strong id="totalCount">0</strong></p>
+        </div>
+        
+        <div class="controls">
+            <button class="primary" onclick="exportToCSV()">CSVでエクスポート</button>
+            <button class="secondary" onclick="exportToJSON()">JSONでエクスポート</button>
+            <button class="success" onclick="copyToClipboard()">クリップボードにコピー</button>
+            <button class="danger" onclick="clearData()">データをクリア</button>
+        </div>
+        
+        <div id="dataContainer"></div>
+    </div>
+    
+    <script>
+        // データを読み込んで表示
+        function loadData() {
+            const submissions = JSON.parse(localStorage.getItem('formSubmissions') || '[]');
+            const container = document.getElementById('dataContainer');
+            const totalCount = document.getElementById('totalCount');
+            
+            totalCount.textContent = submissions.length;
+            
+            if (submissions.length === 0) {
+                container.innerHTML = '<div class="no-data">まだデータがありません</div>';
+                return;
+            }
+            
+            // 最新のデータを最初に表示
+            submissions.reverse();
+            
+            // テーブルを作成
+            let html = '<table><thead><tr><th>送信日時</th><th>データ</th></tr></thead><tbody>';
+            
+            submissions.forEach((submission, index) => {
+                const date = new Date(submission.timestamp).toLocaleString('ja-JP');
+                const dataStr = JSON.stringify(submission.data, null, 2)
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+                
+                html += `
+                    <tr>
+                        <td>${date}</td>
+                        <td><pre style="margin: 0; font-size: 12px;">${dataStr}</pre></td>
+                    </tr>
+                `;
+            });
+            
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+        
+        // CSVエクスポート
+        function exportToCSV() {
+            const submissions = JSON.parse(localStorage.getItem('formSubmissions') || '[]');
+            if (submissions.length === 0) {
+                alert('エクスポートするデータがありません');
+                return;
+            }
+            
+            // ヘッダーを作成
+            const allKeys = new Set();
+            submissions.forEach(sub => {
+                Object.keys(sub.data).forEach(key => allKeys.add(key));
+            });
+            
+            const headers = ['timestamp', ...Array.from(allKeys)];
+            let csv = headers.join(',') + '\n';
+            
+            // データ行を作成
+            submissions.forEach(sub => {
+                const row = [sub.timestamp];
+                allKeys.forEach(key => {
+                    const value = sub.data[key] || '';
+                    // カンマや改行を含む場合は引用符で囲む
+                    const escaped = value.toString().includes(',') || value.toString().includes('\n') 
+                        ? `"${value.toString().replace(/"/g, '""')}"` 
+                        : value;
+                    row.push(escaped);
+                });
+                csv += row.join(',') + '\n';
+            });
+            
+            // ダウンロード
+            const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `form-data-${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+        }
+        
+        // JSONエクスポート
+        function exportToJSON() {
+            const submissions = JSON.parse(localStorage.getItem('formSubmissions') || '[]');
+            if (submissions.length === 0) {
+                alert('エクスポートするデータがありません');
+                return;
+            }
+            
+            const blob = new Blob([JSON.stringify(submissions, null, 2)], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `form-data-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+        }
+        
+        // クリップボードにコピー
+        async function copyToClipboard() {
+            const submissions = JSON.parse(localStorage.getItem('formSubmissions') || '[]');
+            if (submissions.length === 0) {
+                alert('コピーするデータがありません');
+                return;
+            }
+            
+            const text = JSON.stringify(submissions, null, 2);
+            try {
+                await navigator.clipboard.writeText(text);
+                alert('クリップボードにコピーしました');
+            } catch (err) {
+                alert('コピーに失敗しました: ' + err);
+            }
+        }
+        
+        // データをクリア
+        function clearData() {
+            if (confirm('本当にすべてのデータを削除しますか？\nこの操作は取り消せません。')) {
+                localStorage.removeItem('formSubmissions');
+                loadData();
+                alert('データを削除しました');
+            }
+        }
+        
+        // ページ読み込み時にデータを表示
+        window.addEventListener('DOMContentLoaded', loadData);
+        
+        // 自動更新（5秒ごと）
+        setInterval(loadData, 5000);
+    </script>
+</body>
+</html>

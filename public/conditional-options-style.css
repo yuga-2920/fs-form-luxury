@@ -1,0 +1,53 @@
+/* Conditional Options Styling */
+
+.conditional-options {
+    margin-top: 20px;
+    padding: 20px;
+    background: var(--surface-elevated);
+    border-radius: 12px;
+    animation: slideDown 0.3s ease-out;
+}
+
+.conditional-options .sub-question {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.conditional-options .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.conditional-options .radio-option {
+    padding: 16px 20px;
+    background: var(--surface-dark);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.conditional-options .radio-option:hover {
+    border-color: var(--accent-gold);
+    background: var(--surface-elevated);
+}
+
+.conditional-options .radio-option:has(input:checked) {
+    border-color: var(--accent-gold);
+    color: #000;
+    font-weight: 500;
+}
+
+/* Animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,38 @@
+/* Pattern reordering styles */
+/* Group patterns with same pattern-item-name together */
+
+.pattern-row-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+/* Ensure patterns with same name are adjacent */
+.pattern-item[data-pattern-name] {
+    order: 0;
+}
+
+/* Assign order based on pattern names */
+.pattern-item[data-pattern-name="スーツ/トラッド"] { order: 1; }
+.pattern-item[data-pattern-name="モード"] { order: 2; }
+.pattern-item[data-pattern-name="エレガント/シック"] { order: 3; }
+.pattern-item[data-pattern-name="ミニマム/シンプル"] { order: 4; }
+.pattern-item[data-pattern-name="ストリート/スポーティー"] { order: 5; }
+.pattern-item[data-pattern-name="サーフ"] { order: 6; }
+.pattern-item[data-pattern-name="アメカジ"] { order: 7; }
+.pattern-item[data-pattern-name="アーバン/コンサバティブ"] { order: 8; }
+.pattern-item[data-pattern-name="フェミニン"] { order: 9; }
+.pattern-item[data-pattern-name="ナチュラル"] { order: 10; }
+
+/* Ensure proper spacing when items are reordered */
+.pattern-row-items {
+    align-content: flex-start;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pattern-row-items {
+        justify-content: center;
+    }
+}

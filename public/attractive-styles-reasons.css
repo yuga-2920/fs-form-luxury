@@ -1,0 +1,139 @@
+/* Attractive Styles Pattern Reason Selection */
+
+/* Enhanced styling for attractive styles context */
+.attractive-styles-section .pattern-selection-summary {
+    margin-top: 60px;
+    padding: 32px;
+    background: linear-gradient(135deg, var(--surface-elevated) 0%, var(--surface-dark) 100%);
+    border: 2px solid var(--accent-gold);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15);
+}
+
+.attractive-styles-section .summary-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--accent-gold);
+    text-align: center;
+    margin-bottom: 32px;
+    letter-spacing: 1px;
+}
+
+.attractive-styles-section .summary-subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.attractive-styles-section #goodPatternSummary .summary-subtitle {
+    color: #4caf50;
+}
+
+.attractive-styles-section #badPatternSummary .summary-subtitle {
+    color: #f44336;
+}
+
+/* Pattern reason items in attractive styles */
+.attractive-styles-section .pattern-reason-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 16px;
+    background: var(--surface-elevated);
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.attractive-styles-section .pattern-reason-item:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.attractive-styles-section .pattern-reason-image {
+    width: 120px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.attractive-styles-section .pattern-reason-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.attractive-styles-section .pattern-reason-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.attractive-styles-section .reason-checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.attractive-styles-section .reason-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--surface-dark);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.attractive-styles-section .reason-checkbox:hover {
+    background: var(--surface-elevated);
+    border-color: var(--accent-gold);
+}
+
+.attractive-styles-section .reason-checkbox input[type="checkbox"] {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent-gold);
+}
+
+.attractive-styles-section .reason-checkbox span {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Selected state */
+.attractive-styles-section .reason-checkbox:has(input:checked) {
+    style-male-mode-1.webp
+    border-color: var(--accent-gold);
+    color: #000;
+}
+
+/* Empty state message */
+.attractive-styles-section .empty-selection-message {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .attractive-styles-section .reason-checkbox-group {
+        grid-template-columns: 1fr;
+    }
+
+    .attractive-styles-section .pattern-reason-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .attractive-styles-section .pattern-reason-image {
+        margin: 0 auto;
+    }
+}

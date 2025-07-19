@@ -1,0 +1,271 @@
+/* Pattern Section CSS - Consolidated pattern-related styles */
+
+/* Pattern Section Header */
+.pattern-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: var(--surface-elevated);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pattern-section-header:hover {
+    background: var(--surface-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pattern-section-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+    flex: 1;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.pattern-header-image {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-left: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-icon {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-left: 16px;
+    transition: transform 0.3s ease;
+}
+
+.collapsed .toggle-icon,
+.toggle-pattern-section.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+}
+
+.pattern-section-description {
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* Pattern Grid 3x5 Layout */
+.pattern-grid-3x5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(200px, auto);
+    gap: 10px;
+    background: var(--surface-dark);
+    border-radius: 12px;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+}
+
+/* Ensure exactly 3 rows */
+.pattern-grid-3x5 .pattern-item:nth-child(n+16) {
+    display: none;
+}
+
+/* Pattern Item */
+.pattern-grid-3x5 .pattern-item {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.pattern-grid-3x5 .pattern-item:hover {
+    border-color: var(--border-dark);
+    background: var(--surface-dark);
+}
+
+/* Pattern Image Container */
+.pattern-grid-3x5 .pattern-image-container {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+    flex-shrink: 0;
+}
+
+.pattern-grid-3x5 .pattern-full-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--border-dark);
+}
+
+/* Pattern Name */
+.pattern-grid-3x5 .pattern-item-name {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    color: var(--text-primary);
+    opacity: 0.9;
+    flex-shrink: 0;
+    padding: 8px;
+}
+
+/* Pattern Evaluation Section */
+.pattern-grid-3x5 .evaluation-section {
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+.pattern-grid-3x5 .good-bad-selection {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 0 8px 8px;
+}
+
+.pattern-grid-3x5 .eval-option {
+    max-width: 36px;
+    min-width: 36px;
+    max-height: 36px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+}
+
+.pattern-grid-3x5 .eval-option:hover {
+    transform: scale(1.1);
+}
+
+.pattern-grid-3x5 .eval-option.good:hover {
+    border-color: #4caf50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.pattern-grid-3x5 .eval-option.bad:hover {
+    border-color: #f44336;
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.pattern-grid-3x5 .eval-option input[type="radio"] {
+    display: none;
+}
+
+.pattern-grid-3x5 .eval-option .btn-icon {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Selected states */
+.pattern-grid-3x5 .eval-option.good:has(input:checked) {
+    background: #4caf50;
+    border-color: #4caf50;
+}
+
+.pattern-grid-3x5 .eval-option.good:has(input:checked) .btn-icon {
+    color: #fff;
+}
+
+.pattern-grid-3x5 .eval-option.bad:has(input:checked) {
+    background: #f44336;
+    border-color: #f44336;
+}
+
+.pattern-grid-3x5 .eval-option.bad:has(input:checked) .btn-icon {
+    color: #fff;
+}
+
+/* Female Form Pattern Specific Styles */
+.female-form .pattern-section-header {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--accent-gold);
+}
+
+.female-form .pattern-section-header:hover {
+    background: rgba(212, 175, 55, 0.2);
+}
+
+.female-form .pattern-section-title {
+    color: #333;
+}
+
+.female-form .pattern-selections {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--accent-gold);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.female-form .pattern-grid-container {
+    background: rgba(255, 248, 220, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.female-form .pattern-grid-3x5 {
+    background: var(--surface-elevated);
+    border: 2px solid var(--accent-gold);
+}
+
+.female-form .pattern-grid-3x5 .pattern-item {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--accent-gold);
+}
+
+.female-form .pattern-grid-3x5 .pattern-item:hover {
+    border-color: var(--accent-gold);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+}
+
+.female-form .pattern-grid-3x5 .pattern-item-name {
+    color: #333;
+    font-weight: 500;
+}
+
+/* Responsive Pattern Grid */
+@media (max-width: 1200px) {
+    .pattern-grid-3x5 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .pattern-grid-3x5 .pattern-item:nth-child(n+13) {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .pattern-grid-3x5 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .pattern-grid-3x5 .pattern-item:nth-child(n+10) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .pattern-grid-3x5 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+}
+

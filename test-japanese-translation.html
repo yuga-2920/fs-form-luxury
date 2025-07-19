@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本語変換テスト</title>
+    <script src="public/google-sheets-integration.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            padding: 20px;
+            line-height: 1.8;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .test-item {
+            display: flex;
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: #f5f5f5;
+        }
+        .input {
+            flex: 1;
+            font-weight: bold;
+            color: #0066cc;
+        }
+        .output {
+            flex: 1;
+            color: #008800;
+        }
+        .header {
+            display: flex;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Sheets 日本語変換テスト</h1>
+    
+    <div class="test-section">
+        <h2>性別</h2>
+        <div class="header">
+            <div class="input">英語値</div>
+            <div class="output">日本語変換</div>
+        </div>
+        <div id="gender-test"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>ビジネスシーン</h2>
+        <div class="header">
+            <div class="input">英語値</div>
+            <div class="output">日本語変換</div>
+        </div>
+        <div id="business-test"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>プライベートシーン</h2>
+        <div class="header">
+            <div class="input">英語値</div>
+            <div class="output">日本語変換</div>
+        </div>
+        <div id="private-test"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>服装規定</h2>
+        <div class="header">
+            <div class="input">英語値</div>
+            <div class="output">日本語変換</div>
+        </div>
+        <div id="dress-test"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>複数選択テスト</h2>
+        <div class="header">
+            <div class="input">英語値（カンマ区切り）</div>
+            <div class="output">日本語変換</div>
+        </div>
+        <div id="multiple-test"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>男性の体型の悩み（サンプル）</h2>
+        <div class="header">
+            <div class="input">英語値</div>
+            <div class="output">日本語変換</div>
+        </div>
+        <div id="body-male-test"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>女性の体型の悩み（サンプル）</h2>
+        <div class="header">
+            <div class="input">英語値</div>
+            <div class="output">日本語変換</div>
+        </div>
+        <div id="body-female-test"></div>
+    </div>
+
+    <script>
+        // Test gender translations
+        const genderTests = ['male', 'female'];
+        const genderHtml = genderTests.map(value => {
+            const translated = GoogleSheetsIntegration.convertToJapanese(value, 'gender');
+            return `<div class="test-item">
+                <div class="input">${value}</div>
+                <div class="output">${translated}</div>
+            </div>`;
+        }).join('');
+        document.getElementById('gender-test').innerHTML = genderHtml;
+        
+        // Test business scenes
+        const businessTests = ['internal-meeting', 'external-meeting', 'business-dining', 'domestic-trip'];
+        const businessHtml = businessTests.map(value => {
+            const translated = GoogleSheetsIntegration.convertToJapanese(value, 'businessScenes');
+            return `<div class="test-item">
+                <div class="input">${value}</div>
+                <div class="output">${translated}</div>
+            </div>`;
+        }).join('');
+        document.getElementById('business-test').innerHTML = businessHtml;
+        
+        // Test private scenes
+        const privateTests = ['luxury-dining', 'shopping', 'golf', 'party'];
+        const privateHtml = privateTests.map(value => {
+            const translated = GoogleSheetsIntegration.convertToJapanese(value, 'privateScenes');
+            return `<div class="test-item">
+                <div class="input">${value}</div>
+                <div class="output">${translated}</div>
+            </div>`;
+        }).join('');
+        document.getElementById('private-test').innerHTML = privateHtml;
+        
+        // Test dress regulation
+        const dressTests = ['suit-required', 'business-casual', 'smart-casual', 'no-restriction'];
+        const dressHtml = dressTests.map(value => {
+            const translated = GoogleSheetsIntegration.convertToJapanese(value, 'dressRegulation');
+            return `<div class="test-item">
+                <div class="input">${value}</div>
+                <div class="output">${translated}</div>
+            </div>`;
+        }).join('');
+        document.getElementById('dress-test').innerHTML = dressHtml;
+        
+        // Test multiple selections
+        const multipleTests = [
+            {input: 'internal-meeting, external-meeting, business-dining', category: 'businessScenes'},
+            {input: 'luxury-dining, golf, fitness', category: 'privateScenes'},
+            {input: 'suit-required, business-casual', category: 'dressRegulation'}
+        ];
+        const multipleHtml = multipleTests.map(test => {
+            const translated = GoogleSheetsIntegration.convertToJapanese(test.input, test.category);
+            return `<div class="test-item">
+                <div class="input">${test.input}</div>
+                <div class="output">${translated}</div>
+            </div>`;
+        }).join('');
+        document.getElementById('multiple-test').innerHTML = multipleHtml;
+        
+        // Test male body concerns
+        const maleBodyTests = ['narrow-shoulders', 'thin-chest', 'protruding-belly'];
+        const maleBodyHtml = maleBodyTests.map(value => {
+            const translated = GoogleSheetsIntegration.convertToJapanese(value, 'bodyMaleConcerns');
+            return `<div class="test-item">
+                <div class="input">${value}</div>
+                <div class="output">${translated}</div>
+            </div>`;
+        }).join('');
+        document.getElementById('body-male-test').innerHTML = maleBodyHtml;
+        
+        // Test female body concerns
+        const femaleBodyTests = ['sitting-belly', 'thick-thighs', 'flabby-arms'];
+        const femaleBodyHtml = femaleBodyTests.map(value => {
+            const translated = GoogleSheetsIntegration.convertToJapanese(value, 'bodyFemaleConcerns');
+            return `<div class="test-item">
+                <div class="input">${value}</div>
+                <div class="output">${translated}</div>
+            </div>`;
+        }).join('');
+        document.getElementById('body-female-test').innerHTML = femaleBodyHtml;
+    </script>
+</body>
+</html>

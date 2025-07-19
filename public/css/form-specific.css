@@ -1,0 +1,458 @@
+/* Form Specific CSS - Specific form sections and components */
+
+/* Gender Switch */
+.gender-switch-container {
+    margin-bottom: 30px;
+    display: block !important;
+}
+
+.gender-switch-container.prominent {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.gender-switch-container.standalone {
+    background: var(--surface-color);
+    margin: 30px 0;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.gender-switch-container .radio-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.gender-switch-container .radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 12px 30px;
+    border: 2px solid var(--border-color);
+    border-radius: 30px;
+    transition: all 0.2s ease;
+    background: var(--surface-color);
+    font-weight: 500;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.gender-switch-container .radio-label:hover {
+    border-color: var(--primary-color);
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+
+.gender-switch-container input[type="radio"] {
+    display: none;
+}
+
+.gender-switch-container input[type="radio"]:checked + span,
+.gender-switch-container input[type="radio"]:checked ~ span {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.gender-switch-container .radio-label:has(input[type="radio"]:checked) {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+/* Female Form Overrides */
+.female-form .gender-switch-container.prominent {
+    border: 1px solid rgba(184, 160, 106, 0.15);
+}
+
+.female-form .gender-switch-container .radio-label {
+    border-color: #e0e0e0;
+    background: #ffffff;
+    color: #333333;
+}
+
+.female-form .gender-switch-container .radio-label:hover {
+    border-color: var(--accent-light-gold);
+    background: rgba(233, 30, 99, 0.05);
+    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.15);
+}
+
+.female-form .gender-switch-container input[type="radio"]:checked + span {
+    color: var(--accent-light-gold);
+}
+
+.female-form .gender-switch-container .radio-label:has(input[type="radio"]:checked) {
+    border-color: var(--accent-light-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+/* Photo Upload Section */
+#photo-upload-section {
+    margin-bottom: 48px;
+}
+
+.photo-upload-container {
+    margin-top: 32px;
+}
+
+.photo-upload-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.photo-single-upload {
+    max-width: 400px;
+    margin: 0 auto 40px;
+}
+
+.photo-upload-item,
+.photo-upload-item-single {
+    text-align: center;
+}
+
+.photo-upload-item-single .photo-upload-box {
+    aspect-ratio: 1;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.photo-type-title {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.photo-upload-box {
+    position: relative;
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.15s ease;
+    aspect-ratio: 4/5;
+}
+
+.photo-upload-box:hover {
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.photo-input {
+    display: none;
+}
+
+.photo-upload-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+}
+
+.photo-placeholder {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.upload-icon {
+    font-size: 3rem;
+    color: var(--accent-gold);
+    margin-bottom: 16px;
+    font-weight: 200;
+    line-height: 1;
+}
+
+.photo-placeholder p {
+    color: var(--text-secondary);
+    margin: 8px 0;
+    font-size: 0.9rem;
+}
+
+.file-hint {
+    font-size: 0.8rem !important;
+    color: var(--text-muted) !important;
+    opacity: 0.8;
+}
+
+.photo-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-upload-box.has-image {
+    border-style: solid;
+    border-color: var(--accent-gold);
+}
+
+.photo-upload-box.has-image .photo-placeholder {
+    display: none;
+}
+
+/* Weekly Activities */
+.weekday-activities {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.weekday-activity {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Service Expectations */
+.service-expectations {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.service-expectations .form-check {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Weekly Summary */
+.weekly-summary {
+    background: #e9ecef;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.weekly-summary p {
+    margin: 5px 0;
+    font-weight: 500;
+}
+
+/* Fashion Literacy Conditional */
+.fashion-literacy-conditional {
+    display: none;
+    margin-top: 10px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* Coordinate Images */
+.coordinate-images {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.coordinate-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Travel Section */
+.travel-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.travel-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Conditional Options */
+.conditional-options {
+    margin-top: 20px;
+    padding: 20px;
+    background: var(--surface-elevated);
+    border-radius: 12px;
+    animation: slideDown 0.3s ease-out;
+}
+
+.conditional-options .sub-question {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.conditional-options .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Wanted Items Detail */
+.wanted-items-detail {
+    margin-top: 20px;
+    padding: 24px;
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.wanted-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 16px;
+}
+
+.item-request {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: var(--surface-dark);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.item-request:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.item-checkbox {
+    flex: 1;
+    margin: 0;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.item-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    accent-color: var(--accent-gold);
+}
+
+.item-checkbox span {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.quantity-input {
+    width: 80px;
+    padding: 10px 12px;
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 16px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.quantity-input:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.quantity-input::placeholder {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.item-request:not(:has(input[type="checkbox"]:checked)) .quantity-input {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Avoid Other Input */
+.avoid-other-input-container {
+    margin-top: 12px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+#avoid-other-text {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    resize: vertical;
+    min-height: 80px;
+}
+
+#avoid-other-text:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    background: var(--surface-dark);
+}
+
+#avoid-other-text::placeholder {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+#avoid-other + .avoid-item-label {
+    border: 2px solid var(--border-color);
+    background: var(--surface-elevated);
+}
+
+#avoid-other:checked + .avoid-item-label {
+    border-color: var(--accent-gold);
+    background: var(--surface-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .wanted-items-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .item-request {
+        padding: 12px;
+    }
+
+    .item-checkbox span {
+        font-size: 15px;
+    }
+
+    .quantity-input {
+        width: 70px;
+        font-size: 15px;
+    }
+
+    #avoid-other-text {
+        font-size: 15px;
+        padding: 12px 14px;
+        min-height: 60px;
+    }
+}
+

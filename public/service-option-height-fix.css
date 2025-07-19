@@ -1,0 +1,79 @@
+/* Service Option Height Fix */
+/* Ensure all service-option containers have the same height */
+
+.service-items-row .service-option {
+    min-height: 450px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure service-header has consistent height */
+.service-items-row .service-header {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Make service-options flex to fill remaining space */
+.service-items-row .service-options {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Ensure radio-group takes full height */
+.service-items-row .radio-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+/* Ensure all service visual grids have same height */
+.service-items-row .service-visual-grid {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure form-groups in service-items-row have consistent height */
+.service-items-row .form-group {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Image consistent height */
+.service-items-row .service-image {
+    height: 160px;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 16px;
+}
+
+/* Service question and description styling for consistency */
+.service-items-row .service-question {
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.service-items-row .service-description {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .service-items-row .service-option {
+        min-height: 400px;
+    }
+    
+    .service-items-row .service-header {
+        min-height: 100px;
+    }
+}

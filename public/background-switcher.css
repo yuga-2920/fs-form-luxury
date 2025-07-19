@@ -1,0 +1,34 @@
+/* Background Image Switcher for Gender Forms */
+
+/* Default (Male) background - override combined-styles.css */
+body {
+    background:
+        linear-gradient(rgba(10, 10, 10, 0.1), rgba(15, 15, 15, 0.1)),
+        url('images/fashion-store-background.webp') center/cover fixed !important;
+    transition: background 0.5s ease-out;
+}
+
+/* Female form background */
+body.female-form {
+    background:
+        linear-gradient(rgba(10, 10, 10, 0.1), rgba(15, 15, 15, 0.1)),
+        url('images/fashion-store-background-female.webp') center/cover fixed !important;
+}
+
+/* Additional styling adjustments for female form */
+body.female-form {
+    /* Lighter overlay for female form */
+    position: relative;
+}
+
+body.female-form::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 248, 220, 0.05); /* Subtle gold tint */
+    pointer-events: none;
+    z-index: -1;
+}

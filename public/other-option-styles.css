@@ -1,108 +1,46 @@
-/* Styles for "その他" (Other) option text inputs */
-
-/* Wrapper for other text inputs */
-.other-text-input-wrapper {
-    margin-top: 10px;
-    margin-left: 24px;
-    transition: all 0.3s ease;
-}
-
-/* Text input styling */
+/* Other option text input styles */
 .other-text-input {
+    display: block;
     width: 100%;
-    max-width: 400px;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
+    padding: 12px 16px;
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
     font-family: inherit;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
+    margin-top: 10px;
 }
 
 .other-text-input:focus {
     outline: none;
-    border-color: #4a90e2;
-    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+    border-color: var(--primary-color);
+    background: var(--surface-color);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
 }
 
 .other-text-input::placeholder {
-    color: #999;
-    font-size: 13px;
+    color: var(--text-muted);
+    opacity: 0.7;
 }
 
-/* Error state */
-.other-text-input.error {
-    border-color: #ff4444;
+/* Female form styles */
+.female-form .other-text-input {
+    background: var(--surface-elevated);
+    border-color: var(--border-soft);
+    color: var(--text-primary);
 }
 
-/* Budget section specific styling */
-.budget-item .other-text-input-wrapper {
-    margin-top: 8px;
-    margin-left: 0;
+.female-form .other-text-input:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(212, 197, 160, 0.1);
 }
 
-.budget-item .other-text-input {
-    font-size: 13px;
-    padding: 6px 10px;
-}
-
-/* Travel section specific styling */
-.travel-options .other-text-input-wrapper {
-    margin-top: 12px;
-    margin-bottom: 8px;
-}
-
-/* Responsive adjustments */
+/* Responsive styles */
 @media (max-width: 768px) {
-    .other-text-input-wrapper {
-        margin-left: 16px;
-    }
-    
     .other-text-input {
-        font-size: 13px;
-        padding: 6px 10px;
+        font-size: 0.95rem;
+        padding: 10px 14px;
     }
-}
-
-@media (max-width: 480px) {
-    .other-text-input-wrapper {
-        margin-left: 12px;
-        margin-top: 8px;
-    }
-    
-    .other-text-input {
-        font-size: 12px;
-        padding: 5px 8px;
-    }
-    
-    .other-text-input::placeholder {
-        font-size: 12px;
-    }
-}
-
-/* Animation for showing/hiding */
-.other-text-input-wrapper {
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Integration with existing form styles */
-.checkbox-group .other-text-input-wrapper {
-    width: calc(100% - 24px);
-}
-
-.radio-group .other-text-input-wrapper {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 12px;
 }

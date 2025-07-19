@@ -1,0 +1,50 @@
+/* Dress Code Gender-specific Styles */
+
+/* テキスト入力フィールドのスタイル */
+#dress-regulation-other-female-text {
+    display: none;
+    width: 100%;
+    padding: 8px 12px;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+#dress-regulation-other-female-text:focus {
+    border-color: var(--accent-gold);
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+/* その他オプションのラッパー */
+.other-input-wrapper {
+    margin-top: 8px;
+}
+
+/* 女性用ドレスコードグリッドの調整 */
+#female-dress-regulations {
+    display: none;
+    grid-template-columns: repeat(auto-fit, 1fr);
+    gap: 20px;
+}
+
+/* その他オプションが選択されたときのカードスタイル */
+#regulation-other-female:checked + label .dress-regulation-card {
+    border-color: var(--accent-gold);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    #female-dress-regulations {
+        grid-template-columns: 1fr;
+    }
+
+    #dress-regulation-other-female-text {
+        font-size: 16px; /* モバイルでのズーム防止 */
+    }
+}

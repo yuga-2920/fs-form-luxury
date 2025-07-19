@@ -1,0 +1,237 @@
+/* Style Pattern Reasons - Display pattern selections grouped by style */
+
+.style-pattern-reasons {
+    margin-top: 30px;
+    padding: 24px;
+    background: var(--surface-elevated);
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+}
+
+/* Add spacing between good and bad sections */
+[class*="good-patterns-"] {
+    margin-bottom: 24px;
+}
+
+/* Good patterns container background */
+[class*="good-patterns-"] .good-patterns-list {
+    border-radius: 8px;
+    margin-top: 12px;
+}
+
+/* Bad patterns container background */
+[class*="bad-patterns-"] .bad-patterns-list {
+    background: rgba(244, 67, 54, 0.05);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 12px;
+}
+
+.reason-section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.reason-subtitle {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Good patterns section styling */
+[class*="good-patterns-"] > .reason-subtitle {
+    color: #2e7d32;
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    box-shadow: none;
+}
+
+[class*="good-patterns-"] .pattern-reason-item {
+    border-left: 4px solid rgba(76, 175, 80, 0.5);
+}
+
+/* Bad patterns section styling */
+[class*="bad-patterns-"] > .reason-subtitle {
+    color: #c62828;
+    background: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    box-shadow: none;
+}
+
+[class*="bad-patterns-"] .pattern-reason-item {
+    border-left: 4px solid rgba(244, 67, 54, 0.5);
+}
+
+/* Pattern reason items */
+.pattern-reason-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 16px;
+    background: var(--surface-dark);
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    min-height: 170px;
+    align-items: flex-start;
+}
+
+.pattern-reason-item:last-child {
+    margin-bottom: 0;
+}
+
+.pattern-reason-thumb {
+    width: 120px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.pattern-reason-thumb:hover {
+    transform: scale(1.05);
+}
+
+.pattern-reason-content {
+    flex: 1;
+}
+
+.pattern-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.reason-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.reason-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 13px;
+}
+
+.reason-checkbox:hover {
+    background: var(--surface-dark);
+    border-color: var(--accent-gold);
+}
+
+.reason-checkbox input[type="checkbox"] {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent-gold);
+}
+
+.reason-checkbox:has(input:checked) {
+    style-male-mode-1.webp
+    border-color: var(--accent-gold);
+    color: #000;
+    font-weight: 500;
+}
+
+/* Evaluation section styling */
+.pattern-grid-3x5 .evaluation-section {
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+.pattern-grid-3x5 .good-bad-selection {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.pattern-grid-3x5 .eval-option {
+    max-width: 36px;
+    min-width: 36px;
+    max-height: 36px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+}
+
+.pattern-grid-3x5 .eval-option:hover {
+    transform: scale(1.1);
+}
+
+.pattern-grid-3x5 .eval-option.good:hover {
+    border-color: #4caf50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.pattern-grid-3x5 .eval-option.bad:hover {
+    border-color: #f44336;
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.pattern-grid-3x5 .eval-option input[type="radio"] {
+    display: none;
+}
+
+.pattern-grid-3x5 .eval-option .btn-icon {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Selected states */
+.pattern-grid-3x5 .eval-option.good:has(input:checked) {
+    background: #4caf50;
+    border-color: #4caf50;
+}
+
+.pattern-grid-3x5 .eval-option.good:has(input:checked) .btn-icon {
+    color: #fff;
+}
+
+.pattern-grid-3x5 .eval-option.bad:has(input:checked) {
+    background: #f44336;
+    border-color: #f44336;
+}
+
+.pattern-grid-3x5 .eval-option.bad:has(input:checked) .btn-icon {
+    color: #fff;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .reason-checkboxes {
+        grid-template-columns: 1fr;
+    }
+
+    .pattern-reason-item {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .pattern-reason-thumb {
+        margin: 0 auto 16px;
+        width: 100px;
+        height: 125px;
+    }
+}

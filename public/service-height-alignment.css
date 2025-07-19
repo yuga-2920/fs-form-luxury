@@ -1,0 +1,63 @@
+/* Service Section Height Alignment */
+
+/* Ensure all service images have consistent height */
+.service-visual-grid .service-image {
+    width: 100%;
+    height: 200px !important;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Ensure all service headers have consistent height */
+.service-visual-grid .service-header {
+    min-height: 120px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Service items row specific height adjustments */
+.service-items-row .service-image {
+    height: 180px !important;
+}
+
+.service-items-row .service-header {
+    min-height: 100px !important;
+}
+
+/* Section 7-5 specific adjustments to match others */
+#section7 > .form-group:nth-child(6) .service-image {
+    height: 200px !important;
+    max-width: 100%;
+}
+
+#section7 > .form-group:nth-child(6) .service-header {
+    min-height: 120px !important;
+}
+
+/* Ensure consistent spacing */
+.service-visual-grid .service-question {
+    margin-bottom: 12px;
+}
+
+.service-visual-grid .service-description {
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .service-visual-grid .service-image,
+    .service-items-row .service-image,
+    #section7 > .form-group:nth-child(6) .service-image {
+        height: 150px !important;
+    }
+    
+    .service-visual-grid .service-header,
+    .service-items-row .service-header,
+    #section7 > .form-group:nth-child(6) .service-header {
+        min-height: 80px !important;
+    }
+}

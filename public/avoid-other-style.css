@@ -1,0 +1,66 @@
+/* Avoid Items - Other Option Styling */
+
+/* Other text input container */
+.avoid-other-input-container {
+    margin-top: 12px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Text input field for other avoided items */
+#avoid-other-text {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    resize: vertical;
+    min-height: 80px;
+}
+
+#avoid-other-text:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    background: var(--surface-dark);
+}
+
+#avoid-other-text::placeholder {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* Style the other option to stand out slightly */
+#avoid-other + .avoid-item-label {
+    border: 2px solid var(--border-color);
+    background: var(--surface-elevated);
+}
+
+#avoid-other:checked + .avoid-item-label {
+    border-color: var(--accent-gold);
+    background: var(--surface-dark);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #avoid-other-text {
+        font-size: 15px;
+        padding: 12px 14px;
+        min-height: 60px;
+    }
+}

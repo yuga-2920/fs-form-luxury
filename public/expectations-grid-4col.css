@@ -1,0 +1,76 @@
+/* Expectations Grid - 4 Column Layout */
+
+/* Override expectations-grid to display in 4 columns */
+.expectations-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 16px !important;
+    margin-top: 24px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Ensure expectation cards work well in grid layout */
+.expectation-card {
+    width: 100%;
+    min-height: 100px;
+    padding: 16px 20px;
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.expectation-card:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(-2px);
+    background: var(--surface-dark);
+}
+
+.expectation-card:has(input:checked) {
+    border-color: var(--accent-gold);
+    color: #000;
+    font-weight: 500;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+}
+
+.expectation-content {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    text-align: center;
+    width: 100%;
+}
+
+/* Hide checkbox visually but keep it functional */
+.expectation-card input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .expectations-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .expectations-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    .expectation-card {
+        padding: 14px 18px;
+        min-height: 80px;
+    }
+
+    .expectation-content {
+        font-size: 0.9rem;
+        text-align: left;
+    }
+}

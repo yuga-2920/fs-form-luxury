@@ -1,0 +1,22 @@
+/* Female Form Pattern Selections - Light Theme */
+
+/* Override dark background for female form pattern selections */
+.female-form .pattern-selections {
+    background: rgba(245, 245, 245, 0.95);
+    border: 2px solid var(--accent-gold);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* Female form toggle pattern section */
+.female-form .toggle-pattern-section {
+    background: transparent;
+}
+
+/* Female form pattern grid container */
+.female-form .pattern-grid-container {
+    background: rgba(245, 242, 235, 0.5); /* Light gray-gold tint */
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 15px;
+}

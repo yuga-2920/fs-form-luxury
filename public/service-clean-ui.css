@@ -1,0 +1,37 @@
+/* Service Items Row - Clean UI Design */
+
+/* Remove service option number indicator to match 7-5 style */
+.service-items-row .service-header::before {
+    display: none;
+}
+
+/* Clean focus states */
+.service-items-row .radio-option input[type="radio"]:focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 2px;
+}
+
+.service-items-row .radio-option label {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Service section title enhancement */
+.service-items-row .service-question {
+    position: relative;
+    z-index: 1;
+}
+
+/* Radio group enhancement */
+.service-items-row .radio-group {
+    gap: 8px;
+}
+
+/* Remove visual indicator to match 7-5 style */
+
+/* Add data-service-number attribute styling */
+.service-items-row .service-header[data-service-number="7-1"]::before { content: "7-1"; }
+.service-items-row .service-header[data-service-number="7-2"]::before { content: "7-2"; }
+.service-items-row .service-header[data-service-number="7-3"]::before { content: "7-3"; }
+.service-items-row .service-header[data-service-number="7-4"]::before { content: "7-4"; }

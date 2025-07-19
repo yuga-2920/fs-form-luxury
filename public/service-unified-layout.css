@@ -1,0 +1,146 @@
+/* Unified Service Layout - Make 7-1 to 7-4 match 7-5 style */
+
+/* Override service-items-row grid layout - 2 column grid */
+.service-items-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Match 7-5 service option style */
+.service-items-row .service-option {
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: block;
+    min-height: auto;
+}
+
+/* Add form-group border like 7-5 */
+.service-items-row .form-group {
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background: var(--surface-elevated);
+}
+
+/* Match 7-5 service header style */
+.service-items-row .service-header {
+    padding: 0;
+    height: auto;
+    min-height: auto;
+    display: block;
+    background: transparent;
+    border-radius: 0;
+    margin: 0 0 20px 0;
+    padding: 0 20px;
+}
+
+/* Match 7-5 service question style */
+.service-items-row .service-question {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 16px 0;
+    color: var(--text-primary);
+    line-height: 1.4;
+    text-align: left;
+    letter-spacing: normal;
+}
+
+/* Match 7-5 service description style */
+.service-items-row .service-description {
+    display: block !important;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+/* Style radio options like expectation cards */
+.service-items-row .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+    padding: 0 20px;
+}
+
+.service-items-row .radio-option {
+    width: 100%;
+    padding: 20px 24px;
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.service-items-row .radio-option:hover {
+    border-color: var(--accent-gold);
+    transform: translateX(5px);
+    background: var(--surface-dark);
+}
+
+.service-items-row .radio-option:has(input:checked) {
+    border-color: var(--accent-gold);
+    color: #000;
+    font-weight: 500;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+}
+
+.service-items-row .radio-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+/* Custom radio button styling to match checkboxes */
+.service-items-row .radio-option input[type="radio"]:checked {
+    accent-color: #007bff;
+}
+
+.service-items-row .radio-option span {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    text-align: left;
+    flex: 1;
+}
+
+/* Show service images like 7-5 */
+.service-items-row .service-image {
+    display: block !important;
+    width: 100%;
+    height: 250px;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+/* Remove number indicators */
+.service-items-row .service-header::before {
+    display: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    /* Switch to single column on mobile */
+    .service-items-row {
+        grid-template-columns: 1fr;
+    }
+
+    .service-items-row .radio-option {
+        padding: 16px 20px;
+    }
+
+    .service-items-row .radio-option span {
+        font-size: 0.95rem;
+    }
+}

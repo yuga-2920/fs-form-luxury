@@ -1,0 +1,213 @@
+/* Service Section Layout Fix */
+/* Keep all service sections in normal flow (1 column) */
+#section7 > .form-group {
+    display: block;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+/* Keep section 7-5 on its own row */
+#section7 > .form-group:nth-child(6) {
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* Adjust service-visual-grid for smaller width */
+#section7 > .form-group:nth-child(2) .service-visual-grid,
+#section7 > .form-group:nth-child(3) .service-visual-grid,
+#section7 > .form-group:nth-child(4) .service-visual-grid,
+#section7 > .form-group:nth-child(5) .service-visual-grid {
+    display: block;
+}
+
+#section7 > .form-group:nth-child(2) .service-option,
+#section7 > .form-group:nth-child(3) .service-option,
+#section7 > .form-group:nth-child(4) .service-option,
+#section7 > .form-group:nth-child(5) .service-option {
+    display: block;
+    margin-bottom: 0;
+}
+
+/* Make images smaller for the 4-column layout */
+#section7 > .form-group:nth-child(2) .service-image,
+#section7 > .form-group:nth-child(3) .service-image,
+#section7 > .form-group:nth-child(4) .service-image,
+#section7 > .form-group:nth-child(5) .service-image,
+.service-items-row .service-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Adjust font sizes to match 7-5 */
+#section7 > .form-group:nth-child(2) .service-question,
+#section7 > .form-group:nth-child(3) .service-question,
+#section7 > .form-group:nth-child(4) .service-question,
+#section7 > .form-group:nth-child(5) .service-question,
+.service-items-row .service-question {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 16px 0;
+    color: var(--text-primary);
+    line-height: 1.4;
+    text-align: left;
+    letter-spacing: 0.3px;
+}
+
+#section7 > .form-group:nth-child(2) .service-description,
+#section7 > .form-group:nth-child(3) .service-description,
+#section7 > .form-group:nth-child(4) .service-description,
+#section7 > .form-group:nth-child(5) .service-description,
+.service-items-row .service-description {
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+/* Make radio options match 7-5 style */
+.service-items-row .radio-option {
+    padding: 20px 24px;
+    margin: 0 0 16px 0;
+    font-size: 1.05rem;
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+}
+
+.service-items-row .radio-option:hover {
+    border-color: var(--accent-gold);
+    transform: translateX(5px);
+    background: var(--surface-dark);
+}
+
+.service-items-row .radio-option:has(input:checked) {
+    border-color: var(--accent-gold);
+    color: #000;
+    font-weight: 500;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+}
+
+/* Radio button styling */
+.service-items-row .radio-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    flex-shrink: 0;
+    accent-color: var(--accent-gold);
+}
+
+.service-items-row .radio-option span {
+    flex: 1;
+    text-align: left;
+}
+
+/* Service containers styling */
+.service-items-row .service-header {
+    padding: 0;
+    height: auto;
+    min-height: auto;
+    display: block;
+    background: transparent;
+    border-radius: 0;
+    position: relative;
+    margin: 0 0 20px 0;
+}
+
+.service-items-row .service-options {
+    padding: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Service option cards */
+.service-items-row .service-option {
+    padding: 0;
+    border-radius: 12px;
+    overflow: visible;
+    background: transparent;
+    border: none;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Service items row - 2x2 grid layout */
+.service-items-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-items-row .form-group {
+    width: 100%;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure service options take full height */
+.service-items-row .service-visual-grid {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-items-row .service-option {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure radio options container grows to fill space */
+.service-items-row .service-options {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-items-row .radio-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 1200px) {
+    .service-items-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .service-items-row .service-option {
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-items-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .service-items-row .service-header {
+        height: 100px;
+        min-height: 100px;
+        padding: 20px 25px;
+    }
+
+    .service-items-row .service-option {
+        min-height: 250px;
+    }
+}

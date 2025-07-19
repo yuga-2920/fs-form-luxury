@@ -1,0 +1,220 @@
+/* Service Section CSS - Consolidated from all service-related CSS files */
+
+/* Service Items Row Layout - 2x2 Grid */
+.service-items-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-items-row .form-group {
+    width: 100%;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background: var(--surface-elevated);
+    padding: 20px;
+}
+
+/* Service Visual Grid */
+.service-visual-grid {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Service Option Container */
+.service-option {
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: block;
+    min-height: auto;
+    height: 100%;
+    flex-direction: column;
+}
+
+/* Service Header */
+.service-header {
+    padding: 0;
+    height: auto;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: transparent;
+    border-radius: 0;
+    margin: 0 0 20px 0;
+}
+
+/* Remove number indicators */
+.service-header::before {
+    display: none !important;
+}
+
+/* Service Question Title */
+.service-question {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 16px 0;
+    color: var(--text-primary);
+    line-height: 1.4;
+    text-align: left;
+    letter-spacing: normal;
+}
+
+/* Service Description */
+.service-description,
+.service-subtitle {
+    display: block !important;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+/* Service Image */
+.service-image {
+    display: block !important;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Service Options Container */
+.service-options {
+    padding: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Radio Group for Service Options */
+.service-visual-grid .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+    flex: 1;
+}
+
+/* Service Radio Options - Using common radio-option styles */
+.service-visual-grid .radio-option {
+    width: 100%;
+}
+
+/* Service 7-5 Specific Styles (Expectations) */
+#section7 > .form-group:nth-child(6) {
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+}
+
+#section7 > .form-group:nth-child(6) .service-visual-grid {
+    display: block !important;
+}
+
+#section7 > .form-group:nth-child(6) .service-option {
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: block;
+}
+
+/* Expectations Grid */
+.expectations-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.expectation-card {
+    width: 100%;
+    padding: 20px 24px;
+    background: var(--surface-elevated);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.expectation-card:hover {
+    border-color: var(--accent-gold);
+    transform: translateX(5px);
+    background: var(--surface-dark);
+}
+
+.expectation-card:has(input:checked) {
+    style-male-mode-1.webp
+    border-color: var(--accent-gold);
+    color: #000;
+    font-weight: 500;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+}
+
+.expectation-content {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* Service Items Row Specific Height Adjustments */
+.service-items-row .service-image {
+    height: 180px !important;
+}
+
+.service-items-row .service-header {
+    min-height: 100px !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .service-items-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-items-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .service-visual-grid .service-image,
+    .service-items-row .service-image {
+        height: 150px !important;
+    }
+
+    .service-visual-grid .service-header,
+    .service-items-row .service-header {
+        min-height: 80px !important;
+    }
+
+    .expectations-grid {
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    .expectation-card {
+        padding: 16px 20px;
+    }
+
+    .expectation-content {
+        font-size: 0.95rem;
+    }
+}
+

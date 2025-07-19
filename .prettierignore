@@ -1,0 +1,8 @@
+node_modules
+dist
+coverage
+.git
+*.min.js
+*.min.css
+public/combined-scripts.js
+public/form-fixes.js
